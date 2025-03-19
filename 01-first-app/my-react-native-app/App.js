@@ -66,7 +66,7 @@ Environment Vars (like PATH) have changed. Close/reopen your shell to
   Software installed to 'C:\Program Files\Microsoft\jdk-17.0.14.7-hotspot\'
 
 
-  THEN start Android Studio
+  THEN start Android Studio   -  Simulator software
     Choose: More Action > Virtual Device Manager
     Select the installed device emulator to start (press Play button)
 
