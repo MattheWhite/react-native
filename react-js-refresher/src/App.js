@@ -30,9 +30,11 @@ export default App;
 const ExampleApp = () => {
   // return React.createElement('h1', {title: 'This works'}, 'Example React App');
   return <h1 title='This works'>Example React App</h1>; // => this is a JSX syntax, equivalent to the code above, JSX basically simplifies the syntax so you can write HTML code in a JS file then translates into commands like above
+  // if this returns anything other than a JSX code, throws error
 }
 
-// this is the other type of Component
+// this is the other type of Component  OLD WAY
+// in modern React use functional/function based components only
 class ExampleApp2 extends React.Component {
   render() {
     return <h1 title='This works'>Example React App</h1>;
