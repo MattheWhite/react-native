@@ -25,6 +25,7 @@ function App() {
 export default App;
 
 // understanding JSX
+// this is a tpye of Component -> can be an arrow function OR a JS class. React is all about components
 const ExampleApp = () => {
   // return React.createElement('h1', {title: 'This works'}, 'Example React App');
   return <h1 title='This works'>Example React App</h1>; // => this is a JSX syntax, equivalent to the code above, JSX basically simplifies the syntax so you can write HTML code in a JS file then translates into commands like above
