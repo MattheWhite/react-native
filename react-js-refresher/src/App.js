@@ -45,8 +45,9 @@ export {ExampleApp, ExampleApp2}
 
 const ReactApp = () => {
   return <div>
+    {/* Inline comments looks like this in JSX code */}
     <h2>Course Goals</h2>
-    <ul>
+    <ul className='goal-list'>{/* class is a JS attribute keyword so JSX uses className */}
       <li>Finish the course</li>
       <li>Learn all about the Course Main Topic</li>
       <li>Help other students in the course Q&amp;A</li>
