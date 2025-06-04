@@ -42,3 +42,16 @@ class ExampleApp2 extends React.Component {
 }
 
 export {ExampleApp, ExampleApp2}
+
+const ReactApp = () => {
+  return <div>
+    <h2>Course Goals</h2>
+    <ul>
+      <li>Finish the course</li>
+      <li>Learn all about the Course Main Topic</li>
+      <li>Help other students in the course Q&amp;A</li>
+    </ul>
+  </div>
+}
+
+export {ReactApp}
