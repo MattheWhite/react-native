@@ -37,9 +37,13 @@
   }
 }
 
+.course-goals h2 { /* if you delete h2 from the selector all text will be centered, since all those HTMLs are children of this class */
+  text-align: center;
+}
+
 .goal-list {
   list-style: none;
-  margin: 2rem  0;
+  margin: 2rem;
   padding: 0;
 }
 

@@ -44,7 +44,7 @@ class ExampleApp2 extends React.Component {
 export {ExampleApp, ExampleApp2}
 
 const ReactApp = () => {
-  return <div>
+  return <div className='course-goals'>
     {/* Inline comments looks like this in JSX code */}
     <h2>Course Goals</h2>
     <ul className='goal-list'>{/* class is a JS attribute keyword so JSX uses className */}
