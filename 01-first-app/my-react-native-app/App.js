@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
 
 
 /* 
+If already installed the necessary SDK and other tools, to start the app in the emulator:
+  Step 1. npm install  (if not already, must to install expo and other dependencies)
+  Step 2. npx expo start
+
+
 Pressed 'w' -> open web
 
 It looks like you're trying to use web support but don't have the required dependencies installed.
