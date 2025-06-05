@@ -9,14 +9,13 @@ function GoalList
 const GoalList = function GoalList ...
 const GoalList = () => {}
  */
-const GoalList = () => {
+const GoalList = (props) => { // every function used by React which returns JSX will receive parameters/props automatically
   // return statement in JSX code looks like this, prettier structuring with using () brackets
+  console.log(props.goals); // props is an Object
   return (
     <ul className="goal-list">
       {/* class is a JS attribute keyword so JSX uses className */}
-      <li>Finish the course</li>
-      <li>Learn all about the Course Main Topic</li>
-      <li>Help other students in the course Q&amp;A</li>
+
     </ul>
   );
 };
