@@ -1,6 +1,6 @@
 import React from "react"; // always necessary, without this we can't use JSX syntax
 
-import './GoalList.css'; // styling import, separated only for leaner code
+import './GoalList.css'; // styling import, separated only for leaner code. CSS always applied globally no matter where you import them, applied to the whole page
 
 /* 
 Different ways to define a component
