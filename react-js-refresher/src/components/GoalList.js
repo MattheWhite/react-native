@@ -13,9 +13,8 @@ const GoalList = (props) => { // every function used by React which returns JSX 
   // return statement in JSX code looks like this, prettier structuring with using () brackets
   console.log(props.goals); // props is an Object
   return (
-    <ul className="goal-list">
-      {/* class is a JS attribute keyword so JSX uses className */}
-
+    <ul className="goal-list"> {/* class is a JS attribute keyword so JSX uses className */}
+      {[<li>HI</li>, <li>This works</li>]}
     </ul>
   );
 };
