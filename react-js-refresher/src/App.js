@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import GoalList from "./components/GoalList";
+import GoalList from "./components/GoalList/GoalList";
 
 function App() {
   return (
