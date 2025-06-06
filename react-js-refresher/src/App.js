@@ -55,13 +55,18 @@ const ReactApp = () => {
     { id: "cg3", text: "Help other students in the course Q&A" },
   ];
 
+  const addNewGoalHandler = (newGoal) => {
+    courseGoals.push(newGoal);
+    console.log(courseGoals);
+  };
+
   return (
     <div className="course-goals">
       {/* Inline comments looks like this in JSX code */}
       <h2>Course Goals</h2>      
       {/* outsource the component -> leaner structure 
           using props (properties) for passing data from components to another components, syntax is propName={variableName} => will hold the specified prop a reference to the object */}
-      <NewGoal />
+      <NewGoal onAddGoal={addNewGoalHandler} />{/* onAddGoal is named here, could be anything, this is a prop too for passign down a function in this case from parent to child component, so the child component can use that for event handling */}
       <GoalList goals={courseGoals} />
     </div>
   );

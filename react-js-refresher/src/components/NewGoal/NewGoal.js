@@ -14,7 +14,8 @@ const NewGoal = () => {
         console.log(newGoal);
     };
     
-    return <form className="new-goal" onSubmit={addGoalHandler}>{/* only pass the function's pointer! no execution () here, React will handle the execution automatically */}
+    return <form className="new-goal" onSubmit={addGoalHandler}>{/* only pass the function's pointer! no execution () here, React will handle the execution automatically
+    FUN FACT: basically all is props, just one receives an Object (props), other receives a pointer to a function (event handler) */}
         <input type="text" />
         <button type="submit" >Add Goal</button>
     </form>
