@@ -1,7 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
 import React from "react";
+import "./App.css";
 import GoalList from "./components/GoalList/GoalList";
+import NewGoal from "./components/NewGoal/NewGoal";
+import logo from "./logo.svg";
 
 function App() {
   return (
@@ -44,6 +45,9 @@ class ExampleApp2 extends React.Component {
 
 export { ExampleApp, ExampleApp2 };
 
+
+
+
 const ReactApp = () => {
   const courseGoals = [
     { id: "cg1", text: "Finish the course" },
@@ -54,10 +58,10 @@ const ReactApp = () => {
   return (
     <div className="course-goals">
       {/* Inline comments looks like this in JSX code */}
-      <h2>Course Goals</h2>
-      
+      <h2>Course Goals</h2>      
       {/* outsource the component -> leaner structure 
           using props (properties) for passing data from components to another components, syntax is propName={variableName} => will hold the specified prop a reference to the object */}
+      <NewGoal />
       <GoalList goals={courseGoals} />
     </div>
   );
