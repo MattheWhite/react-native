@@ -32,3 +32,4 @@ const NewGoal = (props) => {/* since now in App.js we pass onAddGoal prop to thi
 }
 
 export default NewGoal;
+
