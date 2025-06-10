@@ -46,7 +46,7 @@ class ExampleApp2 extends React.Component {
 export { ExampleApp, ExampleApp2 };
 
 const ReactApp = () => {
-  const [courseGoals, setCourseGoals] = useState( // useState RETURNS:  [ latest state snapshot, function to handle changes ]
+  const [courseGoals, setCourseGoals] = useState( // useState ALWAYS RETURNS AN ARRAY WITH 2 ELEMNETS:  [ latest state snapshot, function to handle changes ]
     // this function's signature is declared here -> what will be executed/rendered is passed to this function inside the Components body
 
     // first pass the INITIAL STATE
