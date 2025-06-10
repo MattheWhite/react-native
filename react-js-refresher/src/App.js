@@ -46,8 +46,16 @@ class ExampleApp2 extends React.Component {
 export { ExampleApp, ExampleApp2 };
 
 const ReactApp = () => {
-  const [courseGoals, setCourseGoals] = useState( // useState ALWAYS RETURNS AN ARRAY WITH 2 ELEMNETS:  [ latest state snapshot, function to handle changes ]
-    // this function's signature is declared here -> what will be executed/rendered is passed to this function inside the Components body
+  const [courseGoals, setCourseGoals] = useState( // useState ALWAYS RETURNS AN ARRAY WITH 2 ELEMNETS:  [ latest state snapshot, function to handle changes/update the snapshot ]
+    /* 
+    REACT will use the hook in two steps:
+      1. Update the stored state of the passed Object/value
+      2. Reevaluate the DOM and rerender the component if changes detected and display the newly created element
+
+    this function's signature is declared here -> what will be executed/rendered is passed to this function inside the Components body
+    */
+
+
 
     // first pass the INITIAL STATE
     [
@@ -59,7 +67,12 @@ const ReactApp = () => {
   // const courseGoals = ...; moved into useState to pass as the initial state
 
   const addNewGoalHandler = (newGoal) => {
-    setCourseGoals(courseGoals.concat(newGoal));
+    // setCourseGoals(courseGoals.concat(newGoal));  -> not automatically will update the state instantly, only scedules it
+    
+    // THIS IS THE BULLETPROOF APPROACH -> only needed if the state updates depends on the previous state of the data
+    setCourseGoals((prevCourseGoals) => { // we can pass a FUNCTION to the state handler, where the default param is the current state
+      return prevCourseGoals.concat(newGoal);
+    });
   };
 
   return (
