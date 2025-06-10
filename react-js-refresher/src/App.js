@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import GoalList from "./components/GoalList/GoalList";
 import NewGoal from "./components/NewGoal/NewGoal";
@@ -45,28 +45,32 @@ class ExampleApp2 extends React.Component {
 
 export { ExampleApp, ExampleApp2 };
 
-
-
-
 const ReactApp = () => {
-  const courseGoals = [
-    { id: "cg1", text: "Finish the course" },
-    { id: "cg2", text: "Learn all about the Course Main Topic" },
-    { id: "cg3", text: "Help other students in the course Q&A" },
-  ];
+  const [courseGoals, setCourseGoals] = useState( // useState RETURNS:  [ latest state snapshot, function to handle changes ]
+    // this function's signature is declared here -> what will be executed/rendered is passed to this function inside the Components body
+
+    // first pass the INITIAL STATE
+    [
+      { id: "cg1", text: "Finish the course" },
+      { id: "cg2", text: "Learn all about the Course Main Topic" },
+      { id: "cg3", text: "Help other students in the course Q&A" },
+    ]
+  );
+  // const courseGoals = ...; moved into useState to pass as the initial state
 
   const addNewGoalHandler = (newGoal) => {
-    courseGoals.push(newGoal);
-    console.log(courseGoals);
+    setCourseGoals(courseGoals.concat(newGoal));
   };
 
   return (
     <div className="course-goals">
       {/* Inline comments looks like this in JSX code */}
-      <h2>Course Goals</h2>      
+      <h2>Course Goals</h2>
       {/* outsource the component -> leaner structure 
           using props (properties) for passing data from components to another components, syntax is propName={variableName} => will hold the specified prop a reference to the object */}
-      <NewGoal onAddGoal={addNewGoalHandler} />{/* onAddGoal is named here, could be anything, this is a prop too for passign down a function in this case from parent to child component, so the child component can use that for event handling */}
+      <NewGoal onAddGoal={addNewGoalHandler} />
+      {/* onAddGoal is named here, could be anything, this is a prop too for passign down a function in this case from parent to child component, so the child component can use that for event handling
+      But courseGoals is a simple JS Array, React ignores it, so we have to manage the STATE, so it will detect the change! For this import useState HOOK -> can be execute inside a FUNCTIONAL COMPONENT */}
       <GoalList goals={courseGoals} />
     </div>
   );
