@@ -14,6 +14,8 @@ const NewGoal = (props) => {/* since now in App.js we pass onAddGoal prop to thi
 
         console.log(newGoal);
 
+        setEnteredText(''); // after enter clear out the input field
+        
         props.onAddGoal(newGoal); // passing the newGoal dummy data to the funciton reference/pointer
     };
 
@@ -23,7 +25,8 @@ const NewGoal = (props) => {/* since now in App.js we pass onAddGoal prop to thi
     
     return <form className="new-goal" onSubmit={addGoalHandler}>{/* only pass the function's pointer! no execution () here, React will handle the execution automatically
     FUN FACT: basically all is props, just one receives an Object (props), other receives a pointer to a function (event handler) */}
-        <input type="text" value={enteredText} onChange={textChangeHandler} />{/* binding the changeEvent and the value too, so it reflects on every change, but for that a simple variable binding wont work, because that state are not handled so we have to use USESTATE hook to handle state */}
+        <input type="text" value={enteredText} onChange={textChangeHandler} />{/* binding the changeEvent and the value too, so it reflects on every change, but for that a simple variable binding wont work, because that state are not handled so we have to use USESTATE hook to handle the binded variable'S state
+        SO WE BINDING INPUT VALUE TO A VARIABLE AND UPDATE THAT VARIABLE ON EVERY KEY STROKE AND WE BIND BACK THAT VALUE */}
         <button type="submit" >Add Goal</button>
     </form>
 }
