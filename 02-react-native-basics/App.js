@@ -14,9 +14,11 @@ export default function App() { // this is the root component what expo will exp
   return (
     <View style={styles.container}>{/* equivalent to <div> BUT only can contain other components as a box to display -> cannot contain texts */}
       <View>{/* nested Component */}
-        <Text>Another piece of text</Text>
+        <Text style={styles.text}>Another piece of text</Text>
+        <Text style={styles.text}>Another piece of text</Text>
       </View>
       <Text style={{margin: 16/* VSC will autocomplete which attributes can be specified for the Component, margin expects a number of pixel */,
+        // can comment this way too
         borderWidth: 6, borderStyle: 'solid', borderColor: 'salmon', padding: 16}}>{/* rarely the best solution for styling, USE Object based -> reusable, completely separate RN code from styling code */}
           Hello World!!!!
       </Text>{/* texts has to be included inside a Text component -> React Native is strict, every base component has it's purpose and this is a React component for displaying text which supports nesting, styling, and touch handling */}
@@ -34,4 +36,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: { // only has to change here, CLEAN CODE
+    margin: 16,
+    padding: 16,
+    borderStyle: 'solid',
+    borderColor: 'blue',
+    borderWidth: 2
+  }
 });
