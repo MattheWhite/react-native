@@ -16,13 +16,17 @@ export default function App() { // this is the root component what expo will exp
       <View>{/* nested Component */}
         <Text>Another piece of text</Text>
       </View>
-      <Text>Hello World!!!!</Text>{/* texts has to be included inside a Text component -> React Native is strict, every base component has it's purpose and this is a React component for displaying text which supports nesting, styling, and touch handling */}
+      <Text style={{margin: 16/* VSC will autocomplete which attributes can be specified for the Component, margin expects a number of pixel */,
+        borderWidth: 6, borderStyle: 'solid', borderColor: 'salmon', padding: 16}}>{/* rarely the best solution for styling, USE Object based -> reusable, completely separate RN code from styling code */}
+          Hello World!!!!
+      </Text>{/* texts has to be included inside a Text component -> React Native is strict, every base component has it's purpose and this is a React component for displaying text which supports nesting, styling, and touch handling */}
       <StatusBar style="auto" />
       <Button title='Tap me'/>
     </View>
   );
 }
 
+// there is no CSS support in React Native but can styling with: Inline Styles, StyleSheet Objects  -> both is JS code passed as props to Component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
