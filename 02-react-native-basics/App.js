@@ -29,7 +29,7 @@ export default function App() { // this is the root component what expo will exp
 }
 
 // there is no CSS support in React Native but can styling with: Inline Styles, StyleSheet Objects  -> both is JS code passed as props to Component
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ // we could declare a plain {} Object, but with StyleSheet we got autocomplete and validation!
   container: {
     flex: 1,
     backgroundColor: '#fff',
