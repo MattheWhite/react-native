@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native'; // works on every device environment
+// import { Button } from 'react-native-web'; -> on Android won't work
 
 /* 
 Outdated package.json
@@ -11,9 +12,13 @@ Fix:  1. step: ncu -u
 
 export default function App() { // this is the root component what expo will export and render as the App automatically
   return (
-    <View style={styles.container}>
-      <Text>Hello World!!!!</Text>
+    <View style={styles.container}>{/* equivalent to <div> BUT only can contain other components as a box to display -> cannot contain texts */}
+      <View>{/* nested Component */}
+        <Text>Another piece of text</Text>
+      </View>
+      <Text>Hello World!!!!</Text>{/* texts has to be included inside a Text component -> React Native is strict, every base component has it's purpose and this is a React component for displaying text which supports nesting, styling, and touch handling */}
       <StatusBar style="auto" />
+      <Button title='Tap me'/>
     </View>
   );
 }
