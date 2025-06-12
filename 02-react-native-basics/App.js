@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 
 /* 
 Outdated package.json
-Fix:  1. step:  ncu -u
+Fix:  1. step: ncu -u
       2. step: npm i
       3. step: npm start > Press a (for Android)
         on the emulated device Press Ctrl + M  to open developer menu
 */
 
-export default function App() {
+export default function App() { // this is the root component what expo will export and render as the App automatically
   return (
     <View style={styles.container}>
       <Text>Hello World!!!!</Text>
