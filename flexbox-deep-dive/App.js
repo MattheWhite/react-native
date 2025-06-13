@@ -1,6 +1,14 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
+/* 
+To start the project:
+    1. npm install
+    2. npm update expo
+    3. npx expo install react-native@0.71.14 (actually didn't exetuce, after the 4.step i pressed 'a' FOR ANDROID, then press 'y' FOR YES to upgrade Expo Go)
+    4. npm start    
+ */
+
 export default function App() {
     return (
         <View style={{padding: 50}}>
