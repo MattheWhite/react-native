@@ -13,10 +13,11 @@ export default function App() {
     return (
         /* in React Native every View uses Flexbox by default (not like web div)
             and orders the element in a column top-to-bottom (not like web div -> orders in a row) */
-        <View style={{padding: 50}}>
+        <View style={{padding: 50, flexDirection: 'row', width: '80%', height: 300 }}>
             <View
                 style={{
                     backgroundColor: 'red',
+                    /* width-height by default is as big as the content inside this element desires to be */
                     width: 100,
                     height: 100,
                     justifyContent: 'center',
