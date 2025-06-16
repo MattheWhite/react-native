@@ -11,6 +11,8 @@ To start the project:
 
 export default function App() {
     return (
+        /* in React Native every View uses Flexbox by default (not like web div)
+            and orders the element in a column top-to-bottom (not like web div -> orders in a row) */
         <View style={{padding: 50}}>
             <View
                 style={{
