@@ -13,10 +13,21 @@ export default function App() {
     return (
         /* in React Native every View uses Flexbox by default (not like web div)
             and orders the element in a column top-to-bottom (not like web div -> orders in a row)
-            Important with flexbox:
+            Important with flexbox: APPLIED FOR THE CHILD ELEMENTS!
                 - main axes: flexDirection defines
-                - cross axes: the opposite of the main axes -> row=left-right crossa.=top-to-bottom | reverse-column=bottom-to-top crossa.=right-to-left*/
-        <View style={{padding: 50, flexDirection: 'row', width: '80%', height: 300 }}>
+                - cross axes: the opposite of the main axes -> row=left-right crossa.=top-to-bottom | reverse-column=bottom-to-top crossa.=right-to-left
+                
+            justify-content -> organizing elements along the main axes
+            align-items -> organizing elements along the cross axes */
+        <View
+            style={{
+                padding: 50,
+                flexDirection: 'row',
+                width: '80%',
+                height: 300,
+                justifyContent: 'space-between',
+                alignItems: 'center'/* default is stretch */
+            }}>
             <View
                 style={{
                     backgroundColor: 'red',
