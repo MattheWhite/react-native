@@ -26,7 +26,7 @@ export default function App() {
                 width: '80%',
                 height: 300,
                 justifyContent: 'space-between',
-                alignItems: 'center'/* default is stretch */
+                alignItems: 'center'/* default is stretch -> tells the child elements how much space they should take of the available spaces they get */
             }}>
             <View
                 style={{
@@ -34,6 +34,7 @@ export default function App() {
                     /* width-height by default is as big as the content inside this element desires to be */
                     // width: 100,
                     // height: 100,
+                    flex: 1,/* this attribute can be added only for a child inside a flexbox | value tells how much space it can take from the available space */
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
