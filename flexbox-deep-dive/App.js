@@ -12,14 +12,17 @@ To start the project:
 export default function App() {
     return (
         /* in React Native every View uses Flexbox by default (not like web div)
-            and orders the element in a column top-to-bottom (not like web div -> orders in a row) */
+            and orders the element in a column top-to-bottom (not like web div -> orders in a row)
+            Important with flexbox:
+                - main axes: flexDirection defines
+                - cross axes: the opposite of the main axes -> row=left-right crossa.=top-to-bottom | reverse-column=bottom-to-top crossa.=right-to-left*/
         <View style={{padding: 50, flexDirection: 'row', width: '80%', height: 300 }}>
             <View
                 style={{
                     backgroundColor: 'red',
                     /* width-height by default is as big as the content inside this element desires to be */
-                    width: 100,
-                    height: 100,
+                    // width: 100,
+                    // height: 100,
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
@@ -28,8 +31,8 @@ export default function App() {
             <View
                 style={{
                     backgroundColor: 'blue',
-                    width: 100,
-                    height: 100,
+                    // width: 100,
+                    // height: 100,
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
@@ -38,8 +41,8 @@ export default function App() {
             <View
                 style={{
                     backgroundColor: 'green',
-                    width: 100,
-                    height: 100,
+                    // width: 100,
+                    // height: 100,
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
