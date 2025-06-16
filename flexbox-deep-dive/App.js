@@ -34,7 +34,7 @@ export default function App() {
                     /* width-height by default is as big as the content inside this element desires to be */
                     // width: 100,
                     // height: 100,
-                    flex: 1,/* this attribute can be added only for a child inside a flexbox | value tells how much space it can take from the available space */
+                    flex: 1,/* this attribute can be added only for a child inside a flexbox | value tells how much space it can take from the available space on the MAIN AXES */
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
@@ -45,6 +45,7 @@ export default function App() {
                     backgroundColor: 'blue',
                     // width: 100,
                     // height: 100,
+                    flex: 1,/* play with it, if you set it for 2 -> it will take 2/3 segment, and the first element will take 1/3 segment and so on...  ADD UP THE FLEX NUMBERS - space will be distributed accordingly */
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
