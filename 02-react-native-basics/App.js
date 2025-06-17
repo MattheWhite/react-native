@@ -1,11 +1,28 @@
+import { useState } from "react";
 import { Button, StyleSheet, TextInput, View, Text } from "react-native";
 
+/* 
+    For web:
+        npx expo install @expo/metro-runtime
+        Press 'w' in the expo server's terminal window
+*/
+
 export default function App() {
+    const [enteredGoalText, setEnteredGoalText] = useState('');
+
+    function goalInputHandler(enteredText) { // entered text is automatically passed by RN
+        setEnteredGoalText(enteredText);
+    };
+
+    function addGoalHandler() {
+        console.log(enteredGoalText);
+    };
+    
     return (
         <View style={style.appContainer}>
             <View style={style.inputContainer}>
-                <TextInput style={style.textInput} placeholder="Your course goal here" />
-                <Button title="Add Goal" />
+                <TextInput style={style.textInput} placeholder="Your course goal here" onChangeText={goalInputHandler} />{/* only the pointer passed, no ()parentheses at the end because then when the code is compiled/rendered it would be executed */}
+                <Button title="Add Goal" onPress={addGoalHandler} />
             </View>
             <View style={style.goalsContainer}>
                 <Text>List of goals...</Text>
@@ -25,7 +42,7 @@ const style = StyleSheet.create({
         flexDirection: "row", // default setting is 'column' -> thats why it is displayed below eachother at start 
         justifyContent: "space-between",
         alignItems: 'center',
-        marginottom: 24,
+        marginBottom: 24,
         borderBottomWidth: 1,
         borderBottomColor: '#cccc'
     },
