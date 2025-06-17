@@ -42,7 +42,7 @@ export default function App() {
         {/* <Text>List of goals...</Text> */}
         {courseGoals.map((goal) => (
             <View style={style.goalItem}>{/* wrap the goal Text output element into a View, where iOS's Native element supports borderRadius! View does, Text doesNOT  */}
-                <Text key={courseGoals[goal]}>{goal}</Text>{/* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any */}
+                <Text key={courseGoals[goal]} style={style.goalText}>{goal}</Text>{/* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any */}
             </View>
         ))}
         {/* without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:   Each child in a list should have a unique "key" prop.%s%s */}
@@ -82,6 +82,8 @@ const style = StyleSheet.create({
     padding: 8, // inner spacing
     borderRadius: 6,
     backgroundColor: "#5e0acc",
-    color: "white",
-  },
+    },
+    goalText: {
+        color: "white",
+    }
 });
