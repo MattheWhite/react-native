@@ -8,60 +8,77 @@ import { Button, StyleSheet, TextInput, View, Text } from "react-native";
 */
 
 export default function App() {
-    const [enteredGoalText, setEnteredGoalText] = useState('');
-    const [courseGoals, setCourseGoals] = useState([]);
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState([]);
 
-    function goalInputHandler(enteredText) { // entered text is automatically passed by RN
-        setEnteredGoalText(enteredText);
-    };
+  function goalInputHandler(enteredText) {
+    // entered text is automatically passed by RN
+    setEnteredGoalText(enteredText);
+  }
 
-    function addGoalHandler() {
-        // setCourseGoals(...courseGoals, enteredGoalText); -> not the best way to updating state when the new state depends on the previous state
-        
-        // right way to update state if it depends on the prev. state - pass an arrow function, the currentCourseGoals is provided by RN automatically
-        setCourseGoals((currentCourseGoals) => [ // () around the parameter is not necessary, but with HOOKS/STATE VARIABLE UPDATING FUNCTIONS THE CURLY BRACKETS ARE NOT USABLE
-            ...currentCourseGoals,
-            enteredGoalText
-        ]);
-    };
-    
-    return (
-        <View style={style.appContainer}>
-            <View style={style.inputContainer}>
-                <TextInput style={style.textInput} placeholder="Your course goal here" onChangeText={goalInputHandler} />{/* only the pointer passed, no ()parentheses at the end because then when the code is compiled/rendered it would be executed */}
-                <Button title="Add Goal" onPress={addGoalHandler} />
-            </View>
-            <View style={style.goalsContainer}>
-                {/* <Text>List of goals...</Text> */}
-                {courseGoals.map((goal) => <Text key={courseGoals[goal]}>{goal}</Text>)}{/* without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:   Each child in a list should have a unique "key" prop.%s%s */}
-            </View>
-        </View>
-    );
+  function addGoalHandler() {
+    // setCourseGoals(...courseGoals, enteredGoalText); -> not the best way to updating state when the new state depends on the previous state
+
+    // right way to update state if it depends on the prev. state - pass an arrow function, the currentCourseGoals is provided by RN automatically
+    setCourseGoals((currentCourseGoals) => [
+      // () around the parameter is not necessary, but with HOOKS/STATE VARIABLE UPDATING FUNCTIONS THE CURLY BRACKETS ARE NOT USABLE
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
+  }
+
+  return (
+    <View style={style.appContainer}>
+      <View style={style.inputContainer}>
+        <TextInput
+          style={style.textInput}
+          placeholder="Your course goal here"
+          onChangeText={goalInputHandler}
+        />
+        {/* only the pointer passed, no ()parentheses at the end because then when the code is compiled/rendered it would be executed */}
+        <Button title="Add Goal" onPress={addGoalHandler} />
+      </View>
+      <View style={style.goalsContainer}>
+        {/* <Text>List of goals...</Text> */}
+        {courseGoals.map((goal) => (
+          <Text key={courseGoals[goal]} style={style.goalItem}>{goal}</Text>
+        ))}
+        {/* without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:   Each child in a list should have a unique "key" prop.%s%s */}
+      </View>
+    </View>
+  );
 }
 
 const style = StyleSheet.create({
-    appContainer: {
-        flex: 1, // assign the whole available space for the app, since it has no sibling element, with 1 it takes all the available space
-        paddingTop: 50,
-        paddingHorizontal: 16
-    },
-    inputContainer: {
-        flex: 1,// flexbox functionality used with this property, learned from Flexbox section, by default React Native uses flexbox on elements
-        flexDirection: "row", // default setting is 'column' -> thats why it is displayed below eachother at start 
-        justifyContent: "space-between",
-        alignItems: 'center',
-        marginBottom: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccc'
-    },
-    textInput: {
-        borderWidth: 2,
-        borderColor: '#cccc',
-        width: '80%',
-        marginRight: 8, // no touching between the input and the button
-        padding: 8 // placeholder not be on the left edge
-    },
-    goalsContainer: {
-        flex: 8
-    }
+  appContainer: {
+    flex: 1, // assign the whole available space for the app, since it has no sibling element, with 1 it takes all the available space
+    paddingTop: 50,
+    paddingHorizontal: 16,
+  },
+  inputContainer: {
+    flex: 1, // flexbox functionality used with this property, learned from Flexbox section, by default React Native uses flexbox on elements
+    flexDirection: "row", // default setting is 'column' -> thats why it is displayed below eachother at start
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccc",
+  },
+  textInput: {
+    borderWidth: 2,
+    borderColor: "#cccc",
+    width: "80%",
+    marginRight: 8, // no touching between the input and the button
+    padding: 8, // placeholder not be on the left edge
+  },
+  goalsContainer: {
+    flex: 8,
+  },
+  goalItem: {
+    margin: 8, // outer spacing
+    padding: 8, // inner spacing
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+    color: "white",
+  },
 });
