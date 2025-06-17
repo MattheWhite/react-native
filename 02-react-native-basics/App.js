@@ -9,13 +9,20 @@ import { Button, StyleSheet, TextInput, View, Text } from "react-native";
 
 export default function App() {
     const [enteredGoalText, setEnteredGoalText] = useState('');
+    const [courseGoals, setCourseGoals] = useState([]);
 
     function goalInputHandler(enteredText) { // entered text is automatically passed by RN
         setEnteredGoalText(enteredText);
     };
 
     function addGoalHandler() {
-        console.log(enteredGoalText);
+        // setCourseGoals(...courseGoals, enteredGoalText); -> not the best way to updating state when the new state depends on the previous state
+        
+        // right way to update state if it depends on the prev. state - pass an arrow function, the currentCourseGoals is provided by RN automatically
+        setCourseGoals((currentCourseGoals) => [ // () around the parameter is not necessary, but with HOOKS/STATE VARIABLE UPDATING FUNCTIONS THE CURLY BRACKETS ARE NOT USABLE
+            ...currentCourseGoals,
+            enteredGoalText
+        ]);
     };
     
     return (
@@ -25,7 +32,8 @@ export default function App() {
                 <Button title="Add Goal" onPress={addGoalHandler} />
             </View>
             <View style={style.goalsContainer}>
-                <Text>List of goals...</Text>
+                {/* <Text>List of goals...</Text> */}
+                {courseGoals.map((goal) => <Text>{goal}</Text>)}
             </View>
         </View>
     );
