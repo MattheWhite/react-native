@@ -33,7 +33,7 @@ export default function App() {
             </View>
             <View style={style.goalsContainer}>
                 {/* <Text>List of goals...</Text> */}
-                {courseGoals.map((goal) => <Text>{goal}</Text>)}
+                {courseGoals.map((goal) => <Text key={courseGoals[goal]}>{goal}</Text>)}{/* without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:   Each child in a list should have a unique "key" prop.%s%s */}
             </View>
         </View>
     );
