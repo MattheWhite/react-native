@@ -31,7 +31,9 @@ export default function App() {
     setCourseGoals((currentCourseGoals) => [
       // () around the parameter is not necessary, but with HOOKS/STATE VARIABLE UPDATING FUNCTIONS THE CURLY BRACKETS ARE NOT USABLE
       ...currentCourseGoals,
-      enteredGoalText,
+      //  enteredGoalText,
+      {text: enteredGoalText, key: Math.random().toString()}, // -> manually generating a key for every element  |  then in FlatList we use: itemData.item.text
+      //                                                                Other solution is using 'keyExtractor' on FlatList
     ]);
   }
 
@@ -72,7 +74,9 @@ export default function App() {
                     <Text style={style.goalText}>{itemData.item}</Text>
                 </View>
             );
-        }} alwaysBounceVertical={false} />{/* alwaysBounceVertical is an iOS feature for movement styling */}
+        }}
+        alwaysBounceVertical={false} // alwaysBounceVertical is an iOS feature for movement styling
+        keyExtractor={(item, index) => { return item.id }}/>{/* automatically receives 'item', 'index'  |  just like 'renderItem' this is called on every item too, to get a unique key and attach for them*/}
       </View>
     </View>
   );
