@@ -39,15 +39,20 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={style.goalsContainer}>
-        <ScrollView>{/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling */}
+        {/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling 
+        
+        Downsize for ScrollView -> if you have a very long list, it's still rendering the whole list even if it's not displayed  = performance issue
+            Use instead:    FlatList -> render and load only the items which are visible
+        */}
+        <ScrollView>
         {/* <Text>List of goals...</Text> */}
+        
         {courseGoals.map((goal) => (
             <View style={style.goalItem}>{/* wrap the goal Text output element into a View, where iOS's Native element supports borderRadius! View does, Text doesNOT  */}
-                <Text key={courseGoals[goal]} style={style.goalText}>{goal}</Text>{/* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any */}
+                <Text key={courseGoals.lastIndexOf(goal)} style={style.goalText}>{goal}</Text>{/* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any | without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:  Each child in a list should have a unique "key" prop.%s%s */}
             </View>
         ))}
         </ScrollView>
-        {/* without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:   Each child in a list should have a unique "key" prop.%s%s */}
       </View>
     </View>
   );
