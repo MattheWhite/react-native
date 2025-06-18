@@ -8,6 +8,8 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
+
 
 /* 
     For web:
@@ -70,9 +72,7 @@ export default function App() {
         {/* FlatList has 2 KEY PROP (wont use iteration like above): data, renderItem -> renderItem gets automatically one elem of the passed data (array like Object) and calls the function on it which is declared */}
         <FlatList data={courseGoals} renderItem={itemData => {/* itemData is actually an automatically weapped Object around the actual data */
             return (
-                <View key={itemData.index} style={style.goalItem}>
-                    <Text style={style.goalText}>{itemData.item.text}</Text>
-                </View>
+                <GoalItem /> 
             );
         }}
         alwaysBounceVertical={false} // alwaysBounceVertical is an iOS feature for movement styling
@@ -107,14 +107,5 @@ const style = StyleSheet.create({
   },
   goalsContainer: {
     flex: 8,
-  },
-  goalItem: {
-    margin: 8, // outer spacing
-    padding: 8, // inner spacing
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-  goalText: {
-    color: "white",
   },
 });
