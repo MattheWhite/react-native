@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View, Text, ScrollView } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+} from "react-native";
 
 /* 
     For web:
@@ -43,16 +51,28 @@ export default function App() {
         
         Downsize for ScrollView -> if you have a very long list, it's still rendering the whole list even if it's not displayed  = performance issue
             Use instead:    FlatList -> render and load only the items which are visible
-        */}
-        <ScrollView>
-        {/* <Text>List of goals...</Text> */}
         
-        {courseGoals.map((goal) => (
-            <View style={style.goalItem}>{/* wrap the goal Text output element into a View, where iOS's Native element supports borderRadius! View does, Text doesNOT  */}
-                <Text key={courseGoals.lastIndexOf(goal)} style={style.goalText}>{goal}</Text>{/* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any | without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:  Each child in a list should have a unique "key" prop.%s%s */}
-            </View>
-        ))}
-        </ScrollView>
+        PREVIOUS CODE:
+            
+            <ScrollView>
+            /* <Text>List of goals...</Text>
+            
+            {courseGoals.map((goal) => (
+                <View style={style.goalItem}>{/* wrap the goal Text output element into a View, where iOS's Native element supports borderRadius! View does, Text doesNOT
+                    <Text key={courseGoals.lastIndexOf(goal)} style={style.goalText}>{goal}</Text> /* unlike in CSS, in RN styling DOES NOT cascade, child elements are NOT inherit any | without the {} brackets it would only display 'goal' each time | Add key to handle ERROR:  Each child in a list should have a unique "key" prop.%s%s
+                </View>
+            ))}
+            </ScrollView> */}
+        
+        
+        {/* FlatList has 2 KEY PROP (wont use iteration like above): data, renderItem -> renderItem gets automatically one elem of the passed data (array like Object) and calls the function on it which is declared */}
+        <FlatList data={courseGoals} renderItem={itemData => {/* itemData is actually an automatically weapped Object around the actual data */
+            return (
+                <View key={itemData.index} style={style.goalItem}>
+                    <Text style={style.goalText}>{itemData.item}</Text>
+                </View>
+            );
+        }} alwaysBounceVertical={false} />{/* alwaysBounceVertical is an iOS feature for movement styling */}
       </View>
     </View>
   );
@@ -89,8 +109,8 @@ const style = StyleSheet.create({
     padding: 8, // inner spacing
     borderRadius: 6,
     backgroundColor: "#5e0acc",
-    },
-    goalText: {
-        color: "white",
-    }
+  },
+  goalText: {
+    color: "white",
+  },
 });
