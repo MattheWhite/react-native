@@ -71,7 +71,7 @@ export default function App() {
         <FlatList data={courseGoals} renderItem={itemData => {/* itemData is actually an automatically weapped Object around the actual data */
             return (
                 <View key={itemData.index} style={style.goalItem}>
-                    <Text style={style.goalText}>{itemData.item}</Text>
+                    <Text style={style.goalText}>{itemData.item.text}</Text>
                 </View>
             );
         }}
