@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 
 // create standard React component, modern React don't need anymore "import React from react" !
-function GoalItem() {
+function GoalItem(props) {
   return (
     <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{}</Text>
+      <Text style={styles.goalText}>{props.text}</Text>
     </View>
   );
 }
