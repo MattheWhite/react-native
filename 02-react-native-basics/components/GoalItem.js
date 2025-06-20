@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 // create standard React component, modern React don't need anymore "import React from react" !
 function GoalItem(props) {
   function deleteGoalHandler() {
-    props.onDeleteGoal();
+    props.onDeleteGoal(props.id);
   }
 
   return (
