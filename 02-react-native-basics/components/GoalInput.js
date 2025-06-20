@@ -2,7 +2,6 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Button, TextInput, View } from "react-native";
 
-
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
@@ -13,7 +12,7 @@ function GoalInput(props) {
 
   function addGoalHandler() {
     props.onAddGoal(enteredGoalText);
-    setEnteredGoalText(''); // after now executing manually to pass the entered value, we set back to empty string
+    setEnteredGoalText(""); // after now executing manually to pass the entered value, we set back to empty string
   }
 
   return (
@@ -22,7 +21,7 @@ function GoalInput(props) {
         style={styles.textInput}
         placeholder="Your course goal here"
         onChangeText={goalInputHandler}
-        value={enteredGoalText}/* add two-way binding since we set back to empty string manually after adding the goal */
+        value={enteredGoalText} /* add two-way binding since we set back to empty string manually after adding the goal */
       />
       {/* only the pointer passed, no ()parentheses at the end because then when the code is compiled/rendered it would be executed */}
       <Button title="Add Goal" onPress={addGoalHandler} />
