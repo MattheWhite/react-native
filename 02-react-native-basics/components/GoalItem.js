@@ -1,11 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+// Pressable -> makes a component pressable,   OLD: Touchable, TouchableHighlight, etc.  will be deprecated prossibly soon
 
 // create standard React component, modern React don't need anymore "import React from react" !
 function GoalItem(props) {
+  function deleteGoalHandler() {
+    props.onDeleteGoal();
+  }
+
   return (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{props.text}</Text>
-    </View>
+    <Pressable onPress={deleteGoalHandler}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalText}>{props.text}</Text>
+      </View>
+    </Pressable>
   );
 }
 

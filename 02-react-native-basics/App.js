@@ -30,6 +30,10 @@ export default function App() {
     ]);
   }
 
+  function deleteGoalHandler() {
+    console.log('DELETE');
+  }
+
   return (
     <View style={style.appContainer}>
         <GoalInput onAddGoal={addGoalHandler} />
@@ -55,7 +59,7 @@ export default function App() {
         {/* FlatList has 2 KEY PROP (wont use iteration like above): data, renderItem -> renderItem gets automatically one elem of the passed data (array like Object) and calls the function on it which is declared */}
         <FlatList data={courseGoals} renderItem={itemData => {/* itemData is actually an automatically weapped Object around the actual data */
             return (
-                <GoalItem text={itemData.item.text} /> 
+                <GoalItem text={itemData.item.text} onDeleteGoal={deleteGoalHandler} /> 
             );
         }}
         alwaysBounceVertical={false} // alwaysBounceVertical is an iOS feature for movement styling
