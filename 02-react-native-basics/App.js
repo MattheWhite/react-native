@@ -1,14 +1,11 @@
 import { useState } from "react";
 import {
-  Button,
   StyleSheet,
-  TextInput,
   View,
-  Text,
-  ScrollView,
   FlatList,
 } from "react-native";
 import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 
 /* 
@@ -18,15 +15,9 @@ import GoalItem from "./components/GoalItem";
 */
 
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function goalInputHandler(enteredText) {
-    // entered text is automatically passed by RN
-    setEnteredGoalText(enteredText);
-  }
-
-  function addGoalHandler() {
+  function addGoalHandler(enteredGoalText) {
     // setCourseGoals(...courseGoals, enteredGoalText); -> not the best way to updating state when the new state depends on the previous state
 
     // right way to update state if it depends on the prev. state - pass an arrow function, the currentCourseGoals is provided by RN automatically
@@ -41,15 +32,7 @@ export default function App() {
 
   return (
     <View style={style.appContainer}>
-      <View style={style.inputContainer}>
-        <TextInput
-          style={style.textInput}
-          placeholder="Your course goal here"
-          onChangeText={goalInputHandler}
-        />
-        {/* only the pointer passed, no ()parentheses at the end because then when the code is compiled/rendered it would be executed */}
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
+        <GoalInput onAddGoal={addGoalHandler} />
       <View style={style.goalsContainer}>
         {/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling 
         
@@ -88,22 +71,6 @@ const style = StyleSheet.create({
     flex: 1, // assign the whole available space for the app, since it has no sibling element, with 1 it takes all the available space
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-  inputContainer: {
-    flex: 1, // flexbox functionality used with this property, learned from Flexbox section, by default React Native uses flexbox on elements
-    flexDirection: "row", // default setting is 'column' -> thats why it is displayed below eachother at start
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccc",
-  },
-  textInput: {
-    borderWidth: 2,
-    borderColor: "#cccc",
-    width: "80%",
-    marginRight: 8, // no touching between the input and the button
-    padding: 8, // placeholder not be on the left edge
   },
   goalsContainer: {
     flex: 8,
