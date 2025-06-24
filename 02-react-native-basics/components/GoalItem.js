@@ -11,7 +11,7 @@ function GoalItem(props) {
     <View style={styles.goalItem}>
       <Pressable
         onPress={props.onDeleteGoal.bind(this, props.id)}
-        android_ripple={{ color: "#dddddd" }}
+        android_ripple={{ color: "#210664" }}
       >{/* enabling ripple effect on adnroid. Moving PRESSABLE element inside the View the effect is shown on the whole object not just around it */}
         {/* onPress={deleteGoalHandler} prev. solution, now using .bind() to setup here the called function */}
         <Text style={styles.goalText}>{props.text}</Text>
