@@ -39,7 +39,7 @@ export default function App() {
   return (
     <View style={style.appContainer}>
       <Button title="Add New Goal" color="#210664" onPress={startAddGoalHandler} />{/* using prebuilt Button element, which under the hood uses Pressable, but now we dont want to build our custom button like in GoalItem | Button does not support 'style' since its prestyled, if you want specific styling, use PRESSABLE and build it */}
-      {modalIsVisible && <GoalInput onAddGoal={addGoalHandler} />}{/* render GoalInput conditionally */}
+      {modalIsVisible && <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />}{/* render GoalInput conditionally */}
       <View style={style.goalsContainer}>
         {/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling 
         

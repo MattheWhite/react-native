@@ -16,7 +16,7 @@ function GoalInput(props) {
   }
 
   return (
-    <Modal>
+    <Modal visible={props.visible} animationType="slide">{/* visible and animationType is Modal properties, props.visible is mine */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
