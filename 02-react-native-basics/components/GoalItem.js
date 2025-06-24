@@ -8,12 +8,15 @@ function GoalItem(props) {
   } */
 
   return (
-    <Pressable onPress={props.onDeleteGoal.bind(this, props.id)} android_ripple={{color: '#dddddd'}}> {/* enabling ripple effect on adnroid */}
-      {/* onPress={deleteGoalHandler} prev. solution, now using .bind() to setup here the called function */}
-      <View style={styles.goalItem}>
+    <View style={styles.goalItem}>
+      <Pressable
+        onPress={props.onDeleteGoal.bind(this, props.id)}
+        android_ripple={{ color: "#dddddd" }}
+      >{/* enabling ripple effect on adnroid. Moving PRESSABLE element inside the View the effect is shown on the whole object not just around it */}
+        {/* onPress={deleteGoalHandler} prev. solution, now using .bind() to setup here the called function */}
         <Text style={styles.goalText}>{props.text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
@@ -22,11 +25,11 @@ export default GoalItem;
 const styles = StyleSheet.create({
   goalItem: {
     margin: 8, // outer spacing
-    padding: 8, // inner spacing
     borderRadius: 6,
     backgroundColor: "#5e0acc",
   },
   goalText: {
-    color: "white",
+      color: "white",
+      padding: 8, // inner spacing
   },
 });
