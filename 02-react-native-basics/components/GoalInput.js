@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StyleSheet } from "react-native";
-import { Button, TextInput, View, Modal } from "react-native";
+import { Button, TextInput, View, Modal, Image } from "react-native";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -17,8 +17,9 @@ function GoalInput(props) {
 
   return (
     <Modal visible={props.visible} animationType="slide">
-      {/* visible and animationType is Modal properties, props.visible is mine */}
+      {/* visible and animationType is Modal properties, props.visible is mine | Modal supports style but for overall styling you should always use nested View structure */}
       <View style={styles.inputContainer}>
+        <Image style={styles.image} source={require('../assets/images/goal.png')} />{/* just like <img> tag on web */}
         <TextInput
           style={styles.textInput}
           placeholder="Your course goal here"
@@ -33,7 +34,7 @@ function GoalInput(props) {
             {/* wrapping Buttons around with View so we can styling - default Buttons can NOT be styled */}
             <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
-          <View style={styles.button} >
+          <View style={styles.button}>
             <Button title="Cancel" onPress={props.onCancel} />
           </View>
         </View>
@@ -51,10 +52,16 @@ const styles = StyleSheet.create({
     // flexDirection: "row", // default setting is 'column' -> thats why it is displayed below eachother at start
     justifyContent: "center", // space-between previously
     alignItems: "center",
-    marginBottom: 24,
+    // marginBottom: 24,
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccc",
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#cccc",
+    backgroundColor: '#311b6b'
+  },
+  image: {
+    width: 150,
+    height: 150,
+    margin: 20
   },
   textInput: {
     borderWidth: 2,
