@@ -93,6 +93,7 @@ const style = StyleSheet.create({
     flex: 1, // assign the whole available space for the app, since it has no sibling element, with 1 it takes all the available space
     paddingTop: 50,
     paddingHorizontal: 16,
+    // backgroundColor: '#1e0840' -> can be outsource into app.json  so Expo automatically applies it to all the base sites (not for Modal)
   },
   goalsContainer: {
     flex: 8,
