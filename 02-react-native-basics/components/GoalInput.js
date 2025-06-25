@@ -27,12 +27,18 @@ function GoalInput(props) {
             enteredGoalText
           } /* add two-way binding since we set back to empty string manually after adding the goal */
         />
-        <View>
+        <View style={styles.buttonContainer}>
           {/* only the pointer passed, no ()parentheses like:addGoalHandler() at the end because then when the code is compiled/rendered it would be executed */}
-          <Button title="Add Goal" onPress={addGoalHandler} />
-          <Button title="Cancel" />
+          <View style={styles.button}>
+            {/* wrapping Buttons around with View so we can styling - default Buttons can NOT be styled */}
+            <Button title="Add Goal" onPress={addGoalHandler} />
+          </View>
+          <View style={styles.button}>
+            <Button title="Cancel" />
+          </View>
         </View>
-      </View>{/* if you move this over the View which contains the Buttons i think looks dope */}
+      </View>
+      {/* if you move this over the View which contains the Buttons i think looks dope */}
     </Modal>
   );
 }
@@ -46,14 +52,23 @@ const styles = StyleSheet.create({
     justifyContent: "center", // space-between previously
     alignItems: "center",
     marginBottom: 24,
+    padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#cccc",
   },
   textInput: {
     borderWidth: 2,
     borderColor: "#cccc",
-    width: "80%",
-    marginRight: 8, // no touching between the input and the button
+    width: "100%",
+    // marginRight: 8, // no touching between the input and the button
     padding: 8, // placeholder not be on the left edge
   },
+  buttonContainer: {
+    marginTop: 16,
+    flexDirection: "row",
+  },
+  button: {
+    width: 100, // using now fixed pixel number instead of '30%'
+    marginHorizontal: 8
+  }
 });
