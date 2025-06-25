@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
@@ -42,11 +43,25 @@ export default function App() {
   }
 
   return (
-    <View style={style.appContainer}>
-      <Button title="Add New Goal" color="#210664" onPress={startAddGoalHandler} />{/* using prebuilt Button element, which under the hood uses Pressable, but now we dont want to build our custom button like in GoalItem | Button does not support 'style' since its prestyled, if you want specific styling, use PRESSABLE and build it */}
-      {modalIsVisible && <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} />}{/* render GoalInput conditionally  | but with visible={} property the first part is not necessary */}
-      <View style={style.goalsContainer}>
-        {/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling 
+    <>{/* wrapping the whole component into a JSX fragment since it is NOT allowed at the root level to have sibling elements */}
+      <StatusBar style="light" />
+      <View style={style.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#a065ec"
+          onPress={startAddGoalHandler}
+        />
+        {/* using prebuilt Button element, which under the hood uses Pressable, but now we dont want to build our custom button like in GoalItem | Button does not support 'style' since its prestyled, if you want specific styling, use PRESSABLE and build it */}
+        {modalIsVisible && (
+          <GoalInput
+            visible={modalIsVisible}
+            onAddGoal={addGoalHandler}
+            onCancel={endAddGoalHandler}
+          />
+        )}
+        {/* render GoalInput conditionally  | but with visible={} property the first part is not necessary */}
+        <View style={style.goalsContainer}>
+          {/* Another difference between web and React Native -> on web if you add too many items it will be automatically scrollable, NOT in React Native! Here you have to add specific ScrollView element to enable scrolling 
         
         Downsize for ScrollView -> if you have a very long list, it's still rendering the whole list even if it's not displayed  = performance issue
             Use instead:    FlatList -> render and load only the items which are visible
@@ -63,27 +78,28 @@ export default function App() {
             ))}
             </ScrollView> */}
 
-        {/* FlatList has 2 KEY PROP (wont use iteration like above): data, renderItem -> renderItem gets automatically one elem of the passed data (array like Object) and calls the function on it which is declared */}
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            /* itemData is actually an automatically weapped Object around the actual data */
-            return (
-              <GoalItem
-                text={itemData.item.text}
-                id={itemData.item.id}
-                onDeleteGoal={deleteGoalHandler}
-              />
-            );
-          }}
-          alwaysBounceVertical={false} // alwaysBounceVertical is an iOS feature for movement styling
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-        />
-        {/* automatically receives 'item', 'index'  |  just like 'renderItem' this is called on every item too, to get a unique key and attach for them*/}
+          {/* FlatList has 2 KEY PROP (wont use iteration like above): data, renderItem -> renderItem gets automatically one elem of the passed data (array like Object) and calls the function on it which is declared */}
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              /* itemData is actually an automatically weapped Object around the actual data */
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteGoal={deleteGoalHandler}
+                />
+              );
+            }}
+            alwaysBounceVertical={false} // alwaysBounceVertical is an iOS feature for movement styling
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+          {/* automatically receives 'item', 'index'  |  just like 'renderItem' this is called on every item too, to get a unique key and attach for them*/}
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
