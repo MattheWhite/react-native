@@ -33,8 +33,8 @@ function GoalInput(props) {
             {/* wrapping Buttons around with View so we can styling - default Buttons can NOT be styled */}
             <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
-          <View style={styles.button}>
-            <Button title="Cancel" />
+          <View style={styles.button} >
+            <Button title="Cancel" onPress={props.onCancel} />
           </View>
         </View>
       </View>
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 100, // using now fixed pixel number instead of '30%'
-    marginHorizontal: 8
-  }
+    marginHorizontal: 8,
+  },
 });
