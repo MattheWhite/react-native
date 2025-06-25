@@ -32,10 +32,10 @@ function GoalInput(props) {
           {/* only the pointer passed, no ()parentheses like:addGoalHandler() at the end because then when the code is compiled/rendered it would be executed */}
           <View style={styles.button}>
             {/* wrapping Buttons around with View so we can styling - default Buttons can NOT be styled */}
-            <Button title="Add Goal" onPress={addGoalHandler} />
+            <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc" />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} />
+            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
           </View>
         </View>
       </View>
@@ -65,10 +65,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 2,
-    borderColor: "#cccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    borderRadius: 6,
+    color: "#120438",
     width: "100%",
     // marginRight: 8, // no touching between the input and the button
-    padding: 8, // placeholder not be on the left edge
+    padding: 12, // placeholder not be on the left edge
   },
   buttonContainer: {
     marginTop: 16,
