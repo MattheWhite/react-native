@@ -8,6 +8,8 @@ import GoalInput from "./components/GoalInput";
     For web:
         npx expo install @expo/metro-runtime
         Press 'w' in the expo server's terminal window
+
+    FOR DEBUGGING:  react-devtools     command from the project's root (already installed globally) then you access the whole app component by component
 */
 
 export default function App() {
