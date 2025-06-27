@@ -4,8 +4,8 @@ function PrimaryButton(props) {
   /* or use OBJECT DESTRUCTURING => PrimaryButton({children}) */
   return (
     <Pressable>
-      <View style={styles.container}>
-        <Text>{props.children}</Text>
+      <View style={styles.buttonContainer}>{/* we have to apply here the text styling, since in RN styling there is NO INHERITANCE */}
+        <Text style={styles.buttonText}>{props.children}</Text>
       </View>
     </Pressable>
   );
@@ -14,11 +14,16 @@ function PrimaryButton(props) {
 export default PrimaryButton;
 
 const styles = StyleSheet.create({
-  container: {
+  buttonContainer: {
     backgroundColor: "#72063c",
-    borderRadius: 280,
+    borderRadius: 28,
     paddingVertical: 8, // adding different spacing left-right then top-bottom
     paddingHorizontal: 16,
+    margin: 4,
     elevation: 2,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
   },
 });
