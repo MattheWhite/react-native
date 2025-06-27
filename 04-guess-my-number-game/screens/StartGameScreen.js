@@ -9,21 +9,28 @@ function StartGameScreen() {
         maxLength={2}
         keyboardType="number-pad"
         keyboardAppearance="dark"
-        autoCapitalize="none"/* this 2 props only added for demonstration purpose, here no effect */
+        autoCapitalize="none" /* this 2 props only added for demonstration purpose, here no effect */
         autoCorrect={false}
       />
       {/* determine with keyboardType to open a number input keyboard */}
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.buttonsContainer}>
+        {/* every View constructs a new flexbox container */}
+        <View style={styles.buttonContainer}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 }
 
 export default StartGameScreen;
-
 const styles = StyleSheet.create({
   inputContainer: {
     // flex: 1,  element takes as much space as possible
+    alignItems: "center",
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
@@ -50,4 +57,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  buttonsContainer: {
+    flexDirection: "row",
+
+  },
+  buttonContainer: {
+    flex: 1
+  }
 });
