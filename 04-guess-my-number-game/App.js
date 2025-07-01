@@ -14,7 +14,8 @@ export default function App() {
       <ImageBackground
         source={require("./assets/images/background.png")}
         resizeMode="cover"
-        style={styles.rootScreen}
+        style={styles.rootScreen}/* this prop activates for the View element inside ImageBackground built-in component */
+        imageStyle={styles.backgroundImage}
       >
         <StartGameScreen />
       </ImageBackground>
@@ -24,7 +25,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   rootScreen: {
-    backgroundColor: "#ddb52f",
     flex: 1, // needed because View only takes as much space as needed to fit the content into them
   },
+  backgroundImage: {
+    opacity: 0.15
+  }
 });
