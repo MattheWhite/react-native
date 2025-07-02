@@ -9,7 +9,14 @@ function StartGameScreen() {
     setEnteredNumber(enteredText);
   }
 
-  function confirmInputHandler() {}
+  function confirmInputHandler() {
+    const chosenNumber = parseInt(enteredNumber);
+
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+        // show alert  ...
+        return;
+    }
+  }
 
   return (
     <View style={styles.inputContainer}>
