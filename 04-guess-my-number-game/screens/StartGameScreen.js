@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { StyleSheet, TextInput, View, Alert } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import { useState } from 'react';
+import { Alert, StyleSheet, TextInput, View } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
 
 function StartGameScreen() {
-  const [enteredNumber, setEnteredNumber] = useState("");
+  const [enteredNumber, setEnteredNumber] = useState('');
 
   /* automatically gets input text on every keystroke because we binded to onChangeText prop, not onChange simply */
   function numberInputHandler(enteredText) {
@@ -11,7 +11,7 @@ function StartGameScreen() {
   }
 
   function resetInputHandler() {
-    setEnteredNumber("");
+    setEnteredNumber('');
   }
 
   /* shown if you try enter an empty value or minus value */
@@ -20,10 +20,10 @@ function StartGameScreen() {
 
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       Alert.alert(
-        "Invalid number!",
-        "Number has to be a number between 1 and 99.",
+        'Invalid number!',
+        'Number has to be a number between 1 and 99.',
         [
-          { text: "Okay", style: "destructive", onPress: resetInputHandler },
+          { text: 'Okay', style: 'destructive', onPress: resetInputHandler },
         ] /* configuring the Button displayed, the style can be: destructive, cancel, default, onPress we can pass a pointer which will be executed */
       );
       return;
@@ -35,9 +35,9 @@ function StartGameScreen() {
       <TextInput
         style={styles.numberInput}
         maxLength={2}
-        keyboardType="number-pad" /* even with number-pad the received value will ALWAYS be STRING */
-        keyboardAppearance="dark"
-        autoCapitalize="none" /* this 2 props only added for demonstration purpose, here no effect */
+        keyboardType='number-pad' /* even with number-pad the received value will ALWAYS be STRING */
+        keyboardAppearance='dark'
+        autoCapitalize='none' /* this 2 props only added for demonstration purpose, here no effect */
         autoCorrect={false}
         onChangeText={numberInputHandler}
         value={enteredNumber}
@@ -60,17 +60,17 @@ export default StartGameScreen;
 const styles = StyleSheet.create({
   inputContainer: {
     // flex: 1,  element takes as much space as possible
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#3b021f",
+    backgroundColor: '#3b021f',
     borderRadius: 8,
     elevation: 4, // box shadow effect on Android ONLY  |  can't be transformed into a Native element which IOS can understand too  => use shadow...  properties for IOS
     /*  
     ONLY FOR IOS
     
-    shadowColor: "black",
+    shadowColor: 'black',
     shadowOffset: { width: 3, height: 3 },
     shadowRadius: 6,
     shadowOpacity: 1
@@ -80,15 +80,15 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     fontSize: 32,
-    borderBottomColor: "#ddb52f",
+    borderBottomColor: '#ddb52f',
     borderBottomWidth: 2,
-    color: "#ddb52f",
+    color: '#ddb52f',
     marginVertical: 8, // adds the same space on the top and below to the element
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   buttonsContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   buttonContainer: {
     flex: 1,
