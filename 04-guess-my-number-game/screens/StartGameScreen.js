@@ -5,8 +5,8 @@ import PrimaryButton from "../components/PrimaryButton";
 function StartGameScreen() {
   const [enteredNumber, setEnteredNumber] = useState("");
 
-  function setEnteredNumber() {
-
+  function numberInputHandler(enteredText) {/* automatically gets input text on every keystroke because we binded to onChangeText prop, not onChange simply */
+    setEnteredNumber(enteredText);
   }
 
   return (
@@ -14,11 +14,13 @@ function StartGameScreen() {
       <TextInput
         style={styles.numberInput}
         maxLength={2}
-        keyboardType="number-pad"/* even with number-pad the received value will ALWAYS be STRING */
+        keyboardType="number-pad" /* even with number-pad the received value will ALWAYS be STRING */
         keyboardAppearance="dark"
         autoCapitalize="none" /* this 2 props only added for demonstration purpose, here no effect */
-        autoCorrect={false}    
-        />
+        autoCorrect={false}
+        onChangeText={numberInputHandler}
+        value={enteredNumber}
+      />
       {/* determine with keyboardType to open a number input keyboard */}
       <View style={styles.buttonsContainer}>
         {/* every View constructs a new flexbox container */}
@@ -26,7 +28,7 @@ function StartGameScreen() {
           <PrimaryButton>Reset</PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={setEnteredNumber}>Confirm</PrimaryButton>
+          <PrimaryButton onPress={numberInputHandler}>Confirm</PrimaryButton>
         </View>
       </View>
     </View>
