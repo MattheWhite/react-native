@@ -1,7 +1,12 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
 function PrimaryButton(props) {
-  /* or use OBJECT DESTRUCTURING => PrimaryButton({children}) */
+  /* or use OBJECT DESTRUCTURING => PrimaryButton({ children, onPress }) => onPress is my special defined generic function so i can define what function would be executed onPress action */
+
+  function pressHandler() {
+    props.onPress();
+  }
+
   return (
     <View style={styles.buttonOuterContainer}>
       {/* we have to apply here the text styling, since in RN styling there is NO INHERITANCE */}
@@ -12,6 +17,7 @@ function PrimaryButton(props) {
             : styles.buttonInnerContainer
         } // automatically called on press action and passed the 'pressed' boolean data
         android_ripple={{ color: "#da5698" }}
+        onPress={pressHandler}/* or here just directly connect to my special onPress as onPress={onPress} */
       >
         <Text style={[styles.buttonText]}>{props.children}</Text>
         {/* styles CAN RECEIVE ARRAY of styles, which all will be applied | ARROW FUNCTION which will be executed */}
