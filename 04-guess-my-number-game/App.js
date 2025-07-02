@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { StyleSheet, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import StartGameScreen from "./screens/StartGameScreen";
+import GameScreen from "./screens/GameScreen";
 
 /*
   making screens/ folder for whole page components
@@ -9,6 +11,16 @@ import StartGameScreen from "./screens/StartGameScreen";
 */
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState(); // at start will be null/undefined  => implement this hook so we can define a simply rendering/navigation based on its value, without external dependency used
+
+  function pickedNumberHandler(pickedNumber) {
+    setUserNumber(pickedNumber);
+  }
+
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />; /* passing the pickedNumberHandler to StartGameScreen component */
+
+  if (userNumber) screen = <GameScreen />;
+  
   return (
     <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.rootScreen}>
       <ImageBackground
@@ -17,7 +29,7 @@ export default function App() {
         style={styles.rootScreen}/* this prop activates on the View element inside ImageBackground built-in component */
         imageStyle={styles.backgroundImage}/* this prop activates directly on the image */
       >
-        <StartGameScreen />
+        {screen} {/* set the rendered component above like a navigation */}
       </ImageBackground>
     </LinearGradient>
   );
