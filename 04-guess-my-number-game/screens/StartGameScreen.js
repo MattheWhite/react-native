@@ -1,17 +1,24 @@
+import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
 function StartGameScreen() {
+  const [enteredNumber, setEnteredNumber] = useState("");
+
+  function setEnteredNumber() {
+
+  }
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.numberInput}
         maxLength={2}
-        keyboardType="number-pad"
+        keyboardType="number-pad"/* even with number-pad the received value will ALWAYS be STRING */
         keyboardAppearance="dark"
         autoCapitalize="none" /* this 2 props only added for demonstration purpose, here no effect */
-        autoCorrect={false}
-      />
+        autoCorrect={false}    
+        />
       {/* determine with keyboardType to open a number input keyboard */}
       <View style={styles.buttonsContainer}>
         {/* every View constructs a new flexbox container */}
@@ -19,7 +26,7 @@ function StartGameScreen() {
           <PrimaryButton>Reset</PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton>Confirm</PrimaryButton>
+          <PrimaryButton onPress={setEnteredNumber}>Confirm</PrimaryButton>
         </View>
       </View>
     </View>
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
 */
   },
   numberInput: {
-    height: 50,
+    height: 60,
     width: 60,
     fontSize: 32,
     borderBottomColor: "#ddb52f",
@@ -59,9 +66,8 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: "row",
-
   },
   buttonContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
