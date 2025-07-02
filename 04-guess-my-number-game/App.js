@@ -14,8 +14,8 @@ export default function App() {
       <ImageBackground
         source={require("./assets/images/background.png")}
         resizeMode="cover"
-        style={styles.rootScreen}/* this prop activates for the View element inside ImageBackground built-in component */
-        imageStyle={styles.backgroundImage}
+        style={styles.rootScreen}/* this prop activates on the View element inside ImageBackground built-in component */
+        imageStyle={styles.backgroundImage}/* this prop activates directly on the image */
       >
         <StartGameScreen />
       </ImageBackground>
