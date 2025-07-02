@@ -5,22 +5,26 @@ import PrimaryButton from "../components/PrimaryButton";
 function StartGameScreen() {
   const [enteredNumber, setEnteredNumber] = useState("");
 
-  function numberInputHandler(enteredText) {/* automatically gets input text on every keystroke because we binded to onChangeText prop, not onChange simply */
+  /* automatically gets input text on every keystroke because we binded to onChangeText prop, not onChange simply */
+  function numberInputHandler(enteredText) {
     setEnteredNumber(enteredText);
   }
 
   function resetInputHandler() {
-    setEnteredNumber('');
+    setEnteredNumber("");
   }
 
+  /* shown if you try enter an empty value or minus value */
   function confirmInputHandler() {
     const chosenNumber = parseInt(enteredNumber);
 
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       Alert.alert(
-        'Invalid number!',
-        'Number has to be a number between 1 and 99.',
-        [{ text: 'Okay', style: 'destructive', onPress: resetInputHandler }]/* configuring the Button displayed, the style can be: destructive, cancel, default, onPress we can pass a pointer which will be executed */
+        "Invalid number!",
+        "Number has to be a number between 1 and 99.",
+        [
+          { text: "Okay", style: "destructive", onPress: resetInputHandler },
+        ] /* configuring the Button displayed, the style can be: destructive, cancel, default, onPress we can pass a pointer which will be executed */
       );
       return;
     }
