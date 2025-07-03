@@ -29,8 +29,9 @@ export default function App() {
         style={styles.rootScreen}/* this prop activates on the View element inside ImageBackground built-in component */
         imageStyle={styles.backgroundImage}/* this prop activates directly on the image */
       >
-        <SafeAreaView style={styles.rootScreen}> {/* wrapping around the main components so it leaves the notchbar alone but the background stays in place */}
-          {screen} {/* set the rendered component above like a navigation */}
+        {/* wrapping around the main components so it leaves the notchbar alone but the background stays in place */}
+        <SafeAreaView style={styles.rootScreen}>
+          {screen}{/* we set the rendered component dynamically like a navigation happen, WATCH OUT for spaces it can cause ERROR */}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
