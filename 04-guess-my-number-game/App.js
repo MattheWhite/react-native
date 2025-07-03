@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import StartGameScreen from "./screens/StartGameScreen";
@@ -29,7 +29,9 @@ export default function App() {
         style={styles.rootScreen}/* this prop activates on the View element inside ImageBackground built-in component */
         imageStyle={styles.backgroundImage}/* this prop activates directly on the image */
       >
-        {screen} {/* set the rendered component above like a navigation */}
+        <SafeAreaView style={styles.rootScreen}> {/* wrapping around the main components so it leaves the notchbar alone but the background stays in place */}
+          {screen} {/* set the rendered component above like a navigation */}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
