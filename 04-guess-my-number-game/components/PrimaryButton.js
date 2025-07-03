@@ -17,7 +17,7 @@ function PrimaryButton(props) {
             : styles.buttonInnerContainer
         } // automatically called on press action and passed the 'pressed' boolean data
         android_ripple={{ color: "#da5698" }}
-        onPress={pressHandler}/* or here just directly connect to my special onPress as onPress={onPress} if on top i would use OBJECT DESTRUCTION, now i'd have to use onPress={props.onPress} */
+        onPress={pressHandler} // or here just directly connect to my special onPress as onPress={onPress} if on top i would use OBJECT DESTRUCTION, now i'd have to use onPress={props.onPress}     WATCH OUT THE COMMENT SYNTAX!!!  IT CAN CAUSE AN "Text strings must be rendered within a <Text> component" ERROR    here e.g.: using the /**/ not right
       >
         <Text style={[styles.buttonText]}>{props.children}</Text>
         {/* styles CAN RECEIVE ARRAY of styles, which all will be applied | ARROW FUNCTION which will be executed */}
