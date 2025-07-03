@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 
 import Title from "../components/ui/Title";
-import { useState } from "react";
+import NumberContainer from "../components/game/NumberContainer";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min; // adding min so can't be 0 worst case scenario
@@ -16,11 +17,12 @@ function generateRandomBetween(min, max, exclude) {
 
 function GameScreen({ userNumber }) {
   const initialGuess = generateRandomBetween(1, 100, userNumber); // 100 because the upper boundary is excluded, userNumber so the device can't guess the inputNumber at rendering
-  const [currentGuess, setCurrentGuess] = useState();
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
+      <NumberContainer>{currentGuess}</NumberContainer>
     </View>
   );
 }
