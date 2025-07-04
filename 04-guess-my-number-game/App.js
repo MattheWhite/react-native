@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import AppLoading from "expo-app-loading";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
@@ -11,13 +12,18 @@ import { useFonts } from "expo-font";
 /*
   making screens/ folder for whole page components
   making components/ folder for all the small building block components
+  install expo-font:  expo install expo-font
+  install expo-app-loading:  expo install expo-app-loading to show a loading 'splash' screen while the app loads the fonts
 */
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(); // at start will be null/undefined  => implement this hook so we can define a simply rendering/navigation based on its value, without external dependency used
   const [gameIsOver, setGameIsOver] = useState(true); // initially the game is not started
 
-  useFonts(); // Load a map of fonts at runtime
+  useFonts({ // Load a map of fonts at runtime, has to include the project
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  });
   
   function pickedNumberHandler(pickedNumber) {
     // this 2 state update batched together so the component will be only rerendered once => React specific
