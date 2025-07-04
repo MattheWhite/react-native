@@ -1,5 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
+import Colors from "../../constants/colors";
+
 function Card({ children }) { // now with children incoming parameter we can use this component as a wrapper
   return <View style={styles.card}>{children}</View>;
 }
