@@ -6,6 +6,7 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
+import { useFonts } from "expo-font";
 
 /*
   making screens/ folder for whole page components
@@ -16,6 +17,8 @@ export default function App() {
   const [userNumber, setUserNumber] = useState(); // at start will be null/undefined  => implement this hook so we can define a simply rendering/navigation based on its value, without external dependency used
   const [gameIsOver, setGameIsOver] = useState(true); // initially the game is not started
 
+  useFonts(); // Load a map of fonts at runtime
+  
   function pickedNumberHandler(pickedNumber) {
     // this 2 state update batched together so the component will be only rerendered once => React specific
     setUserNumber(pickedNumber);
