@@ -16,7 +16,8 @@
     "react-dom": "19.1.0",
     "react-native": "0.80.0",
     "react-native-web": "0.20.0",
-    "expo-linear-gradient": "~14.1.5"
+    "expo-linear-gradient": "~14.1.5",
+    "expo-font": "~13.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.27.7"
