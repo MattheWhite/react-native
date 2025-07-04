@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, StyleSheet, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
@@ -10,7 +11,8 @@ import Card from "../components/ui/Card";
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min; // adding min so can't be 0 worst case scenario
 
-  if (rndNum === exclude) {// defending that the device can't win at start
+  if (rndNum === exclude) {
+    // defending that the device can't win at start
     return generateRandomBetween(min, max, exclude);
   } else {
     return rndNum;
@@ -60,16 +62,18 @@ function GameScreen({ userNumber, onGameOver }) {
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Higher or lower?
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              -
+              <Ionicons name="remove" size={24} color="white" />{/* using ICONS from expo library */}
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
-              +
+              <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   instructionText: {
-    marginBottom: 12
+    marginBottom: 12,
   },
   buttonsContainer: {
     flexDirection: "row",
