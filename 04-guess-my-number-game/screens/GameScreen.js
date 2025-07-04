@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 
 import Title from "../components/ui/Title";
@@ -19,10 +19,16 @@ function generateRandomBetween(min, max, exclude) {
 let minBoundary = 1;
 let maxBoundary = 100; // 100 because the upper boundary is excluded, userNumber so the device can't guess the inputNumber at rendering
 
-function GameScreen({ userNumber }) {
-  const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
+function GameScreen({ userNumber, onGameOver }) {
+  const initialGuess = generateRandomBetween(1, 100, userNumber); // here we hardcode so the final guess won't crack the code on rerender, we only need this for once anyway
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
+  useEffect(() => { // use this effect and executes if one of the passed dependency/state is changed
+    if (currentGuess === userNumber) {
+        onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]); // simple rule, all the variables and functions which are used should be passed here to watch
+  
   function nextGuessHandler(direction) {
     // 'lower', 'greater'
     if (

@@ -3,6 +3,7 @@ import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import StartGameScreen from "./screens/StartGameScreen";
+import GameOverScreen from "./screens/GameOverScreen";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
 
@@ -13,14 +14,23 @@ import Colors from "./constants/colors";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(); // at start will be null/undefined  => implement this hook so we can define a simply rendering/navigation based on its value, without external dependency used
+  const [gameIsOver, setGameIsOver] = useState(true); // initially the game is not started
 
   function pickedNumberHandler(pickedNumber) {
+    // this 2 state update batched together so the component will be only rerendered once => React specific
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
   }
 
+  function gameOverHandler() {
+    setGameIsOver(true);
+  }
+  
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />; /* passing the pickedNumberHandler to StartGameScreen component */
 
-  if (userNumber) screen = <GameScreen userNumber={userNumber}/>;
+  if (userNumber) screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
+
+  if (gameIsOver && userNumber) screen = <GameOverScreen />;
   
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
