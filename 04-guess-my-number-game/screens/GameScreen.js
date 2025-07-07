@@ -7,6 +7,7 @@ import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import InstructionText from "../components/ui/InstructionText";
 import Card from "../components/ui/Card";
+import GuessLogItem from "../components/game/GuessLogItem";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min; // adding min so can't be 0 worst case scenario
@@ -64,6 +65,8 @@ function GameScreen({ userNumber, onGameOver }) {
     setGuessRounds((prevGuessRounds) => [newRndNumber, ...prevGuessRounds]); // since we update a state based on the prev. state, we use the function form for updating
   }
 
+  const GuessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -89,7 +92,7 @@ function GameScreen({ userNumber, onGameOver }) {
       <View>
         <FlatList
           data={guessRounds}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}/* renderItem will automatically wrap the items of the array! this objects contains item as the value */
+          renderItem={(itemData) => <GuessLogItem roundNumber={GuessRoundsListLength - itemData.index} guess={itemData.item} />}/* renderItem will automatically wrap the items of the array! this objects contains item as the value | we receive the index with itemData TOO automatically by RN FlatList !!! */
           keyExtractor={(item) => item}/* also will be executed as the renderItem function, item itself is a number in this case which is a unique number */
         />
         {/*  {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)}  => Using FlatList if the array overlays the whole screen...  for key the guessNumber will be okay because we can't guess twice the same number */}
