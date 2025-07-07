@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
+import PrimaryButton from "../components/ui/PrimaryButton";
 
 function GameOverScreen() {
   return (
@@ -17,9 +18,11 @@ function GameOverScreen() {
           style={styles.image}
         />
       </View>
-      <Text>
-        Your phone needed <Text>X</Text> rounds to guess the number<Text>Y</Text>.
+      {/* A Text component should NOT wrap a View container but another Text component can be wrapped  =>  IMPORTANT: the text affected/specific styling values are passed to the nested Text component from the parent Text component! It's still not inheritance, simply just how nested Text components work */}
+      <Text style={styles.summaryText}>
+        Your phone needed <Text style={styles.highlight}>X</Text> rounds to guess the number<Text style={styles.highlight}>Y</Text>.
       </Text>
+      <PrimaryButton>Start New Game</PrimaryButton>
     </View>
   );
 }
@@ -33,11 +36,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-//   container: {   previously used
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
+  //   container: {   previously used
+  //     flex: 1,
+  //     alignItems: "center",
+  //     justifyContent: "center",
+  //   },
   text: {
     fontSize: 30,
     fontWeight: "bold",
@@ -58,4 +61,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  summaryText: {
+    fontFamily: 'open-sans',
+    fontSize: 22,
+    textAlign: 'center',
+    marginBottom: 24
+  },
+  highlight: {
+    fontFamily: 'open-sans-bold',
+    color: Colors.primary500
+  }
 });
