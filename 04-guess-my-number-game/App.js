@@ -19,6 +19,7 @@ import { useFonts } from "expo-font";
 export default function App() {
   const [userNumber, setUserNumber] = useState(); // at start will be null/undefined  => implement this hook so we can define a simply rendering/navigation based on its value, without external dependency used
   const [gameIsOver, setGameIsOver] = useState(true); // initially the game is not started
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({ // Load a map of fonts at runtime, has to include the project, as a hook, it returns a value, a boolean if loaded
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -38,12 +39,17 @@ export default function App() {
   function gameOverHandler() {
     setGameIsOver(true);
   }
+
+  function startNewGameHandler() {
+    setUserNumber(null);
+    setGuessRounds(0);
+  }
   
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />; /* passing the pickedNumberHandler to StartGameScreen component */
 
   if (userNumber) screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
 
-  if (gameIsOver && userNumber) screen = <GameOverScreen />;
+  if (gameIsOver && userNumber) screen = <GameOverScreen userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler} />;
   
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>

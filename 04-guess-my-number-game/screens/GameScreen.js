@@ -33,6 +33,11 @@ function GameScreen({ userNumber, onGameOver }) {
     }
   }, [currentGuess, userNumber, onGameOver]); // simple rule, all the variables and functions which are used should be passed here to watch
 
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []); // adding an empty array of dependencies => this way the effect function only executes for the first time this component is evaluated | updates won't affect  (we could easily set back the min and max boundaries in the effect above after we called onGameOver()... this is just simply another solution for the problem)
+
   function nextGuessHandler(direction) {
     // 'lower', 'greater'
     if (
