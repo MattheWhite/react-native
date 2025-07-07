@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
 
 import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
@@ -29,6 +29,8 @@ function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) { /* we wa
 
 export default GameOverScreen;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -48,9 +50,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     // borderRadius should be half of the width and height value, thats how we create a square and then round it for a circle
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    // here the '80%' percentage value for both widht and height won't work because they are not the same size of the parent element
+    width: deviceWidth < 400 ? 150 : 300,
+    height: deviceWidth < 400 ? 150 : 300,
+    borderRadius: deviceWidth < 400 ? 75 : 156,
     borderWidth: 3,
     borderColor: Colors.primary700,
     overflow: "hidden",
