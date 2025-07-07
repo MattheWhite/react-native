@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   numberInput: {
-    height: 50,
+    height:60,
     width: 50,
     fontSize: 32,
     borderBottomColor: Colors.accent500,
