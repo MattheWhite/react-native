@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "RNCourse",
+    "name": "Guess The Number Game",
     "slug": "RNCourse",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/dice.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/dice.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
