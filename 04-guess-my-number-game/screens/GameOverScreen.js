@@ -4,7 +4,7 @@ import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
-function GameOverScreen() {
+function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) { /* we want to expect here datas from App component */
   return (
     /* <View style={styles.container}>
         <Text style={styles.text}>Game is over!</Text>
@@ -20,9 +20,9 @@ function GameOverScreen() {
       </View>
       {/* A Text component should NOT wrap a View container but another Text component can be wrapped  =>  IMPORTANT: the text affected/specific styling values are passed to the nested Text component from the parent Text component! It's still not inheritance, simply just how nested Text components work */}
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>X</Text> rounds to guess the number<Text style={styles.highlight}>Y</Text>.
+        Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number<Text style={styles.highlight}>{userNumber}</Text>.
       </Text>
-      <PrimaryButton>Start New Game</PrimaryButton>
+      <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
   );
 }
