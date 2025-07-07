@@ -31,7 +31,7 @@ function GameScreen({ userNumber, onGameOver }) {
   useEffect(() => {
     // use this effect and executes if one of the passed dependency/state is changed
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length); // passing the rounds number to App.js which will pass it to the GameOverScreen
     }
   }, [currentGuess, userNumber, onGameOver]); // simple rule, all the variables and functions which are used should be passed here to watch
 
@@ -89,7 +89,7 @@ function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
           renderItem={(itemData) => <GuessLogItem roundNumber={GuessRoundsListLength - itemData.index} guess={itemData.item} />}/* renderItem will automatically wrap the items of the array! this objects contains item as the value | we receive the index with itemData TOO automatically by RN FlatList !!! */
@@ -117,4 +117,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
+  listContainer: {
+    flex: 1,
+    padding: 16
+  }
 });

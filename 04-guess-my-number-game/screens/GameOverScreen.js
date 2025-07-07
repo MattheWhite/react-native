@@ -20,7 +20,7 @@ function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) { /* we wa
       </View>
       {/* A Text component should NOT wrap a View container but another Text component can be wrapped  =>  IMPORTANT: the text affected/specific styling values are passed to the nested Text component from the parent Text component! It's still not inheritance, simply just how nested Text components work */}
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number<Text style={styles.highlight}>{userNumber}</Text>.
+        Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number <Text style={styles.highlight}>{userNumber}</Text>.
       </Text>
       <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
