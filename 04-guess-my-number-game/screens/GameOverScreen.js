@@ -17,7 +17,9 @@ function GameOverScreen() {
           style={styles.image}
         />
       </View>
-      <Text>Your phone needed X rounds to guess the number Y.</Text>
+      <Text>
+        Your phone needed <Text>X</Text> rounds to guess the number<Text>Y</Text>.
+      </Text>
     </View>
   );
 }
@@ -31,11 +33,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+//   container: {   previously used
+//     flex: 1,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
   text: {
     fontSize: 30,
     fontWeight: "bold",
