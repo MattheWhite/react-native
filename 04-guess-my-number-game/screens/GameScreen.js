@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, Text, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Title from "../components/ui/Title";
@@ -25,6 +25,7 @@ let maxBoundary = 100; // 100 because the upper boundary is excluded, userNumber
 function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = generateRandomBetween(1, 100, userNumber); // here we hardcode so the final guess won't crack the code on rerender, we only need this for once anyway
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRounds, setGuessRounds] = useState([initialGuess]);
 
   useEffect(() => {
     // use this effect and executes if one of the passed dependency/state is changed
@@ -60,6 +61,7 @@ function GameScreen({ userNumber, onGameOver }) {
       currentGuess
     );
     setCurrentGuess(newRndNumber);
+    setGuessRounds((prevGuessRounds) => [newRndNumber, ...prevGuessRounds]); // since we update a state based on the prev. state, we use the function form for updating
   }
 
   return (
@@ -73,7 +75,8 @@ function GameScreen({ userNumber, onGameOver }) {
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              <Ionicons name="remove" size={24} color="white" />{/* using ICONS from expo library */}
+              <Ionicons name="remove" size={24} color="white" />
+              {/* using ICONS from expo library */}
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
@@ -83,6 +86,14 @@ function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
+      <View>
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => <Text>{itemData.item}</Text>}/* renderItem will automatically wrap the items of the array! this objects contains item as the value */
+          keyExtractor={(item) => item}/* also will be executed as the renderItem function, item itself is a number in this case which is a unique number */
+        />
+        {/*  {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)}  => Using FlatList if the array overlays the whole screen...  for key the guessNumber will be okay because we can't guess twice the same number */}
+      </View>
     </View>
   );
 }
