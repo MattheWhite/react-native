@@ -1,4 +1,4 @@
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 
 function Title({ children }) {
   return <Text style={styles.title}>{children}</Text>;
