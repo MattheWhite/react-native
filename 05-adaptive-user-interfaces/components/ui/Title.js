@@ -17,7 +17,10 @@ const styles = StyleSheet.create({
     //borderWidth: Platform.OS === 'android' ? 0 : 2, the Platform lives through the lifecycle of the app since it won't change where it runs | making different design depending on the OS it runs on
     borderWidth: Platform.select({android: 0, ios: 2}), // other solution without ternary operator, cleaner code
     /*
-    OR ADD 2 SEPARATE Title.js file for android and iOS!!!  =>  Title.ios.js, Title.android.js   - if you keep your imports in all file (simply import... from Title) then React Native will automatically use the correct import from the correct file depending on what platform it runs on!  TEST IT: delete Title.js and change the borderWidth in Title.android.js
+    OR ADD 2 SEPARATE Title.js file for android and iOS!!!  =>  Title.ios.js, Title.android.js   - if you keep your imports in all file (simply import... from Title) then React Native will automatically use the correct import from the correct file depending on what platform it runs on!  
+    This is true for constans too! So you can specify colors for different platforms for example easily this way
+    
+    TEST IT: delete Title.js and change the borderWidth in Title.android.js
     */
   
     borderColor: 'white',
