@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
+import { Image, StyleSheet, Text, View, Dimensions, useWindowDimensions } from "react-native";
 
 import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     // here the '80%' percentage value for both widht and height won't work because they are not the same size of the parent element
     width: deviceWidth < 400 ? 150 : 300,
     height: deviceWidth < 400 ? 150 : 300,
-    borderRadius: deviceWidth < 400 ? 75 : 156,
+    borderRadius: deviceWidth < 400 ? 75 : 150,
     borderWidth: 3,
     borderColor: Colors.primary700,
     overflow: "hidden",
