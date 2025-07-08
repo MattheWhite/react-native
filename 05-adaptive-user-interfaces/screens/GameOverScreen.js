@@ -1,4 +1,4 @@
-import { View, Image, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Image, Text, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 
 import Title from '../components/ui/Title';
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -10,7 +10,7 @@ function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) {
   let imageSize = 380;
 
   if (width < 480) imageSize = 150;
-  if (height < 500) imageSize = 80;
+  if (height < 500) imageSize = 110;
 
   const imageStyle = {
     width: imageSize,
@@ -19,27 +19,32 @@ function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) {
   }
 
   return (
-    <View style={styles.rootContainer}>
-      <Title>GAME OVER!</Title>
-      <View style={[styles.imageContainer, imageStyle]}>
-        <Image
-          style={styles.image}
-          source={require('../assets/images/success.png')}
-        />
+    <ScrollView style={styles.screen}>
+      <View style={styles.rootContainer}>
+        <Title>GAME OVER!</Title>
+        <View style={[styles.imageContainer, imageStyle]}>
+          <Image
+            style={styles.image}
+            source={require('../assets/images/success.png')}
+          />
+        </View>
+        <Text style={styles.summaryText}>
+          Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text>{' '}
+          rounds to guess the number{' '}
+          <Text style={styles.highlight}>{userNumber}</Text>.
+        </Text>
+        <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
       </View>
-      <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text>{' '}
-        rounds to guess the number{' '}
-        <Text style={styles.highlight}>{userNumber}</Text>.
-      </Text>
-      <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
-    </View>
+    </ScrollView>
   );
 }
 
 export default GameOverScreen;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1
+  },
   rootContainer: {
     flex: 1,
     padding: 24,
