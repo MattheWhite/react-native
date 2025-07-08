@@ -9,6 +9,15 @@ import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 import Colors from './constants/colors';
 
+/* app.json
+    Modify orientation from portrait to default, this way the app will be tilt automatically according to the device state
+      - On device the auto-rotation has to be enabled
+      - "portrait" = vertical
+        "landscape" = horizontal
+        and "default" passibilities. default is automatic
+
+      "arientation": "default" */
+
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);

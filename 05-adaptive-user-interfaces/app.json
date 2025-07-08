@@ -3,7 +3,7 @@
     "name": "Guess The Number Game",
     "slug": "RNCourse",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/dice.png",
     "splash": {
       "image": "./assets/images/dice.png",
