@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { TextInput, View, StyleSheet, Alert, useWindowDimensions } from 'react-native';
+import { 
+  TextInput,
+  View,
+  StyleSheet,
+  Alert,
+  useWindowDimensions,
+  KeyboardAvoidingView,
+  ScrollView
+} from 'react-native';
 
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
@@ -38,31 +46,35 @@ function StartGameScreen({ onPickNumber }) {
   const marginTopDistance = height < 440 ? 50 : 85; // we merge this styling into the components style={} because this part of the code gets reevaluating, but the StyleSheet.create() only once and then that is loaded
 
   return (
-    <View style={[styles.rootContainer, {marginTop: marginTopDistance} ]}>
-      <Title>Guess My Number</Title>
-      <Card>
-        <InstructionText>
-          Enter a Number
-        </InstructionText>
-        <TextInput
-          style={styles.numberInput}
-          maxLength={2}
-          keyboardType="number-pad"
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={numberInputHandler}
-          value={enteredNumber}
-        />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-          </View>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-          </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView style={styles.screen} behavior='position'>{/* with behaviour='position' it tries to move the element when the keyboard appears so the input field still visible  => wrap into a ScrollView so it moves effectively and we can scroll it */}
+        <View style={[styles.rootContainer, {marginTop: marginTopDistance} ]}>
+          <Title>Guess My Number</Title>
+          <Card>
+            <InstructionText>
+              Enter a Number
+            </InstructionText>
+            <TextInput
+              style={styles.numberInput}
+              maxLength={2}
+              keyboardType="number-pad"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={numberInputHandler}
+              value={enteredNumber}
+            />
+            <View style={styles.buttonsContainer}>
+              <View style={styles.buttonContainer}>
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+              </View>
+              <View style={styles.buttonContainer}>
+                <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
@@ -78,6 +90,9 @@ const deviceHeight = Dimensions.get('window').height;
 */
 
 const styles = StyleSheet.create({
+  screen: { // since keyboardAvoidingView is the new parent, we have to add this style to make sure it gets all the available spaces
+    flex: 1
+  },
   rootContainer: {
     flex: 1,
     // marginTop: deviceHeight < 440 ? 50 : 80,
