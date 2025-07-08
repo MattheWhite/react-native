@@ -67,6 +67,7 @@ function GameScreen({ userNumber, onGameOver }) {
   }
 
   const guessRoundsListLength = guessRounds.length;
+  // Dimensions API => Dimensions API primarily provides information about the width and height of the device screen, without directly indicating its orientation. While you can infer orientation based on those dimensions width > height, the API does not offer an explicit orientation property.
 
   let content = (
     <>
