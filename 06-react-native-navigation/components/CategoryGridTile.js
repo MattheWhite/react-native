@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 function CategoryGridTile({ title, color }) {
   return (
     <View style={styles.gridItem}>
-      <Pressable style={styles.button}>
+      <Pressable android_ripple={{color: '#bebebe'}} style={styles.button}>
         <View style={styles.innerContainer}>
-          <Text>{title}</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>
     </View>
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 4,
     backgroundColor: 'white', // looks much better the shadow this way
+    overflow: 'hidden',
 
     // shadows for iOS
     shadowColor: 'black',
@@ -36,5 +37,9 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 18
   }
 });
