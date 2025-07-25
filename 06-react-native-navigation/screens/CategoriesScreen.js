@@ -17,8 +17,9 @@ function CategoriesScreen() {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={renderCategoryItem}
+      numColumns={2}
     />
-  ); /* keyExtractor automatically gets item wrapped in itemData */
+  ); /* keyExtractor automatically gets item wrapped in itemData, numColumns default is one, with more we can organize the FlatList items into columns -> FlatList makes it scrollable */
 }
 
 export default CategoriesScreen;
