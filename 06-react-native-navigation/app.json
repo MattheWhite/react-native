@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/meal.jpg",
+    "backgroundColor": "#24180f",
     "splash": {
       "image": "./assets/meal.jpg",
       "resizeMode": "contain",
