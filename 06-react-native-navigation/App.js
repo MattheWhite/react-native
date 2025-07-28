@@ -3,6 +3,12 @@ import { StyleSheet } from 'react-native';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 
+/* 
+  Install react navigation:
+    1. npm install @react-navigation/native
+    2. npx expo install react-native-screens react-native-safe-area-context
+*/
+
 export default function App() {
   return (
     <>
