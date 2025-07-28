@@ -8,6 +8,9 @@ import CategoriesScreen from './screens/CategoriesScreen';
   Install react navigation:
     1. npm install @react-navigation/native
     2. npx expo install react-native-screens react-native-safe-area-context
+
+    then install a specific navigator type package (stack type)
+    3. expo install @react-navigation/native-stack
 */
 
 export default function App() {
