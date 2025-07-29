@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'; // should wrap a
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CategoriesScreen from './screens/CategoriesScreen';
+import MealsOverviewScreen from './screens/MealsOverviewScreen';
 
 /* 
   Install react navigation:
@@ -23,6 +24,7 @@ export default function App() {
       <NavigationContainer>{/* changes the app by default, nice wrapper -> adds a header and spacing for statusbar too */}
         <Stack.Navigator>
           <Stack.Screen name='MealsCategories' component={CategoriesScreen} />{/* allow us to register a screen managed by this navigator | name is unique */}
+          <Stack.Screen name='MealsOverview' component={MealsOverviewScreen} />
         </Stack.Navigator>
         {/* <CategoriesScreen />  we setted for this component the navigation above */}
       </NavigationContainer>
