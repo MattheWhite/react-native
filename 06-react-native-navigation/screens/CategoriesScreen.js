@@ -6,8 +6,10 @@ import CategoryGridTile from "../components/CategoryGridTile";
 
 // optional, outsource here for cleaner code
 function renderCategoryItem(itemData) {
+  function pressHandler() {}
+  
   return (
-    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
+    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} onPress={pressHandler} />
   );
 }
 
