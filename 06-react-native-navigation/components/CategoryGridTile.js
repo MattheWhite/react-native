@@ -1,6 +1,9 @@
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // instead this hook we could pass navigation below here this component using props but this hook is cleaner | Because navigation only passed to registered screen automatically
 
 function CategoryGridTile({ title, color, onPress }) {
+  const navigation = useNavigation(); // showing purposes
+  
   return (
     <View style={styles.gridItem}>
       <Pressable android_ripple={{color: '#dcdcdc'}}
