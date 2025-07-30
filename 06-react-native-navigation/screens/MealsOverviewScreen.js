@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useRoute } from "@react-navigation/native"; // hook - alternative way for 'route' parameter
 
 import { MEALS } from "../data/dummy-data";
+import MealItem from "../components/MealItem";
 
 function MealsOverviewScreen({ navigation, route }) {
   // const routeObj = useRoute(); - then routeObj.params . . . | this holds additional routing information
@@ -12,7 +13,7 @@ function MealsOverviewScreen({ navigation, route }) {
   });
 
   function renderMealItem(itemData) {
-    return;
+    return <MealItem title={itemData.item.title} />;
   }
 
   return (
