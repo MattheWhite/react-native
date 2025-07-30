@@ -6,7 +6,7 @@ function MealsOverviewScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text>Meals Overview Screen</Text>
+      <Text>Meals Overview Screen - {categoryId}</Text>
     </View>
   );
 }
