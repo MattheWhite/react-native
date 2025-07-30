@@ -9,7 +9,7 @@ function CategoriesScreen({ navigation }) { // this prop 'navigation' is provide
   // optional, outsource here for cleaner code
   function renderCategoryItem(itemData) {
     function pressHandler() {
-      navigation.navigate("MealsOverview"); // provided by React Navigation, target page name is added in Stack.Screen component
+      navigation.navigate("MealsOverview"); // provided by React Navigation, target page name is added in Stack.Screen screen component
     }
 
     return (

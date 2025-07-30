@@ -20,6 +20,24 @@ const Stack = createNativeStackNavigator(); // creates an Object (a stack like o
 export default function App() {
   return (
     <>
+    {/*
+
+    Out of the box, the top-most screen (i.e. the first child inside of <Stack.Navigator>) is used as the initial screen.
+
+      I.e., in the following example, the AllProducts screen would be shown as an initial screen when the app starts:
+
+      <Stack.Navigator>
+        <Stack.Screen name="AllProducts" component={AllProducts} /> // initial screen
+        <Stack.Screen name="ProductDetails" component={ProductDetails} />
+      </Stack.Navigator>
+      You can therefore change the initial screen by changing the <Stack.Screen> order. Alternatively, there also is an initialRouteName prop that can be set on the navigator component (i.e., on <Stack.Navigator> in this case):
+
+      <Stack.Navigator initialRouteName="ProductDetails">
+        <Stack.Screen name="AllProducts" component={AllProducts} /> 
+        <Stack.Screen name="ProductDetails" component={ProductDetails} /> // initial screen
+      </Stack.Navigator>
+
+     */}
       <StatusBar style='dark' />{/* on statusBar we won't use navigation but on the whole app we will */}
       <NavigationContainer>{/* changes the app by default, nice wrapper -> adds a header and spacing for statusbar too */}
         <Stack.Navigator>
