@@ -5,8 +5,8 @@ function MealItem({ title, imageUrl }) { // dummy meal data has these fields whi
     <View>
       <Pressable>
         <View>
-        <Image source={{uri: imageUrl}} />{/* if the source from the web you have to define the width-height for the image */}
-        <Text>{title}</Text>
+        <Image source={{uri: imageUrl}} style={styles.image} />{/* if the source from the web you have to define the width-height for the image */}
+        <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>
     </View>
@@ -19,5 +19,10 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 200
+  },
+  title: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18
   }
 });
