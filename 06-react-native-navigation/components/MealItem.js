@@ -1,9 +1,14 @@
-import { Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 
-function MealItem({ title }) {
+function MealItem({ title, imageUrl }) { // dummy meal data has these fields which we can destruct
   return (
     <View>
-      <Text>{title}</Text>
+      <Pressable>
+        <View>
+        <Image source={{uri: imageUrl}} />
+        <Text>{title}</Text>
+        </View>
+      </Pressable>
     </View>
   );
 }
