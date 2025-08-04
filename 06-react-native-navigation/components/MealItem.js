@@ -1,6 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-function MealItem({ title, imageUrl }) { // dummy meal data has these fields which we can destruct
+function MealItem({ title, imageUrl }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
   return (
     <View>
       <Pressable>
