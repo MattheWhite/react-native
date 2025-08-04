@@ -13,7 +13,17 @@ function MealsOverviewScreen({ navigation, route }) {
   });
 
   function renderMealItem(itemData) {
-    return <MealItem title={itemData.item.title} imageUrl={itemData.item.imageUrl} />;
+    const item = itemData.item;
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      duration: item.duration,
+      complexity: item.complexity,
+      affordability: item.affordability
+    };
+    return (
+      <MealItem {...mealItemProps} /> /* syntax to distribute all the properties of this object as props to this component | keys->prop names, values->values */
+    );
   }
 
   return (
