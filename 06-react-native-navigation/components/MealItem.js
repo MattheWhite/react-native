@@ -3,7 +3,10 @@ import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native
 function MealItem({ title, imageUrl, duration, complexity, affordability }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
   return (
     <View style={styles.mealItem}>
-      <Pressable>
+      <Pressable
+        android_ripple={{ color: '#938de6' }}
+        style={({ pressed }) => pressed ? styles.buttonPressed : null} // only need this for iOS
+        >
         <View style={styles.innerContainer}>{/* this styling step only needs for iOS, so shadow and overflow for borderRadius are on different View container */}
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -36,6 +39,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.45,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 16,
+  },
+  buttonPressed: {
+    opacity: 0.5
   },
   innerContainer: {
     borderRadius: 8,
