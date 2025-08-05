@@ -40,8 +40,15 @@ export default function App() {
      */}
       <StatusBar style='dark' />{/* on statusBar we won't use navigation but on the whole app we will */}
       <NavigationContainer>{/* changes the app by default, nice wrapper -> adds a header and spacing for statusbar too */}
-        <Stack.Navigator>
-          <Stack.Screen name='MealsCategories' component={CategoriesScreen} />{/* allow us to register a screen managed by this navigator | name is unique */}
+        <Stack.Navigator screenOptions={{ // with screenOptions we can apply options for all the screens at once
+          headerStyle: { backgroundColor: '#74503b' },
+          headerTintColor: 'white',
+          contentStyle: { backgroundColor: '#4d3d33' }
+        }}>
+          {/* allow us to register a screen managed by this navigator | name is unique */}
+          <Stack.Screen name='MealsCategories' component={CategoriesScreen} options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
+            title: 'All Categories',
+          }} />
           <Stack.Screen name='MealsOverview' component={MealsOverviewScreen} />
         </Stack.Navigator>
         {/* <CategoriesScreen />  we setted for this component the navigation above */}
