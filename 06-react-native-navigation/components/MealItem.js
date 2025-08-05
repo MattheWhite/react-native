@@ -1,18 +1,20 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 function MealItem({ title, imageUrl, duration, complexity, affordability }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
   return (
     <View style={styles.mealItem}>
       <Pressable>
-        <View>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
-          {/* if the source from the web you have to define the width-height for the image */}
-          <Text style={styles.title}>{title}</Text>
-        </View>
-        <View style={styles.details}>
-          <Text style={styles.detailItem}>{duration}minutes</Text>
-          <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-          <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
+        <View style={styles.innerContainer}>{/* this styling step only needs for iOS, so shadow and overflow for borderRadius are on different View container */}
+          <View>
+            <Image source={{ uri: imageUrl }} style={styles.image} />
+            {/* if the source from the web you have to define the width-height for the image */}
+            <Text style={styles.title}>{title}</Text>
+          </View>
+          <View style={styles.details}>
+            <Text style={styles.detailItem}>{duration}minutes</Text>
+            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
+            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
+          </View>
         </View>
       </Pressable>
     </View>
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
   mealItem: {
     margin: 16,
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: Platform.OS === 'android' ? 'hidden' : 'visible', // top corners to be rounded on iOS too!
     backgroundColor: 'white',
     elevation: 4,
     
@@ -34,6 +36,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.45,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 16,
+  },
+  innerContainer: {
+    borderRadius: 8,
+    overflow: 'hidden'
   },
   image: {
     width: "100%",
