@@ -26,7 +26,14 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 8,
     overflow: 'hidden',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    elevation: 4,
+    
+    // shadows for iOS
+    shadowColor: 'black',
+    shadowOpacity: 0.45,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 16,
   },
   image: {
     width: "100%",
