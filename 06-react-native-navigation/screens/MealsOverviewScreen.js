@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useRoute } from "@react-navigation/native"; // hook - alternative way for 'route' parameter
 
-import { MEALS } from "../data/dummy-data";
+import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
 
 function MealsOverviewScreen({ navigation, route }) {
@@ -12,6 +13,14 @@ function MealsOverviewScreen({ navigation, route }) {
     return mealItem.categoryIds.indexOf(categoryId) >= 0; // filter if meal contains the category
   });
 
+  useEffect(() => {
+    const categoryTitle = CATEGORIES.find((category) => category.id === categoryId).title;
+    
+    navigation.setOptions({ // outsource DYNAMIC configurations from App.js to here
+      title: categoryTitle
+    });
+  }, [categoryId, navigation]);
+    
   function renderMealItem(itemData) {
     const item = itemData.item;
     const mealItemProps = {

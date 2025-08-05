@@ -49,12 +49,14 @@ export default function App() {
           <Stack.Screen name='MealsCategories' component={CategoriesScreen} options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
             title: 'All Categories',
           }} />
-          <Stack.Screen name='MealsOverview' component={MealsOverviewScreen} options={({ route, navigation }) => { // if we pass a function to options, ReactNavigation will execute it and pass 2 params automatically when the screen becomes active, using object destruction we access them directly
-            const catID = route.params.categoryId; // we access it using route just like in MealsOverviewScreen
-            return {
-              title: catID
-            };
-          }} />
+          <Stack.Screen name='MealsOverview' component={MealsOverviewScreen}
+            // options={({ route, navigation }) => { // if we pass a function to options, ReactNavigation will execute it and pass 2 params automatically when the screen becomes active, using object destruction we access them directly
+            // const catID = route.params.categoryId; // we access it using route just like in MealsOverviewScreen
+            // return {
+            //  title: catID
+            // };
+            //}}
+          />
         </Stack.Navigator>
         {/* <CategoriesScreen />  we setted for this component the navigation above */}
       </NavigationContainer>
