@@ -1,6 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
+import MealDetails from "./MealDetails";
+
 function MealItem({ id, title, imageUrl, duration, complexity, affordability }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
   const navigation = useNavigation(); // we need this hook, because this component is not registered as a Screen in Stack.Navigation but needs the route, navigation objects for navigation just like MealsOverviewScreen does (gets exactly the same shaped Object with this hook)
 
@@ -24,11 +26,7 @@ function MealItem({ id, title, imageUrl, duration, complexity, affordability }) 
             {/* if the source from the web you have to define the width-height for the image */}
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}minutes</Text>
-            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetails duration={duration} complexity={complexity} affordability={affordability} />
         </View>
       </Pressable>
     </View>
@@ -68,14 +66,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 8 //padding would work here too
   },
-  details: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8, //margin would work here too,
-    justifyContent: 'center'
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12
-  }
 });
