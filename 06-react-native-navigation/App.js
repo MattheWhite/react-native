@@ -38,7 +38,7 @@ export default function App() {
       </Stack.Navigator>
 
      */}
-      <StatusBar style='dark' />{/* on statusBar we won't use navigation but on the whole app we will */}
+      <StatusBar style='light' />{/* on statusBar we won't use navigation but on the whole app we will */}
       <NavigationContainer>{/* changes the app by default, nice wrapper -> adds a header and spacing for statusbar too */}
         <Stack.Navigator screenOptions={{ // with screenOptions we can apply options for all the screens at once
           headerStyle: { backgroundColor: '#74503b' },
