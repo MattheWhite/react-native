@@ -14,6 +14,8 @@ function MealsOverviewScreen({ navigation, route }) {
   });
 
   /*  
+
+    MAINLY PROBLEM ON iOS
   
     INSTEAD useEffect() which has a latency because first it waits the Component's function to finish, then will be executed
       -->>  USE: useLayoutEffect()  which has no latency, won't wait the Component's funtion to finish, runs simultaniously with it
