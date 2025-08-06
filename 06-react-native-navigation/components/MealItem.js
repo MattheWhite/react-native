@@ -1,11 +1,22 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
-function MealItem({ title, imageUrl, duration, complexity, affordability }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
+function MealItem({ id, title, imageUrl, duration, complexity, affordability }) { // dummy meal data has these fields which we can destruct after we passing it as props in MealsOverviewScreen
+  const navigation = useNavigation(); // we need this hook, because this component is not registered as a Screen in Stack.Navigation but needs the route, navigation objects for navigation just like MealsOverviewScreen does (gets exactly the same shaped Object with this hook)
+
+  function selectMealItemHandler() {
+    navigation.navigate('MealDetail', {
+      // inside this object you can register any key-value pairs to passing to navigate as params object
+      mealId: id // expecting above as an incoming value
+    });
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: '#938de6' }}
         style={({ pressed }) => pressed ? styles.buttonPressed : null} // only need this for iOS
+        onPress={selectMealItemHandler}
         >
         <View style={styles.innerContainer}>{/* this styling step only needs for iOS, so shadow and overflow for borderRadius are on different View container */}
           <View>
