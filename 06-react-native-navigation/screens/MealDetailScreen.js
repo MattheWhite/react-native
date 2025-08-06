@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
-function MealDetailScreen() {}
+function MealDetailScreen() {
+    return <Text>This is the Meal Detail Screen</Text>;
+}
 
 export default MealDetailScreen;
 
