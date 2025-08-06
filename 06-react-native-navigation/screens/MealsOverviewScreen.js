@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useRoute } from "@react-navigation/native"; // hook - alternative way for 'route' parameter
 
@@ -13,14 +13,27 @@ function MealsOverviewScreen({ navigation, route }) {
     return mealItem.categoryIds.indexOf(categoryId) >= 0; // filter if meal contains the category
   });
 
-  useEffect(() => {
+  /*  
+  
+    INSTEAD useEffect() which has a latency because first it waits the Component's function to finish, then will be executed
+      -->>  USE: useLayoutEffect()  which has no latency, won't wait the Component's funtion to finish, runs simultaniously with it
+
+    useEffect(() => {
+      const categoryTitle = CATEGORIES.find((category) => category.id === categoryId).title;
+    
+      navigation.setOptions({ // outsource DYNAMIC configurations from App.js to here
+        title: categoryTitle
+      });
+    }, [categoryId, navigation]);
+  */ 
+  useLayoutEffect(() => {
     const categoryTitle = CATEGORIES.find((category) => category.id === categoryId).title;
     
     navigation.setOptions({ // outsource DYNAMIC configurations from App.js to here
       title: categoryTitle
     });
   }, [categoryId, navigation]);
-    
+
   function renderMealItem(itemData) {
     const item = itemData.item;
     const mealItemProps = {
