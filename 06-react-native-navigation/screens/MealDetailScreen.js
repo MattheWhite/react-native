@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
+import Subtitle from "./MealDetail/Subtitle";
 
 function MealDetailScreen({ route, navigation }) {
   const mealId = route.params.mealId;
@@ -21,15 +22,11 @@ function MealDetailScreen({ route, navigation }) {
           textStyle={styles.detailText}
         />
       </View>
-      <View style={styles.subtitleContainer}>
-        <Text style={styles.subtitle}>Ingredients</Text>
-      </View>
+      <Subtitle>Ingredients</Subtitle>
       {selectedMeal.ingredients.map((ingredient) => (
         <Text key={ingredient}>{ingredient}</Text>
       ))}
-      <View style={styles.subtitleContainer}>
-        <Text style={styles.subtitle}>Steps</Text>
-      </View>
+      <Subtitle>Steps</Subtitle>
       {selectedMeal.steps.map((step) => (
         <Text key={step}>{step}</Text>
       ))}
@@ -53,18 +50,5 @@ const styles = StyleSheet.create({
   },
   detailText: {
     color: "white",
-  },
-  subtitle: {
-    color: "#e2b445",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-},
-subtitleContainer: {
-    padding: 6,
-    marginHorizontal: 24,
-    marginVertical: 4,
-    borderBottomColor: "#e2b445",
-    borderBottomWidth: 2,
   },
 });
