@@ -21,11 +21,15 @@ function MealDetailScreen({ route, navigation }) {
           textStyle={styles.detailText}
         />
       </View>
-      <Text style={styles.subtitle}>Ingredients</Text>
+      <View style={styles.subtitleContainer}>
+        <Text style={styles.subtitle}>Ingredients</Text>
+      </View>
       {selectedMeal.ingredients.map((ingredient) => (
         <Text key={ingredient}>{ingredient}</Text>
       ))}
-      <Text style={styles.subtitle}>Steps</Text>
+      <View style={styles.subtitleContainer}>
+        <Text style={styles.subtitle}>Steps</Text>
+      </View>
       {selectedMeal.steps.map((step) => (
         <Text key={step}>{step}</Text>
       ))}
@@ -37,27 +41,30 @@ export default MealDetailScreen;
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',// 100% of available space of parent component
-    height: 320
+    width: "100%", // 100% of available space of parent component
+    height: 320,
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 24,
     margin: 8,
-    textAlign: 'center',
-    color: 'white'
+    textAlign: "center",
+    color: "white",
   },
   detailText: {
-    color: 'white'
+    color: "white",
   },
   subtitle: {
-    color: 'white',
+    color: "#e2b445",
     fontSize: 18,
-    fontWeight: 'bold',
-    margin: 4,
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
+},
+subtitleContainer: {
     padding: 6,
-    borderBottomColor: 'white',
-    borderBottomWidth: 2
-  }
+    marginHorizontal: 24,
+    marginVertical: 4,
+    borderBottomColor: "#e2b445",
+    borderBottomWidth: 2,
+  },
 });
