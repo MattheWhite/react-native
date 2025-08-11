@@ -1,9 +1,13 @@
-import { StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
-function List() {}
+function List({ data }) {
+  return data.map((dataPoint) => (
+    <View>
+      <Text key={dataPoint}>{dataPoint}</Text>
+    </View>
+  ));
+}
 
 export default List;
 
-const styles = StyleSheet.create({
-    
-});
+const styles = StyleSheet.create({});
