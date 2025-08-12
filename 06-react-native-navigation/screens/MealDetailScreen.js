@@ -11,11 +11,15 @@ function MealDetailScreen({ route, navigation }) {
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
+  function headerButtonPressHandler() {
+    console.log('PRESSED!');
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       // here we can use the same options as in App.js where we define a Screen
       headerRight: () => {
-        return <Button title='TAP ME' />
+        return <Button title='TAP ME' onPress={headerButtonPressHandler} />
       }
     });
   }, []);
