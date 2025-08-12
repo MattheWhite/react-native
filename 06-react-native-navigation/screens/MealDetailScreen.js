@@ -22,7 +22,7 @@ function MealDetailScreen({ route, navigation }) {
         return <Button title='TAP ME' onPress={headerButtonPressHandler} />
       }
     });
-  }, []);
+  }, [navigation, headerButtonPressHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
