@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
@@ -11,7 +11,7 @@ function MealDetailScreen({ route, navigation }) {
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return (
-    <View>
+    <ScrollView style={styles.rootContainer}>
       {/* if it is image from web, we need to use the object  =>  AND WE HAVE TO SET THE WIDTH-HEIGTH!!! for React Native so it can calculate with it */}
       <Image style={styles.image} source={{ uri: selectedMeal.imageUrl }} />
       <Text style={styles.title}>{selectedMeal.title}</Text>
@@ -31,13 +31,16 @@ function MealDetailScreen({ route, navigation }) {
           <List data={selectedMeal.steps} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 export default MealDetailScreen;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    marginBottom: 22
+  },
   image: {
     width: "100%", // 100% of available space of parent component
     height: 320,
@@ -56,6 +59,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   listContainer: {
-    width: "84%",
+    width: "88%",
   },
 });
