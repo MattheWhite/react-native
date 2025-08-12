@@ -59,6 +59,11 @@ export default function App() {
             //}}
           />
           <Stack.Screen name='MealDetail' component={MealDetailScreen} options={{
+            /*
+
+            this part is overriden in MealDetailScreen component using navigation.setOptions()
+            
+            */
             headerRight: () => {
               return <Button title='Tap me!' /> // <Text>button</Text> -> this code some reason didn't work on Android
             }

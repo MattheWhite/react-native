@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, Button } from "react-native";
+import { useLayoutEffect } from "react";
 
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
@@ -9,6 +10,15 @@ function MealDetailScreen({ route, navigation }) {
   const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      // here we can use the same options as in App.js where we define a Screen
+      headerRight: () => {
+        return <Button title='TAP ME' />
+      }
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.rootContainer}>
