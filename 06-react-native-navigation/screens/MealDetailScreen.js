@@ -5,6 +5,7 @@ import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "./MealDetail/Subtitle";
 import List from "./MealDetail/List";
+import IconButton from "./IconButton";
 
 function MealDetailScreen({ route, navigation }) {
   const mealId = route.params.mealId;
@@ -19,7 +20,8 @@ function MealDetailScreen({ route, navigation }) {
     navigation.setOptions({
       // here we can use the same options as in App.js where we define a Screen
       headerRight: () => {
-        return <Button title='TAP ME' onPress={headerButtonPressHandler} />
+        // return <Button title='TAP ME' onPress={headerButtonPressHandler} />
+        return <IconButton icon={'star'} color={'white'} onPress={headerButtonPressHandler} />
       }
     });
   }, [navigation, headerButtonPressHandler]);
