@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; // should wrap around all containers/components which we want to use the benefits of navigation package
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; // native-stack using  naative elements, stack only emulates native elements | native-stack is the preferenced but if smt problem occurs can fall back to basic stack (older)
 
@@ -58,7 +58,11 @@ export default function App() {
             // };
             //}}
           />
-          <Stack.Screen name='MealDetail' component={MealDetailScreen} />
+          <Stack.Screen name='MealDetail' component={MealDetailScreen} options={{
+            headerRight: () => {
+              return <Button title='Tap me!' /> // <Text>button</Text> -> this code some reason didn't work on Android
+            }
+          }}/>
         </Stack.Navigator>
         {/* <CategoriesScreen />  we setted for this component the navigation above */}
       </NavigationContainer>
