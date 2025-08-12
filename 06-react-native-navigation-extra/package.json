@@ -10,16 +10,16 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-navigation/native": "^7.1.17",
-    "@react-navigation/native-stack": "^7.3.25",
-    "expo": "~53.0.20",
+    "@react-navigation/native": "^7.1.16",
+    "@react-navigation/native-stack": "^7.3.23",
+    "expo": "~53.0.19",
     "expo-status-bar": "~2.2.3",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "react-native": "0.81.0",
-    "react-native-web": "0.21.0",
-    "react-native-screens": "~4.13.1",
-    "react-native-safe-area-context": "5.6.0"
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.80.1",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-web": "0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0"
