@@ -1,6 +1,7 @@
 import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
 
 import WelcomeScreen from './screens/WelcomeScreen';
 import UserScreen from './screens/UserScreen';
@@ -15,6 +16,10 @@ export default function App() {
         headerStyle: {backgroundColor: '#3c0a'},
         headerTintColor: 'white',
         drawerLabel: 'Welcome Screen',
+        drawerIcon: ({ color, size }) => // color influenced by the DrawerActiveTintColor!  |  if you put {} brackets after the arrow, IT WONT WORK!!!
+          <Ionicons name='home' color={color} size={size} />
+        ,
+
         drawerActiveBackgroundColor: '#58f06c',
         drawerActiveTintColor: 'white',
         drawerStyle: {
