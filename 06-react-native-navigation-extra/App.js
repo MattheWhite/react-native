@@ -26,7 +26,9 @@ export default function App() {
           backgroundColor: '#fcfcf5'
         }
       }} />{/* just like with Stack type Navigator */}
-      <Drawer.Screen name='User' component={UserScreen} />
+      <Drawer.Screen name='User' component={UserScreen} options={{
+        drawerIcon: ({ color, size }) => <Ionicons name='person' color={color} size={size} />
+      }} />
     </Drawer.Navigator>
   </NavigationContainer>;
 }
