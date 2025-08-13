@@ -10,7 +10,7 @@ const Drawer = createDrawerNavigator(); // Drawer object
 export default function App() {
     // Stack object
   return <NavigationContainer>
-    <Drawer.Navigator screenOptions={{}} >{/* the screenOptions available too | use for the screens in the navigator  |  initialRouteName='User'  -> not the top most Screen will be the default starting screen */}
+    <Drawer.Navigator screenOptions={{}} >{/* the screenOptions available too | use for the screens in the navigator  |  initialRouteName='User'  -> not the top most Screen will be the default starting screen | if we outsource here the specific styling from below Welcome Screen, then the whole app and all the screens would inherit it */}
       <Drawer.Screen name='Welcome' component={WelcomeScreen} options={{/* these options only applied to this screen, if you select the other the default styling is applied for it */
         headerStyle: {backgroundColor: '#3c0a'},
         headerTintColor: 'white',
@@ -18,7 +18,7 @@ export default function App() {
         drawerActiveBackgroundColor: '#58f06c',
         drawerActiveTintColor: 'white',
         drawerStyle: {
-          backgroundColor: '#ccc'
+          backgroundColor: '#fcfcf5'
         }
       }} />{/* just like with Stack type Navigator */}
       <Drawer.Screen name='User' component={UserScreen} />
