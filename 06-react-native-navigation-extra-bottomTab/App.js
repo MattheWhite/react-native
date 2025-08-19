@@ -1,42 +1,50 @@
-import { Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
-import WelcomeScreen from './screens/WelcomeScreen';
-import UserScreen from './screens/UserScreen';
+import WelcomeScreen from "./screens/WelcomeScreen";
+import UserScreen from "./screens/UserScreen";
 
-const Drawer = createDrawerNavigator(); // Drawer object
+const Drawer = createDrawerNavigator(); //
 
 export default function App() {
-    // Stack object
-  return <NavigationContainer>
-    <Drawer.Navigator screenOptions={{}} >{/* the screenOptions available too | use for the screens in the navigator  |  initialRouteName='User'  -> not the top most Screen will be the default starting screen | if we outsource here the specific styling from below Welcome Screen, then the whole app and all the screens would inherit it */}
-      <Drawer.Screen name='Welcome' component={WelcomeScreen} options={{/* these options only applied to this screen, if you select the other the default styling is applied for it */
-        headerStyle: {backgroundColor: '#3c0a'},
-        headerTintColor: 'white',
-        drawerLabel: 'Welcome Screen',
-        drawerIcon: ({ color, size }) => // color influenced by the DrawerActiveTintColor!  |  if you put {} brackets after the arrow, IT WONT WORK!!!
-          <Ionicons name='home' color={color} size={size} />
-        ,
-
-        drawerActiveBackgroundColor: '#58f06c',
-        drawerActiveTintColor: 'white',
-        drawerStyle: {
-          backgroundColor: '#fcfcf5'
-        }
-      }} />{/* just like with Stack type Navigator */}
-      <Drawer.Screen name='User' component={UserScreen} options={{
-        drawerIcon: ({ color, size }) => <Ionicons name='person' color={color} size={size} />
-      }} />
-    </Drawer.Navigator>
-  </NavigationContainer>;
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator screenOptions={{}}>
+        <Drawer.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{
+            headerStyle: { backgroundColor: "#3c0a" },
+            headerTintColor: "white",
+            drawerLabel: "Welcome Screen",
+            drawerIcon: (
+              { color, size } // color influenced by the DrawerActiveTintColor!  |  if you put {} brackets after the arrow, IT WONT WORK!!!
+            ) => <Ionicons name="home" color={color} size={size} />,
+            drawerActiveBackgroundColor: "#58f06c",
+            drawerActiveTintColor: "white",
+            drawerStyle: {
+              backgroundColor: "#fcfcf5",
+            },
+          }}
+        />
+        <Drawer.Screen
+          name="User"
+          component={UserScreen}
+          options={{
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="person" color={color} size={size} />
+            ),
+          }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }
 
 /*
 INSTALL DRAWER TYPE NAVIGATOR
 
-1. npm install @react-navigation/drawer
-2. expo install react-native-gesture-handler react-native-neanimated
+1. npm install @react-navigation/bottom-tabs
 
 */
