@@ -14,6 +14,11 @@ import MealDetailScreen from './screens/MealDetailScreen';
 
     then install a specific navigator type package (stack type)
     3. expo install @react-navigation/native-stack
+
+    install specific exact package for nested navigation
+    4. npm i react-native-reanimated@1 --save --save-exact
+
+    THEN npm audit fix --force ! ! !   ->  TO FIX ERRORS AND DEPENDENCY CONFLICTS
 */
 
 const Stack = createNativeStackNavigator(); // creates an Object (a stack like object of screens -> fitting name) with 2 properties, where every Object behaves as one component
