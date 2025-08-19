@@ -14,6 +14,7 @@ export default function App() {
         <Drawer.Screen
           name="Welcome"
           component={WelcomeScreen}
+          // if you move these styling options into the main Drawer.Navigation container, then all the app screen will inherit these styling options
           options={{
             headerStyle: { backgroundColor: "#3c0a" },
             headerTintColor: "white",
