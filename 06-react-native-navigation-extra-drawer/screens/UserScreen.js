@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 function UserScreen({ route, navigation }) {
   function openDrawerHandler() {
     navigation.toggleDrawer(); // custom button which toggles the drawer
+    // navigation.navigate('Welcome'); -> using the defined screen name
   }
 
   return (
