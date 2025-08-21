@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; // should wrap around all containers/components which we want to use the benefits of navigation package
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; // native-stack using  naative elements, stack only emulates native elements | native-stack is the preferenced but if smt problem occurs can fall back to basic stack (older)
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
@@ -22,6 +23,10 @@ import MealDetailScreen from './screens/MealDetailScreen';
 */
 
 const Stack = createNativeStackNavigator(); // creates an Object (a stack like object of screens -> fitting name) with 2 properties, where every Object behaves as one component
+
+// const Drawer = createDrawerNavigator();
+
+// function DrawerNavigator() {}
 
 export default function App() {
   return (
