@@ -25,7 +25,8 @@
     "react-native-reanimated": "~3.17.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0"
+    "@babel/core": "^7.28.0",
+    "@react-native-community/cli": "latest"
   },
   "private": true
 }

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; // should wrap around all containers/components which we want to use the benefits of navigation package
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; // native-stack using  naative elements, stack only emulates native elements | native-stack is the preferenced but if smt problem occurs can fall back to basic stack (older)
-//import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
@@ -17,20 +17,27 @@ import MealDetailScreen from './screens/MealDetailScreen';
     3. expo install @react-navigation/native-stack
 
     4. npm install @react-navigation/drawer
-      Then you need to install and configure the libraries that are required by the drawer navigator:
-    5. npm install react-native-gesture-handler react-native-reanimated
+      Then you need to install and configure the libraries that are required by the drawer navigator
+      you have a Expo managed project, in your project directory, run:
+    5. npx expo install react-native-gesture-handler react-native-reanimated   -> not trivial, the plain npm install react... ...  install differently the packages
+    
+    THEN I HAD TO ADD IN package.json's devDependencies this line:
+          "@react-native-community/cli": "latest"
 
-    install specific exact package for nested navigation
-    6. npm i react-native-reanimated@1 --save --save-exact
+          then "npm i" again
+    
 
-    THEN npm audit fix --force ! ! !   ->  TO FIX ERRORS AND DEPENDENCY CONFLICTS
+    Other commands, not helped after the drawer navigation was added:
+    
+    npm audit fix --force ! ! !   ->  TO FIX ERRORS AND DEPENDENCY CONFLICTS
+    npm i react-native-reanimated@1 --save --save-exact   -> not the version was the problem, install specific exact package for nested navigation
 */
 
 const Stack = createNativeStackNavigator(); // creates an Object (a stack like object of screens -> fitting name) with 2 properties, where every Object behaves as one component
 
-//const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-//function DrawerNavigator() {}
+function DrawerNavigator() {}
 
 export default function App() {
   return (
