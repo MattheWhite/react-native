@@ -41,8 +41,12 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   // if you don't modify, there will be 2 header since all navigators bring their own header  -> headerShown: false  on main screen
   return (
-  <Drawer.Navigator>
-    <Drawer.Screen name='Categories' component={CategoriesScreen} />{/* name prop always has to be umique */}
+  <Drawer.Navigator screenOptions={{
+    headerStyle: { backgroundColor: '#74503b' },
+    headerTintColor: 'white',
+    sceneStyle: { backgroundColor: '#4d3d33' } // Drawer navigator uses sceneStylen NOT contentStyle
+    }}>
+    <Drawer.Screen name='Categories' component={CategoriesScreen} options={{title: 'All Categories'}} />{/* name prop always has to be umique */}
     <Drawer.Screen name='Favourites' component={FavouritesScreen} />
   </Drawer.Navigator>);
 }
@@ -78,7 +82,7 @@ export default function App() {
           {/* allow us to register a screen managed by this navigator | name is unique */}
           <Stack.Screen name='Drawer' component={DrawerNavigator} // instead of CategoriesScreen we point here to DrawerNavigator func. for nested navigation
           // <Stack.Screen name='MealsCategories' component={CategoriesScreen} -> before nested navigation
-          options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
+          options={{ // options -> navigator options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
             title: 'All Categories',
             headerShown: false
           }} />
@@ -91,6 +95,7 @@ export default function App() {
             //}}
           />
           <Stack.Screen name='MealDetail' component={MealDetailScreen} options={{
+            title: 'About the Meal',
             /*
 
             this part is overriden in MealDetailScreen component using navigation.setOptions()
