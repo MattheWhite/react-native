@@ -39,7 +39,7 @@ const Stack = createNativeStackNavigator(); // creates an Object (a stack like o
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
-  // if you don't modify, there will be 2 header since all navigators bring their own header
+  // if you don't modify, there will be 2 header since all navigators bring their own header  -> headerShown: false  on main screen
   return (
   <Drawer.Navigator>
     <Drawer.Screen name='Categories' component={CategoriesScreen} />{/* name prop always has to be umique */}
@@ -80,6 +80,7 @@ export default function App() {
           // <Stack.Screen name='MealsCategories' component={CategoriesScreen} -> before nested navigation
           options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
             title: 'All Categories',
+            headerShown: false
           }} />
           <Stack.Screen name='MealsOverview' component={MealsOverviewScreen}
             // options={({ route, navigation }) => { // if we pass a function to options, ReactNavigation will execute it and pass 2 params automatically when the screen becomes active, using object destruction we access them directly
