@@ -40,7 +40,7 @@ function DrawerNavigator() {
         component={CategoriesScreen}
         options={{
           title: "All Categories",
-          sceneStyle: { backgroundColor: "#dd897a" },
+          sceneStyle: { backgroundColor: "#dd897a" },// Drawer type uses sceneStyle not contentStyle
           drawerIcon: ({ color, size }) => (
             <Ionicons name="list" color={color} size={size} />
           ),
@@ -50,6 +50,7 @@ function DrawerNavigator() {
         name="Favorites"
         component={FavoritesScreen}
         options={{
+          sceneStyle: { backgroundColor: "#dd897a" },
           drawerIcon: ({ color, size }) => (
             <Ionicons name="star" color={color} size={size} />
           ),
