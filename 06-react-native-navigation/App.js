@@ -39,6 +39,7 @@ const Stack = createNativeStackNavigator(); // creates an Object (a stack like o
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
+  // if you don't modify, there will be 2 header since all navigators bring their own header
   return (
   <Drawer.Navigator>
     <Drawer.Screen name='Categories' component={CategoriesScreen} />{/* name prop always has to be umique */}
