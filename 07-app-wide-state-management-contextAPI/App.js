@@ -13,11 +13,20 @@ import FavoritesScreen from './screens/FavoritesScreen';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+/*
+
+
+  ! ! !  THIS PROJECT'S PACKAGE.JSON FILE IS STABLE AND CONTAINS FIXED VERSIONS FOR ALL DEPENDENCIES  ! ! !
+
+
+
+*/
+
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: '#351401' },
+        headerStyle: { backgroundColor: '#90260b' },
         headerTintColor: 'white',
         sceneContainerStyle: { backgroundColor: '#3f2f25' },
         drawerContentStyle: { backgroundColor: '#351401' },
@@ -31,6 +40,7 @@ function DrawerNavigator() {
         component={CategoriesScreen}
         options={{
           title: 'All Categories',
+          sceneStyle: { backgroundColor: '#dd897a' },
           drawerIcon: ({ color, size }) => (
             <Ionicons name="list" color={color} size={size} />
           ),
