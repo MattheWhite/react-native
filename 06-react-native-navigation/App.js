@@ -3,6 +3,7 @@ import { Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; // should wrap around all containers/components which we want to use the benefits of navigation package
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; // native-stack using  naative elements, stack only emulates native elements | native-stack is the preferenced but if smt problem occurs can fall back to basic stack (older)
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
@@ -50,8 +51,13 @@ function DrawerNavigator() {
     drawerActiveTintColor: '#eab974',
     drawerActiveBackgroundColor: '#786140'
     }}>
-    <Drawer.Screen name='Categories' component={CategoriesScreen} options={{title: 'All Categories'}} />{/* name prop always has to be umique */}
-    <Drawer.Screen name='Favourites' component={FavouritesScreen} />
+    <Drawer.Screen name='Categories' component={CategoriesScreen} options={{
+      title: 'All Categories',
+      drawerIcon: ({ color, size }) => <Ionicons name='list' color={color} size={size} />
+    }} />{/* name prop always has to be umique */}
+    <Drawer.Screen name='Favourites' component={FavouritesScreen} options={{
+      drawerIcon: ({ color, size }) => <Ionicons name='star' color={color} size={size} />
+    }} />
   </Drawer.Navigator>);
 }
 
