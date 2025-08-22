@@ -44,7 +44,11 @@ function DrawerNavigator() {
   <Drawer.Navigator screenOptions={{
     headerStyle: { backgroundColor: '#74503b' },
     headerTintColor: 'white',
-    sceneStyle: { backgroundColor: '#4d3d33' } // Drawer navigator uses sceneStylen NOT contentStyle
+    sceneStyle: { backgroundColor: '#4d3d33' }, // Drawer navigator uses sceneStylen NOT contentStyle
+    drawerContentStyle: { backgroundColor: '#4d3d33' },
+    drawerInactiveTintColor: 'white',
+    drawerActiveTintColor: '#eab974',
+    drawerActiveBackgroundColor: '#786140'
     }}>
     <Drawer.Screen name='Categories' component={CategoriesScreen} options={{title: 'All Categories'}} />{/* name prop always has to be umique */}
     <Drawer.Screen name='Favourites' component={FavouritesScreen} />
