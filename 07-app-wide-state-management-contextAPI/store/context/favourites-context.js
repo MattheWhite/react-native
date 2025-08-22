@@ -11,14 +11,15 @@ function FavoritesContextProvider({ children }) { // this component later can be
     const [favouriteMealIds, setFavouriteMealIds] = useState([]);
     
     function addFavourite(id) {
-        setFavouriteMealIds((currentFavouriteIds) => { // in React when updating state based on prev. state snapshot, you should pass a function which automatically revceives it
-            [...currentFavouriteIds, id];
-        });
+        // in React when updating state based on prev. state snapshot, you should pass a function which automatically revceives it
+        setFavouriteMealIds((currentFavouriteIds) => // AFTER => THE VALUE IS IMPLICITLY RETURNED BUT NOT WITH {} BRACES
+            [...currentFavouriteIds, id]
+        );
     }
 
     function removeFavourite(id) {
         setFavouriteMealIds((currentFavouriteIds) => {
-            currentFavouriteIds.filter((mealId) => mealId !== id);
+            return currentFavouriteIds.filter((mealId) => mealId !== id); // DONT USE {} BRACES AT ARROW FUNCTIONS WITHOUT RETURN STATEMENT !!!
         });
     }
 
