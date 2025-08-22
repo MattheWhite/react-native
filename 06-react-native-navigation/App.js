@@ -7,6 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
+import FavouritesScreen from './screens/FavouritesScreen';
 
 /* 
   Install react navigation:
@@ -37,7 +38,13 @@ const Stack = createNativeStackNavigator(); // creates an Object (a stack like o
 
 const Drawer = createDrawerNavigator();
 
-function DrawerNavigator() {}
+function DrawerNavigator() {
+  return (
+  <Drawer.Navigator>
+    <Drawer.Screen name='Categories' component={CategoriesScreen} />{/* name prop always has to be umique */}
+    <Drawer.Screen name='Favourites' component={FavouritesScreen} />
+  </Drawer.Navigator>);
+}
 
 export default function App() {
   return (
@@ -68,7 +75,9 @@ export default function App() {
           contentStyle: { backgroundColor: '#4d3d33' }
         }}>
           {/* allow us to register a screen managed by this navigator | name is unique */}
-          <Stack.Screen name='MealsCategories' component={CategoriesScreen} options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
+          <Stack.Screen name='Drawer' component={DrawerNavigator} // instead of CategoriesScreen we point here to DrawerNavigator func. for nested navigation
+          // <Stack.Screen name='MealsCategories' component={CategoriesScreen} -> before nested navigation
+          options={{ // options -> navigatior options for this screen, we have a ton of configurable options, like default header, etc. | Stack.Screen options will override the default setted options in Stack.Navigator
             title: 'All Categories',
           }} />
           <Stack.Screen name='MealsOverview' component={MealsOverviewScreen}
