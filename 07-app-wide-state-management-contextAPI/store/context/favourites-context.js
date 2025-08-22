@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const FavouritesContext = createContext({ // create a Context object -> JSX convention the starting uppercase
+export const FavouritesContext = createContext({ // create a Context object -> JSX convention the starting uppercase
     // passing initial context value
     ids: [],
     addFavourite: (id) => {},
