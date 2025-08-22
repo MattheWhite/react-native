@@ -26,12 +26,11 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: '#90260b' },
+        headerStyle: { backgroundColor: '#a72d0e' },
         headerTintColor: 'white',
-        sceneContainerStyle: { backgroundColor: '#3f2f25' },
-        drawerContentStyle: { backgroundColor: '#351401' },
+        drawerContentStyle: { backgroundColor: '#a72d0e' },
         drawerInactiveTintColor: 'white',
-        drawerActiveTintColor: '#351401',
+        drawerActiveTintColor: '#000000',
         drawerActiveBackgroundColor: '#e4baa1',
       }}
     >
@@ -66,9 +65,9 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: '#351401' },
+            headerStyle: { backgroundColor: '#a72d0e' },
             headerTintColor: 'white',
-            contentStyle: { backgroundColor: '#3f2f25' },
+            contentStyle: { backgroundColor: '#dd897a' },
           }}
         >
           <Stack.Screen
