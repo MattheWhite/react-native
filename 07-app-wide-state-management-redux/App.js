@@ -27,12 +27,12 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#a72d0e" },
+        headerStyle: { backgroundColor: "#0e81a7de" },
         headerTintColor: "white",
-        drawerContentStyle: { backgroundColor: "#a72d0e" },
+        drawerContentStyle: { backgroundColor: "#2ea2c5dd" },
         drawerInactiveTintColor: "white",
         drawerActiveTintColor: "#000000",
-        drawerActiveBackgroundColor: "#e4baa1",
+        drawerActiveBackgroundColor: "#57e0ff98",
       }}
     >
       <Drawer.Screen
@@ -40,7 +40,7 @@ function DrawerNavigator() {
         component={CategoriesScreen}
         options={{
           title: "All Categories",
-          sceneStyle: { backgroundColor: "#dd897a" },// Drawer type uses sceneStyle not contentStyle
+          sceneStyle: { backgroundColor: "#87dafd" },// Drawer type uses sceneStyle not contentStyle
           drawerIcon: ({ color, size }) => (
             <Ionicons name="list" color={color} size={size} />
           ),
@@ -50,7 +50,7 @@ function DrawerNavigator() {
         name="Favorites"
         component={FavoritesScreen}
         options={{
-          sceneStyle: { backgroundColor: "#dd897a" },
+          sceneStyle: { backgroundColor: "#87dafd" },
           drawerIcon: ({ color, size }) => (
             <Ionicons name="star" color={color} size={size} />
           ),
