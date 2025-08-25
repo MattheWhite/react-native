@@ -11,7 +11,11 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 /**
  * Initialize app:
  * 
- *  npx create-expo-app@latest
+ *    npx create-expo-app@latest
+ * 
+ * To start:
+ * 
+ *    npm run android
  */
 
 export default function TabLayout() {

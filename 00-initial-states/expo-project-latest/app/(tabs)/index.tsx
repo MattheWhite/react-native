@@ -6,6 +6,18 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+
+/**
+ * Initialize app:
+ * 
+ *    npx create-expo-app@latest
+ * 
+ * To start:
+ * 
+ *    npm run android
+ */
+
+
 export default function HomeScreen() {
   return (
     <ParallaxScrollView

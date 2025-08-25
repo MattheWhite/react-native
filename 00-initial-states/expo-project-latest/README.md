@@ -1,5 +1,9 @@
 # Welcome to your Expo app 👋
 
+>> npx create-expo-app@latest    -> .tsx extensions, latest TypeScript based app
+>> npm install  (if node_modules missing)
+>> npm run android
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
