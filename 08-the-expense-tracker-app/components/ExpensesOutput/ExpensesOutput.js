@@ -38,15 +38,18 @@ const DUMMY_EXPENSES =
     {
       id: "e6",
       description: "Porsche 911 992 GT3-R Cup II",
-      amount: 379.990,
+      amount: 379.99,
       date: new Date("2025-3-6"),
     },
   ] >
   function ExpensesOutput({ expenses, expensesPeriod }) {
     return (
       <View>
-        <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-        <ExpensesList />
+        <ExpensesSummary
+          expenses={DUMMY_EXPENSES}
+          periodName={expensesPeriod}
+        />
+        <ExpensesList expenses={DUMMY_EXPENSES} />
       </View>
     );
   };
