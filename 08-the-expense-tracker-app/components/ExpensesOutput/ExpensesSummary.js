@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 function ExpensesSummary({ expenses, periodName }) {
     const expensesSum = expenses.reduce((sum, expense) => { // reduce() -> built-in method, allows to combine multiple values in an array into a single value | automatically receives: current value, current item 
