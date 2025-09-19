@@ -5,13 +5,13 @@ import { GlobalStyles } from "../../constants/styles";
 function ExpenseItem({ description, amount, date }) {
   return (
     <Pressable>
-      <View>
-        <View>
-          <Text>{description}</Text>
-          <Text>{date}</Text>
+      <View style={styles.expenseItem}>
+        <View >
+          <Text style={[styles.textBase, styles.description]}>{description}</Text>
+          <Text style={styles.textBase}>{date}</Text>
         </View>
-        <View>
-          <Text>{amount}</Text>
+        <View style={styles.amountContainer}>
+          <Text style={styles.amount}>{amount}</Text>
         </View>
       </View>
     </Pressable>
@@ -40,8 +40,20 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.primary50
   },
   description: {
-    fontSize: 17,
+    fontSize: 16,
     marginBottom: 4,
     fontWeight: 'bold'
+  },
+  amountContainer: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    backgroundColor: 'white',
+    // since this is a flex container we can position center horizontally and vertically like this:
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4
+  },
+  amount: {
+    color: GlobalStyles.colors.primary500
   }
 });
