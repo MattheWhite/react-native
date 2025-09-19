@@ -8,7 +8,7 @@ function ExpenseItem({ description, amount, date }) {
       <View style={styles.expenseItem}>
         <View >
           <Text style={[styles.textBase, styles.description]}>{description}</Text>
-          <Text style={styles.textBase}>{date}</Text>
+          <Text style={styles.textBase}>{date.toString()}</Text>
         </View>
         <View style={styles.amountContainer}>
           <Text style={styles.amount}>{amount}</Text>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   expenseItem: {
     padding: 12,
     marginVertical: 8,
-    backgroundColor: GlobalStyles.colors.error500,
+    backgroundColor: GlobalStyles.colors.primary400,
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: 6,
