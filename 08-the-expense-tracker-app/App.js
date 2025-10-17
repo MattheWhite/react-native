@@ -16,15 +16,17 @@ const BottomTab = createBottomTabNavigator();
 function ExpensesOverview() {
   return (
     <BottomTab.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({ // instead passing an object to a ScreenComp, we can pass a function to connect the + button -> this is automatically executed by RN, () around is needed for arrow func. syntax
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         headerRight: ({ tintColor }) => ( // RN exposes for us the already used headerTintColor prop, access it here
-          <IconButton icon="add" size={24} color={tintColor} onPress={() => {}} />
+          <IconButton icon="add" size={24} color={tintColor} onPress={() => {
+            navigation.navigate('ManageExpense'); // now we get navigation by RN automatically
+          }} />
         ),
-      }}
+      })}
     >
       <BottomTab.Screen
         name="RecentExpenses"
