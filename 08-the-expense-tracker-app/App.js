@@ -72,7 +72,8 @@ export default function App() {
             }}
           />
           <Stack.Screen name="ManageExpense" component={ManageExpense} options={{
-            title: 'Manage Expense'
+            title: 'Manage Expense',
+            presentation: 'modal' // on iOS it appears differently
           }} />
         </Stack.Navigator>
       </NavigationContainer>
