@@ -25,7 +25,7 @@ function ManageExpense({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.buttonContainer}>
         <Button mode={'flat'} onPress={cancelHandler}>Cancel</Button>
         <Button onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
       </View>
@@ -50,6 +50,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   deleteContainer: {
     marginTop: 16,
