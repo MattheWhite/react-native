@@ -20,8 +20,8 @@ function expensesReducer(state, action) { // state, action -> received automatic
 function ExpensesContextProvider({ children }) {
   const [expensesState, dispatch] = useReducer(expensesReducer);
 
-  function addExpense({ expenseData }) {
-    dispatch();
+  function addExpense(expenseData) {
+    dispatch({ type: 'ADD', payload: expenseData }); // type because we extract action.type in expensesReducer switch-case | the value we dispatch here is the 'action' parameter for expensesReducer what is made available by RN
   }
 
   return <ExpensesContext.Provider>{children}</ExpensesContext.Provider>;
