@@ -24,6 +24,10 @@ function ExpensesContextProvider({ children }) {
     dispatch({ type: 'ADD', payload: expenseData }); // type because we extract action.type in expensesReducer switch-case | the value we dispatch here is the 'action' parameter for expensesReducer what is made available by RN
   }
 
+  function deleteExpense(id) {
+    dispatch({ type: 'DELETE', payload: id });
+  }
+
   return <ExpensesContext.Provider>{children}</ExpensesContext.Provider>;
 }
 
