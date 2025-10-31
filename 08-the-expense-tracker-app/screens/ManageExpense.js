@@ -30,6 +30,11 @@ function ManageExpense({ route, navigation }) {
   }
 
   function confirmHandler() {
+    if (isEditing) {
+      expensesCtx.updateExpense(editedExpenseId, { description: 'Porsche Taycan Turbo GT Sport Turismo', amount: 198000, date: new Date() });
+    } else {
+      expensesCtx.addExpense({ description: 'Porsche 992 911 Turbo S', amount: 219000, date: new Date() });
+    }
     navigation.goBack();
   }
 
