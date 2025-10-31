@@ -58,7 +58,7 @@ function ExpensesOverview() {
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <ExpensesContextProvider>
         <NavigationContainer>
           {/* has to be wrapped around components related with navigation */}
@@ -75,6 +75,7 @@ export default function App() {
               />
             <Stack.Screen name="ManageExpense" component={ManageExpense} options={{
               title: 'Manage Expense',
+              // headerTintColor: 'white',
               presentation: 'modal' // on iOS it appears differently
             }} />
           </Stack.Navigator>
