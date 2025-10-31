@@ -1,12 +1,15 @@
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import IconButton from "../components/ExpensesOutput/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/ExpensesOutput/UI/Button";
+import { ExpensesContext } from "../store/expense-context";
 
 // route, navigation props we automatically get here since it is a component which loaded as a screen
 function ManageExpense({ route, navigation }) {
+  const expensesCtx = useContext(ExpensesContext);
+  
   const editedExpenseId = route.params?.expenseId; // ? -> JS checks if that property exists, if not it won't 'drill' into it further more
   const isEditing = !!editedExpenseId;
 
@@ -18,6 +21,7 @@ function ManageExpense({ route, navigation }) {
   }, [navigation, isEditing]);
 
   function deleteExpenseHandler() {
+    expensesCtx.deleteExpense(editedExpenseId);
     navigation.goBack(); // goBack() is built-in, equivalent to back button press
   }
 
