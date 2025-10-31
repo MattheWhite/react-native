@@ -52,7 +52,14 @@ function expensesReducer(state, action) { // state, action -> received automatic
       const id = new Date.toString() + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
     case "UPDATE":
+      const updatableExpenseIndex = state.findIndex((expense) => expense.id === action.payload.id); // we know the payload has an id attribute because we see in line 77 what we pass through dispatch call
+      const updatableExpense = state[updatableExpenseIndex];
+      const updatedItem = { ...updatableExpense, ...action.payload.data };
+      const updatedExpenses = [...state];
+      updatedExpenses[updatableExpenseIndex] = updatedItem;
+      return updatedExpenses;
     case "DELETE":
+      return state.filter((expense) => expense.id !== action.payload);
     default:
       return state;
   }
