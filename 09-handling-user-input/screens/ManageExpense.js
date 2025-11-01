@@ -1,9 +1,9 @@
 import { useContext, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
-import IconButton from "../components/ExpensesOutput/UI/IconButton";
+import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
-import Button from "../components/ExpensesOutput/UI/Button";
+import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expense-context";
 
 // route, navigation props we automatically get here since it is a component which loaded as a screen
