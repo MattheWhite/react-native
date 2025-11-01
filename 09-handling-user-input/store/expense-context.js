@@ -35,7 +35,7 @@ const DUMMY_EXPENSES = [
     id: "e6",
     description: "Porsche 911 992 GT3-R Cup II",
     amount: 379.99,
-    date: new Date("2025-3-6"),
+    date: new Date("2026-3-6"),
   },
 ];
 
