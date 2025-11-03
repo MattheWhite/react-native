@@ -20,7 +20,9 @@ function ExpenseForm() {
         onChangeText: () => {}
       }} />
       <Input label="Description" textInputConfig={{
-        
+        multiline: true,
+        // autoCorrect: false // default is true -> can be annoying with email input fields for example
+        // autoCapitalize: 'none'
       }} />
     </View>
   );
