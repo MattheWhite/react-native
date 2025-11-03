@@ -6,7 +6,7 @@ function Input({ label, textInputConfig }) {
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput style={styles.input} {...textInputConfig} />{" "}
+      <TextInput style={styles.input} {...textInputConfig} />
       {/* keyboardType={type} maxLength={maxLength}  -> instead we continue add more and more props, we simply USE SPREAD OPERATOR */}
     </View>
   );
