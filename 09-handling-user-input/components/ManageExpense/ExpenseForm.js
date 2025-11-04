@@ -15,15 +15,15 @@ function ExpenseForm() {
   /* function amountChangedHandler(enteredValue) {// because we connect this to onChangeText, RN will automatically provide the entered value as a param, naming is optional
     setAmountValue(enteredValue);
   } */
- // reusable generic input change handler method with one state object above!
- function inputChangedHandler(inputIdentifier, enteredValue) {
-    setInputValues((currentInputValues) => { // can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
-        return {
-            ...currentInputValues,
-            [inputIdentifier]: enteredValue // [id]  -> target a property dynamically, JS syntax
-        }
+  // reusable generic input change handler method with one state object above!
+  function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputValues((currentInputValues) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
+      return {
+        ...currentInputValues,
+        [inputIdentifier]: enteredValue, // [id]  -> target a property dynamically, JS syntax
+      };
     });
- }
+  }
 
   return (
     <View style={styles.form}>
@@ -35,8 +35,7 @@ function ExpenseForm() {
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangedHandler.bind(this, 'amount'), /// this parameter is standardly the first one passed for .bind() built-in, does NOT matter here but has to passed! enteredValue is still passed by RN automatically
-            // value: amountValue, // two-way binding
-            value: inputValues.amount
+            value: inputValues.amount, // value: amountValue,
           }}
         />
         <Input
@@ -46,7 +45,7 @@ function ExpenseForm() {
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, 'date'),
-            value: inputValues.date
+            value: inputValues.date,
           }}
         />
       </View>
@@ -57,7 +56,7 @@ function ExpenseForm() {
           // autoCorrect: false // default is true -> can be annoying with email input fields for example
           // autoCapitalize: 'none'
           onChangeText: inputChangedHandler.bind(this, 'description'),
-          value: inputValues.description
+          value: inputValues.description,
         }}
       />
     </View>
