@@ -9,9 +9,13 @@ import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 // route, navigation props we automatically get here since it is a component which loaded as a screen
 function ManageExpense({ route, navigation }) {
   const expensesCtx = useContext(ExpensesContext);
-  
+
   const editedExpenseId = route.params?.expenseId; // ? -> JS checks if that property exists, if not it won't 'drill' into it further more
   const isEditing = !!editedExpenseId;
+
+  const selectedExpense = expensesCtx.expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
 
   // useLayoutEffect hook to avoid flickering
   useLayoutEffect(() => {
@@ -40,7 +44,12 @@ function ManageExpense({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <ExpenseForm submitButtonLabel={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler} onCancel={cancelHandler} />
+      <ExpenseForm
+        submitButtonLabel={isEditing ? "Update" : "Add"}
+        onSubmit={confirmHandler}
+        onCancel={cancelHandler}
+        defaultValues={selectedExpense}
+      />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -61,13 +70,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: GlobalStyles.colors.primary800
+    backgroundColor: GlobalStyles.colors.primary800,
   },
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.primary200,
-    alignItems: 'center'
-  }
+    alignItems: "center",
+  },
 });
