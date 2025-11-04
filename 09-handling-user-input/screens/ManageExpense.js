@@ -3,7 +3,6 @@ import { StyleSheet, View } from "react-native";
 
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
-import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expense-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
@@ -30,6 +29,7 @@ function ManageExpense({ route, navigation }) {
     navigation.goBack();
   }
 
+/*
   function confirmHandler() {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, { description: 'Porsche Taycan Turbo GT Sport Turismo', amount: 198000, date: new Date() });
@@ -37,15 +37,11 @@ function ManageExpense({ route, navigation }) {
       expensesCtx.addExpense({ description: 'Porsche 992 911 Turbo S', amount: 219000, date: new Date() });
     }
     navigation.goBack();
-  }
+  } */
 
   return (
     <View style={styles.container}>
-      <ExpenseForm />
-      <View style={styles.buttonContainer}>
-        <Button style={styles.button} mode={'flat'} onPress={cancelHandler}>Cancel</Button>
-        <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
-      </View>
+      <ExpenseForm submitButtonLabel={isEditing ? 'Update' : 'Add'} onCancel={cancelHandler} />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -67,15 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8
   },
   deleteContainer: {
     marginTop: 16,

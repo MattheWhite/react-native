@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
-
-import Input from "./Input";
 import { useState } from "react";
 
-function ExpenseForm() {
+import Input from "./Input";
+import Button from "../UI/Button";
+
+function ExpenseForm({ submitButtonLabel, onCancel, onSubmit }) {
   // const [amountValue, setAmountValue] = useState(""); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
   // avoiding multiple state slicing for every input field
   const [inputValues, setInputValues] = useState({
@@ -24,6 +25,8 @@ function ExpenseForm() {
       };
     });
   }
+
+  function submitHandler() {}
 
   return (
     <View style={styles.form}>
@@ -59,6 +62,10 @@ function ExpenseForm() {
           value: inputValues.description,
         }}
       />
+      <View style={styles.buttonContainer}>
+        <Button style={styles.button} mode={'flat'} onPress={onCancel}>Cancel</Button>
+        <Button style={styles.button} onPress={submitHandler}>{submitButtonLabel}</Button>
+      </View>
     </View>
   );
 }
@@ -82,5 +89,14 @@ const styles = StyleSheet.create({
   },
   rowInput: {
     flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8
   },
 });
