@@ -4,11 +4,26 @@ import Input from "./Input";
 import { useState } from "react";
 
 function ExpenseForm() {
-    const [amountValue, setAmountValue] = useState(''); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
-    
-  function amountChangedHandler(enteredValue) { // because we connect this to onChangeText, RN will automatically provide the entered value as a param, naming is optional
+  // const [amountValue, setAmountValue] = useState(""); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
+  // avoiding multiple state slicing for every input field
+  const [inputValues, setInputValues] = useState({
+    amount: '',
+    date: '',
+    description: ''
+  });
+
+  /* function amountChangedHandler(enteredValue) {// because we connect this to onChangeText, RN will automatically provide the entered value as a param, naming is optional
     setAmountValue(enteredValue);
-  }
+  } */
+ // reusable generic input change handler method with one state object above!
+ function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputValues((currentInputValues) => { // can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
+        return {
+            ...currentInputValues,
+            [inputIdentifier]: enteredValue // [id]  -> target a property dynamically, JS syntax
+        }
+    });
+ }
 
   return (
     <View style={styles.form}>
@@ -20,7 +35,7 @@ function ExpenseForm() {
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: amountChangedHandler,
-            value: amountValue // two-way binding
+            value: amountValue, // two-way binding
           }}
         />
         <Input
@@ -53,10 +68,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginVertical: 24,
-    textAlign:'center'
+    textAlign: "center",
   },
   inputsRow: {
     flexDirection: "row",
