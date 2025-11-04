@@ -3,13 +3,14 @@ import { useState } from "react";
 
 import Input from "./Input";
 import Button from "../UI/Button";
+import { getFormattedDate } from "../../util/date";
 
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   // const [amountValue, setAmountValue] = useState(""); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
   // avoiding multiple state slicing for every input field
   const [inputValues, setInputValues] = useState({
     amount: defaultValues ? defaultValues.amount.toString() : '', // check on defaultValues, if we add a new expense it is undefined
-    date: defaultValues ? defaultValues.date.toISOString() : '', // now it is correct but can make sure to display only the first 10 char with:   .toISOString().slice(0, 10)
+    date: defaultValues ? getFormattedDate(defaultValues.date) : '', // now it is correct but can make sure to display only the first 10 char with:   .toISOString().slice(0, 10)
     description: defaultValues ? defaultValues.description : ''
   });
 
