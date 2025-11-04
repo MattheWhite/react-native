@@ -34,8 +34,9 @@ function ExpenseForm() {
           label="Amount"
           textInputConfig={{
             keyboardType: "decimal-pad",
-            onChangeText: amountChangedHandler,
-            value: amountValue, // two-way binding
+            onChangeText: inputChangedHandler.bind(this, 'amount'), /// this parameter is standardly the first one passed for .bind() built-in, does NOT matter here but has to passed! enteredValue is still passed by RN automatically
+            // value: amountValue, // two-way binding
+            value: inputValues.amount
           }}
         />
         <Input
@@ -44,7 +45,8 @@ function ExpenseForm() {
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
-            onChangeText: () => {},
+            onChangeText: inputChangedHandler.bind(this, 'date'),
+            value: inputValues.date
           }}
         />
       </View>
@@ -54,6 +56,8 @@ function ExpenseForm() {
           multiline: true,
           // autoCorrect: false // default is true -> can be annoying with email input fields for example
           // autoCapitalize: 'none'
+          onChangeText: inputChangedHandler.bind(this, 'description'),
+          value: inputValues.description
         }}
       />
     </View>
