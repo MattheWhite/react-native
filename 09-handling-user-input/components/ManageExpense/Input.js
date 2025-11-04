@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginHorizontal: 4,
     marginVertical: 8,
+    flex: 1 // so they took as much space as they can
   },
   label: {
     fontSize: 12,
