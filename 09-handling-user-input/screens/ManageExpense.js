@@ -29,19 +29,18 @@ function ManageExpense({ route, navigation }) {
     navigation.goBack();
   }
 
-/*
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     if (isEditing) {
-      expensesCtx.updateExpense(editedExpenseId, { description: 'Porsche Taycan Turbo GT Sport Turismo', amount: 198000, date: new Date() });
+      expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCtx.addExpense({ description: 'Porsche 992 911 Turbo S', amount: 219000, date: new Date() });
+      expensesCtx.addExpense(expenseData);
     }
     navigation.goBack();
-  } */
+  }
 
   return (
     <View style={styles.container}>
-      <ExpenseForm submitButtonLabel={isEditing ? 'Update' : 'Add'} onCancel={cancelHandler} />
+      <ExpenseForm submitButtonLabel={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler} onCancel={cancelHandler} />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
