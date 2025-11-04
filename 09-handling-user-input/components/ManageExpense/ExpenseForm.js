@@ -9,6 +9,7 @@ function ExpenseForm() {
     <View>
       <View style={styles.inputsRow}>{/* move this 2 input element into one row */}
         <Input
+          style={styles.rowInput}
           label="Amount"
           textInputConfig={{
             keyboardType: "decimal-pad",
@@ -16,6 +17,7 @@ function ExpenseForm() {
           }}
         />
         <Input
+          style={styles.rowInput}
           label="Date"
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
@@ -42,5 +44,8 @@ const styles = StyleSheet.create({
   inputsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  rowInput: {
+    flex: 1,
   },
 });

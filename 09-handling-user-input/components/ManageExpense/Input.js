@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 
-function Input({ label, textInputConfig }) {
+function Input({ label, style, textInputConfig }) {
   // instead a never ending list of props, use an object with the appropriate keys and simply pass it, automatically will be evaluated
 
   const inputStyles = [styles.input];
@@ -12,7 +12,7 @@ function Input({ label, textInputConfig }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <Text style={styles.label}>{label}</Text>
       <TextInput style={inputStyles} {...textInputConfig} />
       {/* keyboardType={type} maxLength={maxLength}  -> instead we continue add more and more props, we simply USE SPREAD OPERATOR */}
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginHorizontal: 4,
     marginVertical: 8,
-    flex: 1 // so they took as much space as they can
+    // flex: 1 // so they took as much space as they can
   },
   label: {
     fontSize: 12,
