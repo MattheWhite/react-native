@@ -8,7 +8,7 @@ import { getFormattedDate } from "../../util/date";
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   // const [amountValue, setAmountValue] = useState(""); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
   // avoiding multiple state slicing for every input field
-  const [inputValues, setInputValues] = useState({ // modify the data structure for providing visual feedback
+  const [inputs, setInputs] = useState({ // modify the data structure for providing visual feedback
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
       isValid: !!defaultValues, // short form of defaultValues ? true : false
@@ -28,7 +28,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   } */
   // reusable generic input change handler method with one state object above!
   function inputChangedHandler(inputIdentifier, enteredValue) {
-    setInputValues((currentInputValues) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
+    setInputs((currentInputValues) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
       return {
         ...currentInputValues,
         [inputIdentifier]: enteredValue, // [id]  -> target a property dynamically, JS syntax
@@ -38,9 +38,9 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   function submitHandler() {
     const expenseData = {
-      amount: +inputValues.amount, // + -> converts str to number
-      date: new Date(inputValues.date),
-      description: inputValues.description,
+      amount: +inputs.amount, // + -> converts str to number
+      date: new Date(inputs.date),
+      description: inputs.description,
     };
 
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
@@ -65,7 +65,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangedHandler.bind(this, "amount"), // this parameter is standardly the first one passed for .bind() built-in, does NOT matter here but has to passed! enteredValue is still passed by RN automatically
-            value: inputValues.amount, // value: amountValue,
+            value: inputs.amount, // value: amountValue,
           }}
         />
         <Input
@@ -75,7 +75,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
-            value: inputValues.date,
+            value: inputs.date,
           }}
         />
       </View>
@@ -86,7 +86,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           // autoCorrect: false // default is true -> can be annoying with email input fields for example
           // autoCapitalize: 'none'
           onChangeText: inputChangedHandler.bind(this, "description"),
-          value: inputValues.description,
+          value: inputs.description,
         }}
       />
       <View style={styles.buttonContainer}>
