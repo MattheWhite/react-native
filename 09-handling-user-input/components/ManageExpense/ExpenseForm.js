@@ -11,15 +11,15 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   const [inputs, setInputs] = useState({ // modify the data structure for providing visual feedback
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
-      isValid: !!defaultValues, // short form of defaultValues ? true : false
+      isValid: true, // short form of defaultValues ? true : false -> !!defaultValues, but we use true at start to not get a warning text when adding an expense => technically not correct
     }, // check on defaultValues, if we add a new expense it is undefined
     date: {
       value: defaultValues ? getFormattedDate(defaultValues.date) : "", // now it is correct but can make sure to display only the first 10 char with:   .toISOString().slice(0, 10) -> now this moved out to date util func.
-      isValid: !!defaultValues,
+      isValid: true,
     },
     description: {
       value: defaultValues ? defaultValues.description : "",
-      isValid: !!defaultValues,
+      isValid: true,
     },
   });
 
@@ -48,7 +48,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
-      Alert.alert("Invalid input", "Please check your input values");
+    //   Alert.alert("Invalid input", "Please check your input values");
       setInputs((currentInputs) => {
         return {
           amount: {
@@ -70,6 +70,11 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
     onSubmit(expenseData);
   }
+
+  const formIsInvalid =
+    !inputs.amount.isValid ||
+    !inputs.date.isValid ||
+    !inputs.description.isValid;
 
   return (
     <View style={styles.form}>
@@ -105,6 +110,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           value: inputs.description,
         }}
       />
+      { formIsInvalid && <Text>Invalid input values - Please check your entered data!</Text>}
       <View style={styles.buttonContainer}>
         <Button style={styles.button} mode={"flat"} onPress={onCancel}>
           Cancel
