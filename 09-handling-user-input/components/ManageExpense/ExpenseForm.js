@@ -32,7 +32,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     setInputs((currentInputs) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
       return {
         ...currentInputs,
-        [inputIdentifier]: { value: enteredValue, isValid: true }, // [id]  -> target a property dynamically, JS syntax | assume it is valid
+        [inputIdentifier]: { value: enteredValue, isValid: true }, // [id]  -> target a property dynamically, JS syntax | assume it is valid, so even if the inputfield was highlighted, when you start typing, it assumes that you entered some valid info -> remove highlight
       };
     });
   }
