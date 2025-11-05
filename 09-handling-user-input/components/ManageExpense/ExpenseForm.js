@@ -28,19 +28,19 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   } */
   // reusable generic input change handler method with one state object above!
   function inputChangedHandler(inputIdentifier, enteredValue) {
-    setInputs((currentInputValues) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
+    setInputs((currentInputs) => {// can pass a function for a state update function -> when we rely on the prev. state, we can reveive this way! BEST PRACTICE
       return {
-        ...currentInputValues,
-        [inputIdentifier]: enteredValue, // [id]  -> target a property dynamically, JS syntax
+        ...currentInputs,
+        [inputIdentifier]: { value: enteredValue, isValid: true }, // [id]  -> target a property dynamically, JS syntax | assume it is valid
       };
     });
   }
 
   function submitHandler() {
     const expenseData = {
-      amount: +inputs.amount, // + -> converts str to number
-      date: new Date(inputs.date),
-      description: inputs.description,
+      amount: +inputs.amount.value, // + -> converts str to number
+      date: new Date(inputs.date.value),
+      description: inputs.description.value,
     };
 
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
