@@ -4,6 +4,7 @@ import { useState } from "react";
 import Input from "./Input";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
+import { GlobalStyles } from "../../constants/styles";
 
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   // const [amountValue, setAmountValue] = useState(""); // when you fetch a value as input ALWAYS GET A STRING!!! Even if you provide a number, you handle a string technically, thats why let a str be the initial value
@@ -79,38 +80,46 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expense</Text>
-      <View style={styles.inputsRow}>{/* move this 2 input element into one row */}
+      <View style={styles.inputsRow}>
+        {/* move this 2 input element into one row */}
         <Input
           style={styles.rowInput}
           label="Amount"
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangedHandler.bind(this, "amount"), // this parameter is standardly the first one passed for .bind() built-in, does NOT matter here but has to passed! enteredValue is still passed by RN automatically
-            value: inputs.amount, // value: amountValue,
+            value: inputs.amount.value, // value: amountValue,
           }}
         />
         <Input
           style={styles.rowInput}
           label="Date"
+          invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
-            value: inputs.date,
+            value: inputs.date.value,
           }}
         />
       </View>
       <Input
         label="Description"
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           // autoCorrect: false // default is true -> can be annoying with email input fields for example
           // autoCapitalize: 'none'
           onChangeText: inputChangedHandler.bind(this, "description"),
-          value: inputs.description,
+          value: inputs.description.value,
         }}
       />
-      { formIsInvalid && <Text>Invalid input values - Please check your entered data!</Text>}
+      {formIsInvalid && (
+        <Text style={styles.errorText}>
+          Invalid input values - Please check your entered data!
+        </Text>
+      )}
       <View style={styles.buttonContainer}>
         <Button style={styles.button} mode={"flat"} onPress={onCancel}>
           Cancel
@@ -142,6 +151,11 @@ const styles = StyleSheet.create({
   },
   rowInput: {
     flex: 1,
+  },
+  errorText: {
+    textAlign: 'center',
+    color: GlobalStyles.colors.error500,
+    margin: 8
   },
   buttonContainer: {
     flexDirection: "row",

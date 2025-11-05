@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 
-function Input({ label, style, textInputConfig }) {
+function Input({ label, invalid, style, textInputConfig }) {
   // instead a never ending list of props, use an object with the appropriate keys and simply pass it, automatically will be evaluated
 
   const inputStyles = [styles.input];
@@ -11,9 +11,13 @@ function Input({ label, style, textInputConfig }) {
     inputStyles.push(styles.inputMultiline);
   }
 
+  if (invalid) {
+    inputStyles.push(styles.invalidInput);
+  }
+
   return (
     <View style={[styles.inputContainer, style]}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, invalid && styles.invalidLabel]}>{label}</Text>
       <TextInput style={inputStyles} {...textInputConfig} />
       {/* keyboardType={type} maxLength={maxLength}  -> instead we continue add more and more props, we simply USE SPREAD OPERATOR */}
     </View>
@@ -43,5 +47,11 @@ const styles = StyleSheet.create({
   inputMultiline: {
     minHeight: 100,
     textAlignVertical: 'top'
+  },
+    invalidLabel: {
+    color: GlobalStyles.colors.error500
+  },
+  invalidInput: {
+    backgroundColor: GlobalStyles.colors.error50
   }
 });
