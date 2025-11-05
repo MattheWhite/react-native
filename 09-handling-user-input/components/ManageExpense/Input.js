@@ -18,8 +18,7 @@ function Input({ label, invalid, style, textInputConfig }) {
   return (
     <View style={[styles.inputContainer, style]}>
       <Text style={[styles.label, invalid && styles.invalidLabel]}>{label}</Text>
-      <TextInput style={inputStyles} {...textInputConfig} />
-      {/* keyboardType={type} maxLength={maxLength}  -> instead we continue add more and more props, we simply USE SPREAD OPERATOR */}
+      <TextInput style={inputStyles} {...textInputConfig} />{/* keyboardType={type} maxLength={maxLength}  -> instead we continue add more and more props, we simply USE SPREAD OPERATOR */}
     </View>
   );
 }

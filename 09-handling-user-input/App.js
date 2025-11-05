@@ -60,8 +60,7 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <ExpensesContextProvider>
-        <NavigationContainer>
-          {/* has to be wrapped around components related with navigation */}
+        <NavigationContainer>{/* has to be wrapped around components related with navigation */}
           <Stack.Navigator screenOptions={{
             headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
             tintColor: 'white'
