@@ -33,6 +33,16 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         date: new Date(inputValues.date),
         description: inputValues.description
     };
+
+    const amountIsValid = !isNan(expenseData.amount) && expenseData.amount > 0;
+    const dateIsValid = expenseData.date.toString() !== 'Invalid Date'; // using the Date() constructor functionality -> if invalid string is passed this is the output
+    const descriptionIsValid = expenseData.description.trim().length > 0;
+
+    if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
+        // show some feedback
+        return;
+    }
+    
     onSubmit(expenseData);
   }
 
