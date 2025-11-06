@@ -42,6 +42,7 @@ const DUMMY_EXPENSES = [
 export const ExpensesContext = createContext({
   expenses: [],
   addExpense: ({ description, amount, date }) => {},
+  setExpenses: (expenses) => {},
   deleteExpense: (id) => {},
   updateExpense: (id, { description, amount, date }) => {},
 });
@@ -52,6 +53,8 @@ function expensesReducer(state, action) { // state, action -> received automatic
       const id = Date.now().toString() + Math.random().toString(); // new Date() -> gives back an actual Timestamp object, Date.now() -> gives back a number presenting the milliseconds
       console.log(id)
       return [{ ...action.payload, id: id }, ...state];
+    case "SET":
+      return action.payload;
     case "UPDATE":
       const updatableExpenseIndex = state.findIndex((expense) => expense.id === action.payload.id); // we know the payload has an id attribute because we see in line 77 what we pass through dispatch call
       const updatableExpense = state[updatableExpenseIndex];
@@ -67,10 +70,14 @@ function expensesReducer(state, action) { // state, action -> received automatic
 }
 
 function ExpensesContextProvider({ children }) {
-  const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES); // passing DUMMY_EXPENSES as the default value in case the first time this reducer executed, as an initial value | then it will get the existed state
+  const [expensesState, dispatch] = useReducer(expensesReducer, []); // passing DUMMY_EXPENSES as the default value in case the first time this reducer executed, as an initial value | then it will get the existed state
 
   function addExpense(expenseData) {
     dispatch({ type: "ADD", payload: expenseData }); // type because we extract action.type in expensesReducer switch-case | the value we dispatch here is the 'action' parameter for expensesReducer what is made available by RN
+  }
+
+  function setExpenses(expenses) {
+    dispatch({ type: "SET", payload: expenses });
   }
 
   function deleteExpense(id) {
@@ -84,6 +91,7 @@ function ExpensesContextProvider({ children }) {
   const value = {
     expenses: expensesState,
     addExpense: addExpense,
+    setExpenses: setExpenses,
     updateExpense: updateExpense,
     deleteExpense: deleteExpense
   };
