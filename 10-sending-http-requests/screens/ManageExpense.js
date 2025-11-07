@@ -25,8 +25,9 @@ function ManageExpense({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {
+  async function deleteExpenseHandler() {
     expensesCtx.deleteExpense(editedExpenseId);
+    await deleteExpense(editedExpenseId); // this way we wait to complete this call, then close the modal and go back
     navigation.goBack(); // goBack() is built-in, equivalent to back button press
   }
 

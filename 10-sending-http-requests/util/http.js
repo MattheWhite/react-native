@@ -34,5 +34,5 @@ export function updateExpense(id, expenseData) {
 }
 
 export function deleteExpense(id) {
-  axios.delete(BACKEND_URL + `/expenses/${id}.json`);
+  return axios.delete(BACKEND_URL + `/expenses/${id}.json`);
 }
