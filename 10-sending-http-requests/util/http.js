@@ -29,6 +29,10 @@ export async function fetchExpenses() {
   return expenses;
 }
 
-export async function updateExpense(id, expenseData) {
-  axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData);
+export function updateExpense(id, expenseData) {
+  return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData); // return the Promise, no need for async-await keywords
+}
+
+export function deleteExpense(id) {
+  axios.delete(BACKEND_URL + `/expenses/${id}.json`);
 }

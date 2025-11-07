@@ -5,7 +5,7 @@ import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expense-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
-import { storeExpense } from "../util/http";
+import { storeExpense, updateExpense, deleteExpense } from "../util/http";
 
 // route, navigation props we automatically get here since it is a component which loaded as a screen
 function ManageExpense({ route, navigation }) {
@@ -37,6 +37,7 @@ function ManageExpense({ route, navigation }) {
   async function confirmHandler(expenseData) { // now this is async because storeExpense() returns a Promise
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
+      await updateExpense(editedExpenseId, expenseData); // after locally updated, send it to backend -> await now not necessary because we dont do anything when the request completed
     } else {
       const id = await storeExpense(expenseData);
       expensesCtx.addExpense({ ...expenseData, id: id });
