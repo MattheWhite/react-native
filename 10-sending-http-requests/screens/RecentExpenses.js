@@ -4,6 +4,7 @@ import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 import { ExpensesContext } from "../store/expense-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function RecentExpenses() {
   const [isFetching, setIsFetching] = useState(true);// true -> we initially always will be fetching data
@@ -14,13 +15,19 @@ function RecentExpenses() {
 
   useEffect(() => { // NEVER TURN THE EFFECT FUNCTION ITSELF INTO ASYNC
     async function getExpenses() { // make a helper function as async
+      setIsFetching(true);  
       const expenses = await fetchExpenses();
       // setFetchedExpenses(expenses);
+      setIsFetching(false); // after we await the expense fetching
       expensesCtx.setExpenses(expenses);
     }
 
     getExpenses();
   }, []);
+
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
   
   // const recentExpenses = fetchedExpenses.filter((expense) => {
   const recentExpenses = expensesCtx.expenses.filter((expense) => {
