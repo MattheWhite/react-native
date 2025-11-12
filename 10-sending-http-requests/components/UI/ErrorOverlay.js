@@ -3,12 +3,12 @@ import { ActivityIndicator, StyleSheet, Text } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 import Button from "./Button";
 
-function ErrorOverlay({ message }) {
+function ErrorOverlay({ message, onConfirm }) {
   return ( // ActivityIndicator -> built-in RN loading spinner
     <View style={styles.container}>
-      <Text>An error occured!</Text>
-      <Text>{message}</Text>
-      <Button>Okay</Button>
+      <Text style={[styles.text, styles.title]}>An error occured!</Text>
+      <Text style={styles.text}>{message}</Text>
+      <Button onPress={onConfirm}>Okay</Button>
     </View>
   );
 }
@@ -23,4 +23,13 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary700,
   },
+  text: {
+    color: "white",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  }
 });
