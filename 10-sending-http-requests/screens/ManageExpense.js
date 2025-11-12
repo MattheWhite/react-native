@@ -48,14 +48,19 @@ function ManageExpense({ route, navigation }) {
 
   async function confirmHandler(expenseData) { // now this is async because storeExpense() returns a Promise
     setIsSubmitting(true);
-    if (isEditing) {
-      expensesCtx.updateExpense(editedExpenseId, expenseData);
-      await updateExpense(editedExpenseId, expenseData); // after locally updated, send it to backend -> await now not necessary because we dont do anything when the request completed
-    } else {
-      const id = await storeExpense(expenseData);
-      expensesCtx.addExpense({ ...expenseData, id: id });
+    try {
+      if (isEditing) {
+        expensesCtx.updateExpense(editedExpenseId, expenseData);
+        await updateExpense(editedExpenseId, expenseData); // after locally updated, send it to backend -> await now not necessary because we dont do anything when the request completed
+      } else {
+        const id = await storeExpense(expenseData);
+        expensesCtx.addExpense({ ...expenseData, id: id });
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not save data - Please try again later!")
+      setIsSubmitting(false);
     }
-    navigation.goBack();
   }
 
   function errorHandler() {
