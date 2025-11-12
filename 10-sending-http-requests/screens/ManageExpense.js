@@ -7,10 +7,13 @@ import { ExpensesContext } from "../store/expense-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { storeExpense, updateExpense, deleteExpense } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 // route, navigation props we automatically get here since it is a component which loaded as a screen
 function ManageExpense({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false); // display loading spinner
+  const [error, setError] = useState();
+  
   const expensesCtx = useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId; // ? -> JS checks if that property exists, if not it won't 'drill' into it further more
@@ -29,8 +32,12 @@ function ManageExpense({ route, navigation }) {
 
   async function deleteExpenseHandler() {
     setIsSubmitting(true);
-    expensesCtx.deleteExpense(editedExpenseId);
-    await deleteExpense(editedExpenseId); // this way we wait to complete this call, then close the modal and go back
+    try {
+      await deleteExpense(editedExpenseId); // this way we wait to complete this call, then close the modal and go back
+      expensesCtx.deleteExpense(editedExpenseId);
+    } catch (error) {
+      setError("Could not delete expense - Please try again later!")
+    }
     // setIsSubmitting(false); -> no need for this, because we navigate back to the prev. screen
     navigation.goBack(); // goBack() is built-in, equivalent to back button press
   }
@@ -49,6 +56,14 @@ function ManageExpense({ route, navigation }) {
       expensesCtx.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
+  }
+
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isSubmitting) {
+    return <ErrorOverlay message={error} onPress={errorHandler} />;
   }
 
   if (isSubmitting) {
