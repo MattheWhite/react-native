@@ -35,11 +35,11 @@ function ManageExpense({ route, navigation }) {
     try {
       await deleteExpense(editedExpenseId); // this way we wait to complete this call, then close the modal and go back
       expensesCtx.deleteExpense(editedExpenseId);
+      navigation.goBack(); // goBack() is built-in, equivalent to back button press
     } catch (error) {
       setError("Could not delete expense - Please try again later!")
+      setIsSubmitting(false);// -> no need for this, because we navigate back to the prev. screen  |  now needed because the try-catch error handling
     }
-    // setIsSubmitting(false); -> no need for this, because we navigate back to the prev. screen
-    navigation.goBack(); // goBack() is built-in, equivalent to back button press
   }
 
   function cancelHandler() {
@@ -68,7 +68,7 @@ function ManageExpense({ route, navigation }) {
   }
 
   if (error && !isSubmitting) {
-    return <ErrorOverlay message={error} onPress={errorHandler} />;
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
   }
 
   if (isSubmitting) {
