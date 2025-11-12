@@ -5,9 +5,11 @@ import { ExpensesContext } from "../store/expense-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 function RecentExpenses() {
   const [isFetching, setIsFetching] = useState(true);// true -> we initially always will be fetching data
+  const [error, setError] = useState();
   
   const expensesCtx = useContext(ExpensesContext); // making available data from newly created context provider for ExpenseOutput
 
@@ -15,15 +17,27 @@ function RecentExpenses() {
 
   useEffect(() => { // NEVER TURN THE EFFECT FUNCTION ITSELF INTO ASYNC
     async function getExpenses() { // make a helper function as async
-      setIsFetching(true);  
-      const expenses = await fetchExpenses();
-      // setFetchedExpenses(expenses);
+      setIsFetching(true);
+      try {
+        const expenses = await fetchExpenses();
+        expensesCtx.setExpenses(expenses);
+        // setFetchedExpenses(expenses);
+      } catch (error) {
+        setError('Could not fetch expenses');
+      }
       setIsFetching(false); // after we await the expense fetching
-      expensesCtx.setExpenses(expenses);
     }
 
     getExpenses();
   }, []);
+
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isFetching) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+  }
 
   if (isFetching) {
     return <LoadingOverlay />;
