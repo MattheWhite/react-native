@@ -40,6 +40,7 @@ function ManageExpense({ route, navigation }) {
   }
 
   async function confirmHandler(expenseData) { // now this is async because storeExpense() returns a Promise
+    setIsSubmitting(true);
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
       await updateExpense(editedExpenseId, expenseData); // after locally updated, send it to backend -> await now not necessary because we dont do anything when the request completed
