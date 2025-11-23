@@ -10,12 +10,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-navigation/native": "7.1.20",
-    "@react-navigation/native-stack": "7.6.3",
-    "expo": "54.0.24",
+    "@react-navigation/native": "7.1.21",
+    "@react-navigation/native-stack": "7.7.0",
+    "expo": "54.0.25",
     "expo-status-bar": "3.0.8",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-native": "0.82.1",
     "react-native-web": "0.21.2"
   },
