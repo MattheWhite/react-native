@@ -16,6 +16,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
 
   function switchAuthModeHandler() {
     // Todo
+    
   }
 
   function submitHandler(credentials) {
