@@ -18,9 +18,11 @@ function AuthContent({ isLogin, onAuthenticate }) {
 
   function switchAuthModeHandler() {
     if(isLogin) {
-      navigation.navigate('Signup');
+      // navigation.navigate('Signup');
+      navigation.replace('Signup'); // -> with .replace() the screen is not added to the Stack of screens but replaces the prev. screen with the new, so there is no Back button on top
     } else {
-      navigation.navigate('Login');
+      // navigation.navigate('Login');
+      navigation.replace('Login');
     }
   }
 
