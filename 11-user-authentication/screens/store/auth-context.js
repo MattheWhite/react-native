@@ -13,8 +13,19 @@ function AuthContextProvider({childred}) {
     function authenticate(token) {
         setAuthToken(token);
     }
+
+    function logout() {
+        setAuthToken(null);
+    }
+
+    const value = {
+        token: authToken,
+        isAuthenticated: !!authToken,
+        authenticate: authenticate,
+        logout: logout
+    }
     
-    return <AuthContext.Provider>{childred}</AuthContext.Provider>;
+    return <AuthContext.Provider value={value}>{childred}</AuthContext.Provider>;
 }
 
 export default AuthContextProvider;
