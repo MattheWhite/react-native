@@ -1,7 +1,7 @@
 import axios from "axios";
 
 async function authenticate(mode, email, password) {
-    const API_KEY = "AIzaSyDmf1Vh-rF9HHCfi-1uYnsEFLFVzop7SbI"; // restricted public API key, no production vulnerability!
+    const API_KEY = "..."; // restricted public API key, no production vulnerability!  -  REMOVED API KEY FROM FB
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${API_KEY}`;
     const response = await axios.post(url, {
         email: email,
