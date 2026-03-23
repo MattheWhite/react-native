@@ -45,6 +45,7 @@ function Navigation() {
   
   return (
     <NavigationContainer>
+      {/* SWAP NAVIGATION STACKS ACCORDING TO AUTHENTICATION */}
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
