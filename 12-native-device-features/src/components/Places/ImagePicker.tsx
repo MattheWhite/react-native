@@ -1,23 +1,29 @@
-import { Alert, Button, View } from "react-native";
-import {
-  launchCameraAsync,
-  PermissionStatus,
-  useCameraPermissions,
-} from "expo-image-picker";
+import { Alert, Button, Image, View, Text, StyleSheet } from "react-native";
+import * as ImagePicker from "expo-image-picker"; // ✅ Updated import
+import { useState } from "react";
+import { Colors } from "@/constants/colors";
 
-function ImagePicker() {
+function ImagePickerComponent() {
+  const [pickedImage, setPickedImage] = useState("");
+
   // these additional permission requester and handler code needs only for iOS   ----------------
   const [cameraPermissionInformation, requestPermission] =
-    useCameraPermissions();
+    ImagePicker.useCameraPermissions();
 
   async function verifyPermissions() {
-    if (cameraPermissionInformation?.status === PermissionStatus.UNDETERMINED) {
+    if (
+      cameraPermissionInformation?.status ===
+      ImagePicker.PermissionStatus.UNDETERMINED
+    ) {
       const permissionResponse = await requestPermission();
 
       return permissionResponse.granted;
     }
 
-    if (cameraPermissionInformation?.status === PermissionStatus.DENIED) {
+    if (
+      cameraPermissionInformation?.status ===
+      ImagePicker.PermissionStatus.DENIED
+    ) {
       Alert.alert(
         "Insufficient Permissions!",
         "You need to grant camera permissions to use this app.",
@@ -36,20 +42,48 @@ function ImagePicker() {
     }
     // permission requester block end -----------------------------------------------------------
 
-    const image = await launchCameraAsync({
+    const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
       quality: 0.5,
     });
-    console.log(image);
+
+    setPickedImage(image.assets[0].uri);
+  }
+
+  let imagePreview = <Text>No image taken yet.</Text>;
+
+  if (pickedImage) {
+    imagePreview = (
+      <Image
+        source={{ uri: pickedImage }}
+        style={styles.image}
+      />
+    );
   }
 
   return (
     <View>
-      <View></View>
+      <View style={styles.imagePreview}>{imagePreview}</View>
       <Button title="Take Image" onPress={takeImageHandler} />
     </View>
   );
 }
 
-export default ImagePicker;
+export default ImagePickerComponent;
+
+const styles = StyleSheet.create({
+  imagePreview: {
+    width: "100%",
+    height: 200,
+    marginVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.primary100,
+    borderRadius: 4,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+});
