@@ -38,6 +38,12 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "The app needs access to your camera in order to take photos of your favorite places."
+        }
       ]
     ],
     "experiments": {
