@@ -44,11 +44,25 @@ function ImagePickerComponent() {
     }
     // permission requester block end -----------------------------------------------------------
 
-    const image = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 0.5,
-    });
+    let image;
+    try {
+      image = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [16, 9],
+        quality: 0.5,
+      });
+    } catch (error) {
+      console.log(
+        "ImagePicker component's error - probably cancelled photo:",
+        error,
+      );
+      return;
+    }
+
+    // defend ReferrenceError on cancel photo taken - try-catch branch not needed but even more secure
+    if (!image || image.canceled || !image.assets || image.assets.length === 0) {
+      return;
+    }
 
     setPickedImage(image.assets[0].uri);
   }
@@ -63,7 +77,7 @@ function ImagePickerComponent() {
       />
     );
   }
-
+ 
   return (
     <View>
       <View style={styles.imagePreview}>{imagePreview}</View>
