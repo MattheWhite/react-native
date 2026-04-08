@@ -1,10 +1,18 @@
 import { StyleSheet, View } from "react-native";
+import { getCurrentPositionAsync } from "expo-location";
 
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
 
 function LocationPicker() {
-  function getLocationHandler() {}
+  async function verifyPermissions() { // get permission for location
+
+  }
+
+  async function getLocationHandler() {
+    const location = await getCurrentPositionAsync(); // can a config object {} passed to the async call -> e.g. accuracy setting
+    console.log(location);
+  }
 
   function pickOnMapHandler() {}
 
@@ -36,8 +44,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   actions: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
