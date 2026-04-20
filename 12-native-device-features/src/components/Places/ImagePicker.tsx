@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.primary100,
     borderRadius: 4,
+    overflow: 'hidden' // or add borderRadius: 4 below to image styling obj
   },
   image: {
     width: "100%",
