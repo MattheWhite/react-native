@@ -1,10 +1,13 @@
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View, Text } from "react-native";
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from "expo-location";
 
+import { getMapPreview } from "../util/location";
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
+import { useState } from "react";
 
 function LocationPicker() {
+  const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] = useForegroundPermissions(); // React rule -> hooks only can be used on TOP-LEVEL component funciton
 
   async function verifyPermissions() { // get permission for location
@@ -31,6 +34,10 @@ function LocationPicker() {
     }
 
     const location = await getCurrentPositionAsync(); // can a config object {} passed to the async call -> e.g. accuracy setting
+    setPickedLocation({
+      lat: location.coords.latitude,
+      lng: location.coords.longitude
+    });
     console.log(location);
   }
 
@@ -38,9 +45,17 @@ function LocationPicker() {
     // should use your own Google account -> GCP -> Google Maps API Key
   }
 
+  let locationPreview = <Text>No location picked yet.</Text>;
+
+  if (pickedLocation){
+    locationPreview = <Image style={styles.image} source={{uri: getMapPreview(pickedLocation.lat, pickedLocation.lng)}} />;
+  }
+
   return (
     <View>
-      <View style={styles.mapPreview}></View>
+      <View style={styles.mapPreview}>
+        {locationPreview}
+      </View>
       <View style={styles.actions}>
         <OutlinedButton onPress={getLocationHandler} icon="location">
           Locate User
@@ -70,4 +85,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
+  image: {
+    width: '100%',
+    height: '100%'
+  }
 });
