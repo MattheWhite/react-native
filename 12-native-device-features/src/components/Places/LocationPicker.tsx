@@ -34,7 +34,9 @@ function LocationPicker() {
     console.log(location);
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    // should use your own Google account -> GCP -> Google Maps API Key
+  }
 
   return (
     <View>
