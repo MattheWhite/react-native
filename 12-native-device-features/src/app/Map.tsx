@@ -1,9 +1,11 @@
 import MapView, { Marker } from "react-native-maps";
 import { Alert, StyleSheet } from "react-native";
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import IconButton from "../components/UI/IconButton";
+import { useNavigation } from "@react-navigation/native";
 
-function Map({navigation}) { // here we can use navigation prop, since this is a screen component
+function Map() {
+  const navigation = useNavigation();
   const [selectedLocation, setSelectedLocation] = useState();
 
   const region = {
@@ -21,7 +23,7 @@ function Map({navigation}) { // here we can use navigation prop, since this is a
     setSelectedLocation({ lat: lat, lng: lng });
   }
 
-  function savePickedLocationHandler() {
+  const savePickedLocationHandler = useCallback(() => { // useCallback -> ensures the callback not recreated unnecessary
     if (!selectedLocation) {
       Alert.alert(
         "No location picked",
@@ -33,12 +35,19 @@ function Map({navigation}) { // here we can use navigation prop, since this is a
     navigation.navigate("AddPlace", {  // RN automatically detects we came from this component and handles it well
       pickedLat: selectedLocation.lat,
       pickedLng: selectedLocation.lng, 
-    }); 
-  }
+    });
+  }, [navigation, selectedLocation]);
 
   useLayoutEffect(() => { // run code after the first initialization of this DOM element
     navigation.setOptions({
-      headerRight: ({tintColor}) => <IconButton icon="save" size={24} color={tintColor} onPress={savePickedLocationHandler} />
+      headerRight: ({ tintColor }) => (
+        <IconButton
+          icon="save"
+          size={24}
+          color={tintColor}
+          onPress={savePickedLocationHandler}
+        />
+      ),
     });
   }, [navigation, savePickedLocationHandler]);
 
