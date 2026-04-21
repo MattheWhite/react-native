@@ -13,7 +13,7 @@ function Map() {
   };
 
   function selectLocationHandler(event) {
-    console.log(event);
+    // console.log(event);
     const lat = event.nativeEvent.coordinate.latitude;
     const lng = event.nativeEvent.coordinate.longitude;
 
@@ -26,12 +26,15 @@ function Map() {
       initialRegion={region}
       onPress={selectLocationHandler}
     >
-      <Marker
-        coordinate={{
-          latitude: selectedLocation.lat,
-          longitude: selectedLocation.lng,
-        }}
-      />
+      {selectedLocation && ( // render dynamically if there is a selectedLocation
+        <Marker
+          title="Picked location"
+          coordinate={{
+            latitude: selectedLocation.lat,
+            longitude: selectedLocation.lng,
+          }}
+        />
+      )}
     </MapView>
   );
 }
