@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 
 import IconButton from "../components/UI/IconButton";
 import { Colors } from "../../constants/colors";
+import Map from "./Map";
 
 export default function RootLayout() {
   return (
@@ -30,6 +31,7 @@ export default function RootLayout() {
             ),
           })}
         />
+        <Stack.Screen name="Map" component={Map} />
       </Stack>
     </>
   );
