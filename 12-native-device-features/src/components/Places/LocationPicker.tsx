@@ -1,7 +1,7 @@
-import { Alert, StyleSheet, View, Text } from "react-native";
+import { Alert, StyleSheet, View, Text, Image } from "react-native";
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from "expo-location";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
 
 import { getMapPreview } from "../util/location";
 import OutlinedButton from "../UI/OutlinedButton";
@@ -9,8 +9,27 @@ import { Colors } from "@/constants/colors";
 
 function LocationPicker() { // since it is not a Screen component {navigation} prop can't be retrieved here, instead useNavigation() hook has to be used
   const navigation = useNavigation();
+  const route = useRoute();
+  const isFocused = useIsFocused();
+  
   const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] = useForegroundPermissions(); // React rule -> hooks only can be used on TOP-LEVEL component funciton
+  
+  useEffect(() => {
+    // const mapPickedLocation = route.params && { // if we already picked and navigated back here route.params truthy and we assign an object | Map.tsx passed the params
+    //   lat: route.params.pickedLat,
+    //   lng: route.params.pickedLng,
+    // };
+    
+    if (isFocused && route.params) {
+      const mapPickedLocation = {
+        lat: route.params.pickedLat,
+        lng: route.params.pickedLng,
+      };
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [route, isFocused]);
+  
 
   async function verifyPermissions() { // get permission for location
     if (locationPermissionInformation?.status === PermissionStatus.UNDETERMINED) {
