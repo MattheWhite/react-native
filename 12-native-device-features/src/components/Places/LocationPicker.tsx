@@ -1,12 +1,14 @@
 import { Alert, StyleSheet, View, Text } from "react-native";
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from "expo-location";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import { getMapPreview } from "../util/location";
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
-import { useState } from "react";
 
-function LocationPicker() {
+function LocationPicker() { // since it is not a Screen component {navigation} prop can't be retrieved here, instead useNavigation() hook has to be used
+  const navigation = useNavigation();
   const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] = useForegroundPermissions(); // React rule -> hooks only can be used on TOP-LEVEL component funciton
 
@@ -43,6 +45,7 @@ function LocationPicker() {
 
   function pickOnMapHandler() {
     // should use your own Google account -> GCP -> Google Maps API Key
+    navigation.navigate("Map");
   }
 
   let locationPreview = <Text>No location picked yet.</Text>;
