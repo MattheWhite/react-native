@@ -1,8 +1,9 @@
 import MapView, { Marker } from "react-native-maps";
-import { StyleSheet } from "react-native";
-import { useState } from "react";
+import { Alert, StyleSheet } from "react-native";
+import { useLayoutEffect, useState } from "react";
+import IconButton from "../components/UI/IconButton";
 
-function Map() {
+function Map({navigation}) { // here we can use navigation prop, since this is a screen component
   const [selectedLocation, setSelectedLocation] = useState();
 
   const region = {
@@ -19,6 +20,27 @@ function Map() {
 
     setSelectedLocation({ lat: lat, lng: lng });
   }
+
+  function savePickedLocationHandler() {
+    if (!selectedLocation) {
+      Alert.alert(
+        "No location picked",
+        "You have to pick a location (by tapping on the map) first!",
+      );
+      return;
+    }
+
+    navigation.navigate("AddPlace", {  // RN automatically detects we came from this component and handles it well
+      pickedLat: selectedLocation.lat,
+      pickedLng: selectedLocation.lng, 
+    }); 
+  }
+
+  useLayoutEffect(() => { // run code after the first initialization of this DOM element
+    navigation.setOptions({
+      headerRight: ({tintColor}) => <IconButton icon="save" size={24} color={tintColor} onPress={savePickedLocationHandler} />
+    });
+  }, [navigation, savePickedLocationHandler]);
 
   return (
     <MapView
