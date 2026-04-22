@@ -1,8 +1,9 @@
 import MapView, { Marker } from "react-native-maps";
 import { Alert, StyleSheet } from "react-native";
 import { useCallback, useLayoutEffect, useState } from "react";
-import IconButton from "../components/UI/IconButton";
 import { useNavigation } from "@react-navigation/native";
+
+import IconButton from "../components/UI/IconButton";
 
 function Map() {
   const navigation = useNavigation();
