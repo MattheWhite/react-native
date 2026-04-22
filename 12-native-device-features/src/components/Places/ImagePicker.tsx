@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Colors } from "@/constants/colors";
 import  OutlinedButton from '../UI/OutlinedButton';
 
-function ImagePickerComponent() {
+function ImagePickerComponent({onTakeImage}) {
   const [pickedImage, setPickedImage] = useState("");
 
   // these additional permission requester and handler code needs only for iOS   ----------------
@@ -65,6 +65,7 @@ function ImagePickerComponent() {
     }
 
     setPickedImage(image.assets[0].uri);
+    onTakeImage(image.assets[0].uri);
   }
 
   let imagePreview = <Text>No image taken yet.</Text>;

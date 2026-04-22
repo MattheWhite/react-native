@@ -7,7 +7,7 @@ import { getMapPreview } from "../util/location";
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
 
-function LocationPicker() { // since it is not a Screen component {navigation} prop can't be retrieved here, instead useNavigation() hook has to be used
+function LocationPicker({onPickLocation}) { // since it is not a Screen component {navigation} prop can't be retrieved here, instead useNavigation() hook has to be used
   const navigation = useNavigation();
   const route = useRoute();
   const isFocused = useIsFocused();
@@ -29,7 +29,10 @@ function LocationPicker() { // since it is not a Screen component {navigation} p
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
-  
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [pickedLocation, onPickLocation]); // in PlaceForm making pickLocationHandler a constant arrow func. so here this effect won't be reevaluated again when changes smthing
 
   async function verifyPermissions() { // get permission for location
     if (locationPermissionInformation?.status === PermissionStatus.UNDETERMINED) {
