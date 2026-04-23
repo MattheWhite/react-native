@@ -5,8 +5,9 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import Button from '@/src/components/UI/Button';
 import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
+import { Place } from "@/models/Place";
 
-function PlaceForm() {
+function PlaceForm({onCreatePlace}) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [pickedLocation, setPickedLocation] = useState();
@@ -24,6 +25,8 @@ function PlaceForm() {
   }, []);
 
   function savePlaceHandler() {
+    const place: Place = new Place(enteredTitle, selectedImage, pickedLocation);
+    onCreatePlace();
     console.log(enteredTitle)
     console.log(selectedImage)
     console.log(pickedLocation)

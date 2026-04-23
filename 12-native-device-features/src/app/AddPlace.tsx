@@ -2,7 +2,9 @@ import { Stack } from "expo-router";
 
 import PlaceForm from "../components/Places/PlaceForm";
 
-function AddPlace() {
+function AddPlace({navigation}) {
+  function createPlaceHandler() {}
+  
   return ( // IMPLEMENT ANOTHER WAY TO CONFIGURE A COMPONENT AND IT'S PROPS AS A ROUTE
     <>
       <Stack.Screen
