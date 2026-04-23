@@ -3,7 +3,11 @@ import { Stack } from "expo-router";
 import PlaceForm from "../components/Places/PlaceForm";
 
 function AddPlace({navigation}) {
-  function createPlaceHandler() {}
+  function createPlaceHandler(place) {
+    navigation.navigate("AllPlaces", {
+      place: place
+    });
+  }
   
   return ( // IMPLEMENT ANOTHER WAY TO CONFIGURE A COMPONENT AND IT'S PROPS AS A ROUTE
     <>
@@ -13,7 +17,7 @@ function AddPlace({navigation}) {
           title: "Add a new Place",
         }}
       />
-      <PlaceForm />
+      <PlaceForm onCreatePlace={createPlaceHandler} />
     </>
   );
 }
