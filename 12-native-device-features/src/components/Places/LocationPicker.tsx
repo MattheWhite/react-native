@@ -3,7 +3,7 @@ import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } f
 import { useEffect, useState } from "react";
 import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
 
-import { getMapPreview } from "../util/location";
+import { getAddress, getMapPreview } from "../util/location";
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
 
@@ -31,7 +31,14 @@ function LocationPicker({onPickLocation}) { // since it is not a Screen componen
   }, [route, isFocused]);
 
   useEffect(() => {
-    onPickLocation(pickedLocation);
+    async function handleLocationPromise() {
+      if (pickedLocation) {
+        const address = await getAddress(pickedLocation.lat, pickedLocation.lng);
+        onPickLocation({ ...pickedLocation, address: address });
+      }
+    }
+    
+    handleLocationPromise();
   }, [pickedLocation, onPickLocation]); // in PlaceForm making pickLocationHandler a constant arrow func. so here this effect won't be reevaluated again when changes smthing
 
   async function verifyPermissions() { // get permission for location
