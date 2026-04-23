@@ -73,7 +73,7 @@ function LocationPicker({onPickLocation}) { // since it is not a Screen componen
   let locationPreview = <Text>No location picked yet.</Text>;
 
   if (pickedLocation){
-    locationPreview = <Image style={styles.image} source={{uri: getMapPreview(pickedLocation.lat, pickedLocation.lng)}} />;
+    locationPreview = <Image style={styles.image} source={{uri: getMapPreview(pickedLocation.lat, pickedLocation.lng)}} />; // due to placeholder API KEY won't appear a map preview
   }
 
   return (
