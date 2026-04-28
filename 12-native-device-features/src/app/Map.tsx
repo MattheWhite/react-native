@@ -35,7 +35,7 @@ function Map() {
 
     navigation.navigate("AddPlace", {  // RN automatically detects we came from this component and handles it well
       pickedLat: selectedLocation.lat,
-      pickedLng: selectedLocation.lng, 
+      pickedLng: selectedLocation.lng,
     });
   }, [navigation, selectedLocation]);
 

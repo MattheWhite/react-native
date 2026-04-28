@@ -1,8 +1,11 @@
 import { Stack } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 import PlaceForm from "../components/Places/PlaceForm";
 
-function AddPlace({navigation}) {
+function AddPlace() {
+  const navigation = useNavigation();
+  
   function createPlaceHandler(place) {
     navigation.navigate("AllPlaces", {
       place: place

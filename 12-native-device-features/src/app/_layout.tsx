@@ -12,7 +12,8 @@ export default function RootLayout() {
         screenOptions={{
           headerStyle: { backgroundColor: Colors.primary500 },
           headerTintColor: Colors.gray700,
-          contentStyle: { backgroundColor: Colors.gray700 }
+          contentStyle: { backgroundColor: Colors.gray700 },
+          unmountOnBlur: false // Keeps screen mounted when navigating away, specially with expo-routing occurs this bug
         }}
       >
         <Stack.Screen

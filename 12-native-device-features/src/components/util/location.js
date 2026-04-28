@@ -28,6 +28,7 @@ export async function getAddress(latitude, longitude) {
   }
 
   const data = await response.json();
-  const address = data.results[0].formatted_address; // official docs gives this field
+  // const address = data.results[0].formatted_address; // official docs gives this field
+  const address = data.results?.[0]?.formatted_address ?? '22002, North Carolina, Fragmant desert, dummy address'; // -> if i would defend error response with nullish check and give back some placeholder
   return address;
 }
