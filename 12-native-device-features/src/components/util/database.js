@@ -6,10 +6,11 @@ When you use (in _layout.tsx modern way) <SQLiteProvider databaseName="places.db
 
 const database = await SQLite.openDatabaseAsync('places.db'); // create if not exists, open if it does
 */
-
+let database;
 export async function init(database) {// sends the initial base database structure, must runned at least once
+    this.database = database;
     try {
-        await database.withTransactionAsync( async () => { // transaction object automatically passed by expo-sqlite package, but i use the modern way, no longer needed
+        await database.withTransactionAsync( async () => { // transaction object automatically passed by expo-sqlite package, but i use the modern way, no longer needed | id column will be set automatically
             await database.execAsync(`CREATE TABLE IF NOT EXISTS places (
                 id INTEGER PRIMARY KEY NOT NULL,
                 title TEXT NOT NULL,
@@ -18,8 +19,20 @@ export async function init(database) {// sends the initial base database structu
                 latitude REAL NOT NULL,
                 longitude REAL NOT NULL
             )`);
-        }); // the callbacks for success-error now deprecated! use try-catch instead    
+        }); // the callbacks for success-error now deprecated! use try-catch instead
     } catch (error) {
-            console.error("Failed to initialize database:", error);
+        console.error("Failed to initialize database:", error);
+    }
+}
+
+export async function insertPlace(place) {
+    try {
+        await this.database.withTransactionAsync( async () => {
+            await database.execAsync(`INSERT INTO places (title, imageUri, address, latitude, longitude) VALUES (?, ?, ?, ?, ?)`,
+                [place.title, place.imageUri, place.address, place.location.lat, place.location.lng] // the sequence is IMPORTANT of passed data
+            ); // instead of inserting dynamic data into query directly, use ? placeholder with sqlite package
+        });
+    } catch (error) {
+        console.error("Failed to initialize database:", error);
     }
 }
