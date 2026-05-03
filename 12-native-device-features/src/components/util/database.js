@@ -28,11 +28,21 @@ export async function init(database) {// sends the initial base database structu
 export async function insertPlace(place) {
     try {
         await this.database.withTransactionAsync( async () => {
-            await database.execAsync(`INSERT INTO places (title, imageUri, address, latitude, longitude) VALUES (?, ?, ?, ?, ?)`,
+            await this.database.execAsync(`INSERT INTO places (title, imageUri, address, latitude, longitude) VALUES (?, ?, ?, ?, ?)`,
                 [place.title, place.imageUri, place.address, place.location.lat, place.location.lng] // the sequence is IMPORTANT of passed data
             ); // instead of inserting dynamic data into query directly, use ? placeholder with sqlite package
         });
     } catch (error) {
-        console.error("Failed to initialize database:", error);
+        console.error("Failed to insert places data into database:", error);
+    }
+}
+
+export async function fetchPlaces() {
+    try {
+        await this.database.withTransactionAsync( async () => {
+            await this.database.execAsync(`SELECT * FROM places`);
+        });
+    } catch (error) {
+        console.error("Failed to fetch places from database:", error);
     }
 }
