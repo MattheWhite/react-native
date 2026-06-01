@@ -13,7 +13,10 @@ function PlaceDetails() {
   const navigation = useNavigation();
 
   function showOnMapHandler() {
-    navigation.navigate('Map'); // here we could continue to hide the save button on open a Place -> modify Map.tsx but here stops the project
+    navigation.navigate('Map', { // here we could continue to hide the save button on open a Place and open the map with these coordinates passed as route params -> modify Map.tsx but here stops the project
+        initialLat: place.location.lat,
+        initialLng: place.location.lng
+    });
   }
 
   useEffect(() => {
