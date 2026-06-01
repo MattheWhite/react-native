@@ -9,9 +9,9 @@ function AddPlace() {
   
   async function createPlaceHandler(place) {
     await insertPlace(place);
-    navigation.navigate("AllPlaces", {
+    navigation.navigate("AllPlaces" /*, {
       place: place
-    });
+    }*/);
   }
   
   return ( // IMPLEMENT ANOTHER WAY TO CONFIGURE A COMPONENT AND IT'S PROPS AS A ROUTE
