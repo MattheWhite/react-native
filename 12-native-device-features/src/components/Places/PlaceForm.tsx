@@ -30,7 +30,7 @@ function PlaceForm({onCreatePlace}) {
       console.log('Entered data: ', enteredTitle, selectedImage, pickedLocation);
     }
     
-    const placeData: Place = new Place(enteredTitle ?? 'TEST_TITLE_ifNull', selectedImage ?? 'file:///NOTEXISTING_TEST_URI_ifNull.jpeg"', pickedLocation  ?? {lat: 420, lng: 69, address: 'DUMMY_ADDRESS_ifNull'} );
+    const placeData: Place = new Place(enteredTitle ?? 'TEST_TITLE_ifNull', selectedImage ?? 'file:///NOTEXISTING_TEST_URI_ifNull.jpeg', pickedLocation  ?? {lat: 420, lng: 69, address: 'DUMMY_ADDRESS_ifNull'} );
     console.log('Sending to DB:', placeData); // Verify data here first
     onCreatePlace(placeData);
   }

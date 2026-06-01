@@ -1,14 +1,16 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useEffect, useLayoutEffect, useState } from "react";
+
 import OutlinedButton from "../components/UI/OutlinedButton";
 import { Colors } from "@/constants/colors";
-import { useEffect, useState } from "react";
-import { useLocalSearchParams } from "expo-router";
 import { fetchPlaceById } from "../components/util/database";
 
 function PlaceDetails() {
   // This will correctly receive the ID sent via router.push(`/PlaceDetails?placeId=${id}`)
   const { placeId } = useLocalSearchParams<{ placeId: string }>();
   const [place, setPlace] = useState(null);
+  const navigation = useNavigation();
 
   function showOnMapHandler() {}
 
@@ -22,7 +24,19 @@ function PlaceDetails() {
     loadPlace();
   }, [placeId]);
 
-  if (!place) return <View><Text>Loading...</Text></View>;
+  // Update header title as soon as 'place' data is available
+  useLayoutEffect(() => {
+    if (place?.title) {
+      navigation.setOptions({ title: place.title });
+    }
+  }, [navigation, place?.title]);
+
+  if (!place)
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
 
   return (
     <ScrollView>
