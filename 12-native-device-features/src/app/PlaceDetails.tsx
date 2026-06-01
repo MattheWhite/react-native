@@ -33,7 +33,7 @@ function PlaceDetails() {
 
   if (!place)
     return (
-      <View>
+      <View style={styles.fallBack}>
         <Text>Loading...</Text>
       </View>
     );
@@ -74,4 +74,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  fallBack: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
