@@ -74,3 +74,15 @@ export async function fetchPlaces() {
         throw error;
     }
 }
+
+export async function fetchPlaceById(id) {
+ if (!db) throw new Error("Database not initialized");
+
+ try {
+   const place = await db.getFirstAsync(`SELECT * FROM places WHERE id = ?`, [ id ]);
+   return place;
+ } catch (error) {
+   console.error("Failed to fetch place:", error);
+   throw error;
+ }
+}
