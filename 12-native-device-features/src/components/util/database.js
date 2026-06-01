@@ -1,3 +1,4 @@
+import { Place } from '@/models/Place';
 import * as SQLite from 'expo-sqlite'; // i will use everywhere Asyncronous execution
 // The legacy openDatabese(), transaction(), executeSql() and so on... callback-based APIs are deprecated in favor of async/await methods like runAsync(), getAllAsync(), and getFirstAsync(), which offer better performance and type safety. 
 
