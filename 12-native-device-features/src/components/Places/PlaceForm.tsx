@@ -26,7 +26,7 @@ function PlaceForm({onCreatePlace}) {
 
   function savePlaceHandler() {
     if (!enteredTitle || !selectedImage || !pickedLocation) {
-      Alert.alert('ERROR', 'Please fill in all fields (Title, Image, and Location). Otherwise placeholders will be added.');
+      Alert.alert('Error', 'Please fill in all fields (Title, Image, and Location). Otherwise placeholders will be added.');
       console.log('Entered data: ', enteredTitle, selectedImage, pickedLocation);
     }
     

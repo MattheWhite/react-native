@@ -3,6 +3,7 @@ import { useIsFocused, useRoute } from "@react-navigation/native";
 
 import PlacesList from "../components/Places/PlacesList";
 import { fetchPlaces } from "../components/util/database";
+import { Place } from "@/models/Place";
 
 function AllPlaces() {
   const route = useRoute();
@@ -13,6 +14,11 @@ function AllPlaces() {
     async function loadPlaces() {
       await fetchPlaces().then(async (result) => {
         console.log(' =====================   FETCHED DATA   ===================== \n', result);
+        const places: Place[] = [];
+        for (const dataPoint of result) {
+          places.push(new Place(dataPoint.title, dataPoint.imageUri, {address: dataPoint.address, lat: dataPoint.lat, lng: dataPoint.lng}, dataPoint.id));
+        }
+        setLoadedPlaces(places);
       });
     }
     if (isFocused /* && route.params */) {
