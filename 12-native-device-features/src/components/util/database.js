@@ -52,6 +52,21 @@ export async function fetchPlaces() {
         // await this.database.withTransactionAsync( async () => {
         //     await this.database.execAsync(`SELECT * FROM places`);
         // });  -> Removed unnecessary transactions - Single operations don't need them
+        
+        /*
+
+        Old API (Deprecated):
+        Methods: transaction(), executeSql().
+        Response: A complex SQLResultSet object containing rows, rows._array, insertId, rowsAffected, etc.
+        Usage: Callback-based, harder to read.
+        
+        New API (Current Standard):
+        Methods: getAllAsync(), runAsync(), getFirstAsync().
+        Response:
+        getAllAsync(): Returns a plain array of objects ([{ id: 1, title: "..." }, ...]) directly. No wrapper object.
+        runAsync(): Returns a specific result object { lastInsertRowId, changes } for INSERT/UPDATE/DELETE.
+        Usage: Promise-based (async/await), cleaner, and type-safe. 
+        */
         const rows = await db.getAllAsync('SELECT * FROM places'); // Use for SELECT queries (returns actual data)
         return rows;
     } catch (error) {
