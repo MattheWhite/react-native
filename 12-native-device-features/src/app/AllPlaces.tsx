@@ -12,7 +12,7 @@ function AllPlaces() {
   useEffect(() => {
     async function loadPlaces() {
       await fetchPlaces().then(async (result) => {
-        console.log(result.rows._array);
+        console.log(result);
       });
     }
     if (isFocused /* && route.params */) {
