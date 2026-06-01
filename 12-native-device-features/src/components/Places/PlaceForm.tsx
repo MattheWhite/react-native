@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/colors";
 import { useCallback, useState } from "react";
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import Button from '@/src/components/UI/Button';
 import ImagePicker from "./ImagePicker";
@@ -25,11 +25,14 @@ function PlaceForm({onCreatePlace}) {
   }, []);
 
   function savePlaceHandler() {
-    const placeData: Place = new Place(enteredTitle ?? 'TEST_TITLE_ifNull', selectedImage ?? 'file:///data/user/0/host.exp.exponent/cache/ImagePicker/NOTEXISTING_TEST_URI.jpeg"', pickedLocation  ?? {lat: 420, lng: 69, address: 'dummy address without selected anything'} );
+    if (!enteredTitle || !selectedImage || !pickedLocation) {
+      Alert.alert('ERROR', 'Please fill in all fields (Title, Image, and Location). Otherwise placeholders will be added.');
+      console.log('Entered data: ', enteredTitle, selectedImage, pickedLocation);
+    }
+    
+    const placeData: Place = new Place(enteredTitle ?? 'TEST_TITLE_ifNull', selectedImage ?? 'file:///NOTEXISTING_TEST_URI_ifNull.jpeg"', pickedLocation  ?? {lat: 420, lng: 69, address: 'DUMMY_ADDRESS_ifNull'} );
+    console.log('Sending to DB:', placeData); // Verify data here first
     onCreatePlace(placeData);
-    console.log(enteredTitle)
-    console.log(selectedImage)
-    console.log(pickedLocation)
   }
 
   return (

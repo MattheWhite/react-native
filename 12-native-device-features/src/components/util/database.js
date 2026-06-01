@@ -41,7 +41,7 @@ export async function insertPlace(place) {
             ); // instead of inserting dynamic data into query directly, use ? placeholder with sqlite package
             return result.lastInsertedRowId;
     } catch (error) {
-        console.error("Failed to insert places data into database:", error);
+        console.error("Failed to insert data into database:", error);
         throw error;
     }
 }
@@ -55,7 +55,7 @@ export async function fetchPlaces() {
         const rows = await db.getAllAsync('SELECT * FROM places'); // Use for SELECT queries (returns actual data)
         return rows;
     } catch (error) {
-        console.error("Failed to fetch places from database:", error);
+        console.error("Failed to fetch data from database:", error);
         throw error;
     }
 }
