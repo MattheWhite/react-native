@@ -6,6 +6,7 @@ import { useLocalSearchParams } from "expo-router";
 import { fetchPlaceById } from "../components/util/database";
 
 function PlaceDetails() {
+  // This will correctly receive the ID sent via router.push(`/PlaceDetails?placeId=${id}`)
   const { placeId } = useLocalSearchParams<{ placeId: string }>();
   const [place, setPlace] = useState(null);
 
@@ -25,10 +26,10 @@ function PlaceDetails() {
 
   return (
     <ScrollView>
-      <Image style={styles.image} />
+      <Image style={styles.image} source={{ uri: place.imageUri }} />
       <View style={styles.locationContainer}>
         <View style={styles.addressContainer}>
-          <Text style={styles.address}>address</Text>
+          <Text style={styles.address}>{place.address}</Text>
         </View>
         <OutlinedButton icon="map" onPress={showOnMapHandler}>
           View on Map
