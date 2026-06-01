@@ -12,7 +12,9 @@ function PlaceDetails() {
   const [place, setPlace] = useState(null);
   const navigation = useNavigation();
 
-  function showOnMapHandler() {}
+  function showOnMapHandler() {
+    navigation.navigate('Map'); // here we could continue to hide the save button on open a Place -> modify Map.tsx but here stops the project
+  }
 
   useEffect(() => {
     async function loadPlace() {

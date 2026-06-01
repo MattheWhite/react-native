@@ -9,6 +9,11 @@ function Map() {
   const navigation = useNavigation();
   const [selectedLocation, setSelectedLocation] = useState();
 
+  // we should receive from somewhere the initial LAT and LNG data and pass them in region like
+  // latitude: initialLocation ? initialLocation.lat...  but here the project stops
+  // TODO:  - fix some popupping warn message on editing and adding a new Place
+  //        - implement this Map opener but only for viewing functionality
+
   const region = {
     latitude: 37.78,
     longitude: -122.43,
