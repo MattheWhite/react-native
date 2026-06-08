@@ -15,6 +15,13 @@ Notifications.setNotificationHandler({
 })
 
 export default function App() {
+  // fetch the push token used later
+  useEffect(() => {
+    Notifications.getExpoPushTokenAsync().then((pushTokenData) => { // Returns an Expo token that can be used to send a push notification to the device using Expo's push notifications service.
+      console.log(pushTokenData);
+    });
+  }, []);
+  
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener((notification) => {
       console.log('NOTIFICATION RECEIVED!');
