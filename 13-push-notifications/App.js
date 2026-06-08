@@ -32,9 +32,9 @@ export default function App() {
         return;
       }
 
-      Notifications.getExpoPushTokenAsync().then((pushTokenData) => { // Returns an Expo token that can be used to send a push notification to the device using Expo's push notifications service.
+      const pushTokenData = await Notifications.getExpoPushTokenAsync() // Returns an Expo token that can be used to send a push notification to the device using Expo's push notifications service.
         console.log(pushTokenData);
-      });
+      };
     }
     
   }, []);
