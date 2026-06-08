@@ -84,6 +84,7 @@ export default function App() {
   }
 
   function sendPushNotificationHandler() {
+    // OTHER APPROACH IS TO SEND THE PUSH NOTIFICATION TO ALL DEVICES FROM THA BACKEND (SERVER)
     fetch('https://exp.host/--/api/v2/push/send', {
       method: 'POST',
       headers: {
