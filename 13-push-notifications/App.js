@@ -17,13 +17,21 @@ Notifications.setNotificationHandler({
 export default function App() {
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener((notification) => {
-      console.log('Notification received!');
+      console.log('NOTIFICATION RECEIVED!');
       console.log(notification);
       notification.content.data.userName; // -> received the userName what we passed in scheduling
     });
 
+    // when the user respondes for the notification
+    const subscription2 = Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log('NOTIFICATION RESPONSE RECEIVED!');
+      console.log(response);
+      response.notification.request.content.data.userName;
+    });
+
     return () => {
       subscription.remove(); // clean up when this component removed (the main component = App closes)
+      subscription2.remove();
     };
   }, []);
   
