@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, View } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { useEffect } from 'react';
 
 // in this main App.js file  ->  ensures this code will run when the app starts 100%
 Notifications.setNotificationHandler({
@@ -14,6 +15,18 @@ Notifications.setNotificationHandler({
 })
 
 export default function App() {
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener((notification) => {
+      console.log('Notification received!');
+      console.log(notification);
+      notification.content.data.userName; // -> received the userName what we passed in scheduling
+    });
+
+    return () => {
+      subscription.remove(); // clean up when this component removed (the main component = App closes)
+    };
+  }, []);
+  
   function sceduleNotificationHandler() { // IMPORTANT --------------------------------->>>> Expo 53 SDK eliminated push notifications with expo's sandbox credential | now developers must do a development build instead of Expo Go
     Notifications.scheduleNotificationAsync({
       // lot of possible configuration available
