@@ -33,10 +33,10 @@ export default function App() {
       }
 
       const pushTokenData = await Notifications.getExpoPushTokenAsync() // Returns an Expo token that can be used to send a push notification to the device using Expo's push notifications service.
-        console.log(pushTokenData);
-      };
+      console.log(pushTokenData);
     }
-    
+
+    configurePushNotifications();
   }, []);
   
   useEffect(() => {
