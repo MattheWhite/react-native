@@ -1,10 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
+import * as Notifications from 'expo-notifications';
 
 export default function App() {
+  function sceduleNotificationHandler() { // IMPORTANT --------------------------------->>>> Expo 53 SDK eliminated push notifications with expo's sandbox credential | now developers must do a development build instead of Expo Go
+    Notifications.scheduleNotificationAsync({
+      // lot of possible configuration available
+      content: {
+        title: 'First local notification',
+        body: 'This is the body of the notification.',
+        data: {
+          userName: 'XYZ'
+          // lot of extra data can be assigned to this notification
+        }
+      },
+      trigger: {
+        second: 5
+      }
+    });
+  }
+  
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Button title='Scedule Notification' onPress={sceduleNotificationHandler} />
       <StatusBar style="auto" />
     </View>
   );
